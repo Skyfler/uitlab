@@ -18,6 +18,8 @@
 }
 
 .technologies .masonry-items-container {
+    width: 100%;
+    max-width: 2000px;
     margin: 0 auto;
 }
 
@@ -50,7 +52,8 @@
 }
 
 .technologies .grid-item {
-    width: 277px;
+    /*width: 277px;*/
+    width: 25%;
     border: 1px solid lightgray;
     float: left;
 }
@@ -69,6 +72,15 @@
 
     .technologies {
         display: block;
+    }
+
+}
+
+@media(min-width: 998px) {
+
+    .technologies .grid-item {
+        /*width: 277px;*/
+        width: 20%;
     }
 
 }

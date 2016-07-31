@@ -39,7 +39,8 @@ function ready2() {
             masonryOptionsObj: {
                 itemSelector: '.grid-item',
                 columnWidth: '.grid-item',
-                fitWidth: true
+                /*fitWidth: true,*/
+                percentPosition: true
             }
         })
     }

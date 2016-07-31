@@ -68,6 +68,30 @@ p {
     *zoom: 1;
 }
 
+.hidden {
+    display: none!important;
+}
+
+@media (min-width: 768px) {
+
+    .min-width-768 {
+        display: block!important;
+    }
+
+}
+
+@media (min-width: 998px) {
+
+    .max-width-997 {
+        display: none!important;
+    }
+
+    .min-width-998 {
+        display: block!important;
+    }
+
+}
+
 /**
 --============================= .menu =============================--
 **/
