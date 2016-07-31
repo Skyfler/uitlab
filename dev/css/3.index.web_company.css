@@ -1,0 +1,146 @@
+.web_company {
+    overflow: hidden;
+    position: relative;
+    padding-top: 78px;
+}
+
+.web_company .divider:after {
+    height: 25px;
+    border-right: 4px solid #2687e0;
+    top: -10px;
+    left: 13px;
+}
+
+#horizontal_carousel {
+    padding-bottom: 65px;
+    margin: 0px auto;
+    max-width: 395px;
+    overflow: visible;
+}
+
+#horizontal_carousel .arrow {
+    height: 50px;
+    width: 28px;
+    position: absolute;
+    top: 186px;
+    z-index: 100;
+}
+
+#horizontal_carousel .arrow polyline {
+    stroke: #cdcdcd;
+}
+
+#horizontal_carousel .arrow.left_arrow {
+    left: 2%;
+}
+
+#horizontal_carousel .arrow.right_arrow {
+    right: 2%;
+}
+
+#horizontal_carousel .arrow svg {
+    height: 50px;
+    width: 28px;
+}
+
+#horizontal_carousel .overflow_block {
+    width: 300%;
+}
+
+#horizontal_carousel .slider_slide {
+    width: 33.33333333333%;
+}
+
+#horizontal_carousel .content_block {
+    width: 90%;
+    min-height: 300px;
+    padding: 5px;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+    text-align: center;
+    transition: opacity ease 1s;
+}
+
+#horizontal_carousel .slider_slide .text {
+    color: #a6a6a6;
+    font-weight: 300;
+    font-size: 1.8em;
+    position: relative;
+    min-height: 100px;
+    padding-bottom: 25px;
+    max-width: 270px;
+    margin: 0 auto;
+}
+
+#horizontal_carousel .slider_slide .icon {
+    display: block;
+    width: 135px;
+    height: 159px;
+    position: relative;
+    margin: 0 auto 35px;
+    background: rgba(255, 0, 0, 0.1);
+}
+
+#horizontal_carousel .slider_slide .title {
+    font-size: 2.2em;
+    color: #000;
+    text-transform: uppercase;
+    font-weight: 800;
+    margin-bottom: 26px;
+}
+
+#horizontal_carousel .slider_slide .details {
+    text-transform: uppercase;
+    display: block;
+    width: 200px;
+    height: 50px;
+    margin: 0 auto;
+    background: #ffda00;
+    color: #353535;
+    font-weight: 800;
+    font-size: 1.6em;
+    position: relative;
+    padding-top: 16px;
+}
+
+#horizontal_carousel .slider_slide .details:hover {
+    font-size: 1.9em;
+    padding-top: 14px;
+}
+
+#horizontal_carousel .slider_slide .details:before,
+#horizontal_carousel .slider_slide .details:after {
+    content: "";
+    position: absolute;
+    width: 25px;
+    border-bottom: 4px solid #2791f2;
+    top: 23px;
+
+    display: none;
+}
+
+#horizontal_carousel .slider_slide .details:hover:before,
+#horizontal_carousel .slider_slide .details:hover:after {
+    display: block;
+}
+
+#horizontal_carousel .slider_slide .details:hover:before {
+    left: -15px;
+}
+
+#horizontal_carousel .slider_slide .details:hover:after {
+    right: -15px;
+}
+
+@media (min-width: 415px) {
+
+    #horizontal_carousel .arrow.left_arrow {
+        left: 0;
+    }
+
+    #horizontal_carousel .arrow.right_arrow {
+        right: 0;
+    }
+
+}

@@ -1,0 +1,28 @@
+.get_results {
+    background: #2791f2;
+    color: #fff;
+    text-align: center;
+    padding-top: 37px;
+    padding-bottom: 30px;
+}
+
+.get_results .first_line {
+    font-size: 2.2em;
+    font-weight: 300;
+}
+
+.get_results .first_line strong {
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.get_results .second_line {
+    font-size: 3.4em;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+.get_results .second_line span {
+    font-family: Arial, sans-serif;
+}

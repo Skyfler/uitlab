@@ -1,0 +1,74 @@
+.technologies {
+    background: #f6f6f6;
+    position: relative;
+    padding-top: 78px;
+    padding-bottom: 125px;
+    display: none;
+}
+
+.technologies .container {
+    padding-bottom: 1px;
+}
+
+.technologies .divider:after {
+    width: 25px;
+    border-bottom: 4px solid #2687e0;
+    right: -10px;
+    top: 13px;
+}
+
+.technologies .masonry-items-container {
+    margin: 0 auto;
+}
+
+.technologies .tab_panel {
+    /*background: rgba(0, 255, 0, 0.1);*/
+    height: 67px;
+    width: 100%;
+    text-align: center;
+}
+
+.technologies .tab {
+    display: inline-block;
+    padding: 10px 15px;
+    color: black;
+    cursor: pointer;
+    font-family: Tahoma, sans-serif;
+    font-size: 1.4em;
+    text-transform: uppercase;
+    transition: text-shadow 0.5s ease 0s, color 0.5s ease 0s;
+}
+
+.technologies .tab:hover {
+    text-shadow:
+            0 0 10px rgb(39, 145, 242),
+            0 0 10px rgb(39, 145, 242);
+}
+
+.technologies .tab.active {
+    color: #2687e0;
+}
+
+.technologies .grid-item {
+    width: 277px;
+    border: 1px solid lightgray;
+    float: left;
+}
+
+.technologies .grid-item--height1 {
+    height: 114px;
+    background: rgba(255, 0, 0, 0.1);
+}
+
+.technologies .grid-item--height2 {
+    height: 185px;
+    background: rgba(0, 0, 255, 0.1);
+}
+
+@media(min-width: 768px) {
+
+    .technologies {
+        display: block;
+    }
+
+}

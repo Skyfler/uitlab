@@ -1,0 +1,123 @@
+.info {
+    background: #262626;
+    padding: 100px 0 45px;
+}
+
+.info .brand {
+    font-size: 4em;
+    font-weight: 800;
+    display: inline-block;
+    /*padding: 25px 0px 26px;*/
+}
+
+.info .brand span {
+    color: white;
+}
+
+.info .brand span+span {
+    color: #2791f2;
+}
+
+.info .spec_list {
+    margin-top: 40px;
+    display: block;
+}
+
+/*.info .spec_list li {
+    display: block;
+    float: left;
+    width: 50%;
+    color: white;
+    font-size: 1.6em;
+    padding: 7px 0;
+}*/
+
+.info .spec_list li a {
+    display: block;
+    color: white;
+    font-size: 1.6em;
+    padding: 7px 0;
+    transition: text-shadow 0.5s ease 0s;
+}
+
+.info .spec_list li a:hover {
+    text-shadow:
+            0 0 10px rgb(39, 145, 242),
+            0 0 10px rgb(39, 145, 242),
+            0 0 10px rgb(39, 145, 242);
+}
+
+    .info .spec_list li {
+        display: inline-block;
+        /*float: none;
+        width: auto;*/
+    }
+
+    .info .spec_list li+li {
+        margin-left: 25px;
+    }
+
+.info .spec_list li span {
+    position: relative;
+}
+
+.info .spec_list li span:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 0;
+    border-bottom: 2px solid #2791f2;
+    left: 0;
+    bottom: -4px;
+}
+
+.info .soc_menu {
+    margin-top: 50px;
+    display: block;
+}
+
+.info .soc_menu li {
+    display: inline-block;
+}
+
+.info .soc_menu li+li {
+    margin-left: 20px;
+}
+
+.info .soc_menu li a {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+    color: transparent;
+    background: rgba(255, 0, 0, 0.1);
+}
+
+@media(max-width: 350px) {
+
+    .info .spec_list li:last-child {
+        margin-top: 10px;
+        margin-left: 0!important;
+        display: block;
+    }
+}
+
+/*@media(min-width: 470px) {
+
+    .info .spec_list li {
+        display: inline-block;
+        float: none;
+        width: auto;
+    }
+
+}*/
+
+@media(min-width: 470px) {
+
+    .info .spec_list li+li {
+        margin-left: 60px;
+    }
+
+}
