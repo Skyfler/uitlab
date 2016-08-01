@@ -12,7 +12,7 @@ function ready2() {
 (function ready() {
     
     var Menu = require('./menu.js');
-    var Slider = require('./slider.js');
+    /*var Slider = require('./slider.js');*/
     var CustomUploadButton = require('./custom-upload-button.js');
     var CustomSelect = require('./customselect.js');
     var FormSwitcher = require('./formswitcher');
@@ -23,13 +23,13 @@ function ready2() {
         elem: document.querySelector('#main_menu')
     });
 
-    var horizontalCarouselElem = document.querySelector('#horizontal_carousel');
+    /*var horizontalCarouselElem = document.querySelector('#horizontal_carousel');
     if (horizontalCarouselElem) {
         var horizontalCarousel = new Slider({
             elem: horizontalCarouselElem,
             delay: 0
         });
-    }
+    }*/
 
     var masonryTabsElem = document.querySelector('.masonry-tabs');
     if (masonryTabsElem) {

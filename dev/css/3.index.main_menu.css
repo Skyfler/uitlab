@@ -1,5 +1,9 @@
+header {
+    background: rgb(38, 38, 38);
+}
+
 #main_menu {
-    min-height: 98px;
+    background: #fff;
 }
 
 #main_menu .navbar_header {
@@ -9,11 +13,12 @@
 }
 
 #main_menu .navbar_header .navbar_brand {
-    font-size: 4em;
+    font-size: 3em;
     font-weight: 800;
     height: 100%;
     display: block;
-    padding: 25px 0px 26px;
+    padding: 25px 0px 24px;
+    float: right;
 }
 
 #main_menu .navbar_header .navbar_brand span {
@@ -24,19 +29,14 @@
     color: #2791f2;
 }
 
-#main_menu .navbar_end {
-    display: none;
-}
-
 #main_menu .navbar_header .dropdown_toggle {
-    padding: 15px 11px;
+    padding: 32px 15px 31px;
     background-color: transparent;
     background-image: none;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    border: none;
     position: absolute;
-    right: 15px;
-    top: 22px;
+    left: 0;
+    top: 0;
     transition: background ease 0.5s;
 }
 
@@ -45,7 +45,7 @@
 }
 
 #main_menu .navbar_header .dropdown_toggle .icon_bar {
-    background-color: #888;
+    background-color: #000;
     display: block;
     width: 32px;
     height: 3px;
@@ -56,6 +56,10 @@
     margin-top: 6px;
 }
 
+#main_menu .dropdown_container {
+    margin: 0 -15px;
+}
+
 #main_menu .dropdown_bar {
     padding: 15px 0;
 }
@@ -63,12 +67,41 @@
 #main_menu .dropdown_bar li a {
     font-size: 2rem;
     color: #a6a6a6;
-    padding: 10px 0;
+    padding: 10px 0 10px 25px;
 }
 
 #main_menu .dropdown_bar li a:hover {
+    color: #000;
+    background: rgba(39, 145, 242, 0.39);
+}
+
+/*#main_menu .navbar_end {
+    display: none;
+}*/
+
+#main_menu .navbar_end {
+    float: left;
+    width: 240px;
+    padding: 0 0 20px 20px;
+    text-align: center;
+}
+
+#main_menu .navbar_end .start_project {
+    height: 54px;
+    padding: 18px 0 0;
+    display: block;
+    background: #ffda00;
+    transition: transform 0.5s ease 0s;
+    will-change: transform;
+
+    text-transform: uppercase;
+    font-size: 1.62em;
     font-weight: 700;
     color: #000;
+}
+
+#main_menu .navbar_end .start_project:hover {
+    transform: scale(1.1);
 }
 
 @media (min-width: 768px) {
@@ -79,16 +112,30 @@
     }
 
     #main_menu .navbar_header .dropdown_toggle {
-        right: 30px;
+        padding: 32px 30px 31px;
     }
 
-    #main_menu .dropdown_bar li a {
-        padding: 10px 0;
+    #main_menu .dropdown_container {
+        margin: 0 -30px;
+    }
+
+    #main_menu .navbar_header .dropdown_toggle {
+        right: 30px;
     }
 
 }
 
 @media (min-width: 800px) {
+
+    header {
+        padding-top: 60px;
+    }
+
+    #main_menu .navbar_header .navbar_brand {
+        font-size: 4em;
+        padding: 25px 0 26px;
+        float: none;
+    }
 
     #main_menu .navbar_header {
         float: left;
@@ -100,6 +147,7 @@
     #main_menu .dropdown_bar {
         padding: 0;
         height: 98px;
+        float: left;
     }
 
     #main_menu .dropdown_bar li {
@@ -109,49 +157,33 @@
     }
 
     #main_menu .dropdown_bar li a {
-        font-size: 1.6rem;
         width: 100px;
         text-align: center;
         height: 100%;
-        padding: 38px 0 0;
+        padding: 40px 0 0;
         margin: 0;
 
         font-size: 1.6rem;
         color: #a6a6a6;
     }
 
-    #main_menu .navbar_end {
-        display: block;
-        background: #ffda00;
-        float: right;
-        width: 170px;
-        text-align: center;
-    }
-
-    #main_menu .start_project {
-        height: 98px;
-        padding: 24px 0 0;
-        display: block;
-    }
-
-    #main_menu .start_project span {
-        text-transform: uppercase;
-        display: block;
-        color: #000;
-        font-weight: 500;
-        font-size: 1.8em;
-        letter-spacing: -0.7px;
-    }
-
-    #main_menu .start_project span+span {
-        font-weight: 800;
-        font-size: 2.2em;
-        letter-spacing: 2px;
-        margin-top: 2px;
+    #main_menu .dropdown_bar li a:hover {
+        font-weight: 700;
+        background: none;
     }
 
     #main_menu .dropdown_container {
+        margin: 0;
         float: right;
+    }
+
+    #main_menu .navbar_end {
+        width: 170px;
+        padding: 14px 0 0;
+    }
+
+    #main_menu .navbar_end .start_project {
+        height: 70px;
     }
 
 }
@@ -163,7 +195,11 @@
     }
 
     #main_menu .navbar_end {
-        width: 200px;
+        width: 220px;
+    }
+
+    #main_menu .navbar_end .start_project {
+        padding: 26px 0 0;
     }
 
 }
