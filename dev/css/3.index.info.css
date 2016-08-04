@@ -92,6 +92,13 @@
     border-radius: 50%;
     overflow: hidden;
     color: transparent;
+    transition: box-shadow 0.5s ease 0s;
+}
+
+.info .soc_menu li a:hover {
+    box-shadow:
+            0 0 15px rgb(39, 145, 242),
+            inset 0 0 10px rgb(39, 145, 242);
 }
 
 .info .soc_menu li.vkontakte a {

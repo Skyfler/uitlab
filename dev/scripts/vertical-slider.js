@@ -70,19 +70,54 @@ var imgTopVals = {
     bottomOpen: 250
 };
 
+var sliderInitalisation = {
+    desktop: 'desktop',
+    mobile: 'mobile'
+};
+
 /*
  ======================== VerticalSlider Constructor ========================
  */
 
 function VerticalSlider(options) {
     this._elem = options.elem;
-    this._state = sliderStateVals.ready;
+    this._mobileHeight = options.mobileHeight;
+    this._desktopHeight = options.desktopHeight;
+    this._openSlideHeightDesktop = options.openSlideHeightDesktop;
+    this._openSlideHeightMobile = options.openSlideHeightMobile;
+    this._transitionDuration = options.transitionDuration / 2;
+
+    this._init.bind(this)();
 
     this._onSliderReady = this._onSliderReady.bind(this);
     this._onMouseMove = this._onMouseMove.bind(this);
 
-    this._calculateValues.bind(this)(options);
+    this._elem.addEventListener('slidechangingstate', this._onSlideChangingState.bind(this));
+    this._elem.addEventListener('slidechangedstate', this._onSlideChangedState.bind(this));
+    this._elem.addEventListener('mouseout', this._onMouseOut.bind(this));
+    this._elem.addEventListener('mouseover', this._onMouseOver.bind(this));
+
+    window.addEventListener('resize', this._onResize.bind(this));
+}
+
+VerticalSlider.prototype._init = function() {
+    if (this._elem.offsetWidth < 800) {
+        this._initMobile.bind(this)();
+    } else {
+        this._initDesktop.bind(this)();
+    }
+};
+
+VerticalSlider.prototype._initDesktop = function() {
+    this._elem.removeEventListener('sliderready', this._onSliderReady);
+    this._elem.removeEventListener('mousemove', this._onMouseMove);
+
+    this._initialisation = sliderInitalisation.desktop;
+
+    this._calculateValues.bind(this)();
     this._createSlides.bind(this)();
+    this._setSlidesToInitialDesktopState.bind(this)();
+
     this._zIndexController = new ZIndexController({
         slidesArr: this._slidesArr
     });
@@ -90,26 +125,51 @@ function VerticalSlider(options) {
         slidesArr: this._slidesArr,
         transitionDuration: this._transitionDuration
     });
-    this._videoController = new VideoController({
-        slidesArr: this._slidesArr
-    });
-
     this._iconController = new IconController({
         slidesArr: this._slidesArr,
         transitionDuration: this._transitionDuration * 2
     });
+    this._videoController = new VideoController({
+        slidesArr: this._slidesArr
+    });
 
-    this._elem.addEventListener('slidechangingstate', this._onSlideChangingState.bind(this));
-    this._elem.addEventListener('slidechangedstate', this._onSlideChangedState.bind(this));
-    this._elem.addEventListener('mouseout', this._onMouseOut.bind(this));
-    this._elem.addEventListener('mouseover', this._onMouseOver.bind(this));
-}
+    this._state = sliderStateVals.ready;
+};
 
+VerticalSlider.prototype._initMobile = function() {
+    this._elem.removeEventListener('sliderready', this._onSliderReady);
+    this._elem.removeEventListener('mousemove', this._onMouseMove);
 
-VerticalSlider.prototype._calculateValues = function(options) {
-    this._height = options.height;
-    this._transitionDuration = options.transitionDuration / 2;  // for breakpoint
-    this._openSlideHeight = options.openSlideHeight;
+    this._initialisation = sliderInitalisation.mobile;
+
+    this._calculateValues.bind(this)();
+    this._createSlides.bind(this)();
+    this._setSlidesToInitialMobileState.bind(this)();
+
+    this._zIndexController = new ZIndexController({
+        slidesArr: this._slidesArr
+    });
+    this._tabController = new TabController({
+        slidesArr: this._slidesArr,
+        transitionDuration: this._transitionDuration
+    });
+    this._iconController = '';
+    this._videoController = '';
+
+    this._state = sliderStateVals.ready;
+};
+
+VerticalSlider.prototype._onResize = function() {
+    if (this._initialisation === sliderInitalisation.desktop && this._elem.offsetWidth < 800) {
+        this._initMobile.bind(this)();
+    } else if (this._initialisation === sliderInitalisation.mobile && this._elem.offsetWidth >= 800) {
+        this._initDesktop.bind(this)();
+    }
+};
+
+VerticalSlider.prototype._calculateValues = function() {
+    this._height = this._initialisation === sliderInitalisation.mobile ? this._mobileHeight : this._desktopHeight;
+    this._openSlideHeight = this._initialisation === sliderInitalisation.mobile ? this._openSlideHeightMobile : this._openSlideHeightDesktop;
     this._closedSlideHeight = this._height / 3;
     this._collapsedSlideHeight = (this._height - this._openSlideHeight) / 2;
 };
@@ -123,14 +183,24 @@ VerticalSlider.prototype._createSlides = function() {
         var newSlide = new Slide({
             elem: slideElemsArr[i],
             transitionDuration: this._transitionDuration,
-            initialHeight: this._closedSlideHeight,
-            initialState: slideStateVals.closed,
             initialZIndex: slideZIndexVals.low,
             position: i === 0 ? slidePositionVals.top : i === 1 ? slidePositionVals.middle : slidePositionVals.bottom
         });
 
         this._slidesArr.push(newSlide);
     }
+};
+
+VerticalSlider.prototype._setSlidesToInitialDesktopState = function() {
+    for (var i = 0; i < this._slidesArr.length; i++) {
+        this._slidesArr[i].changeStateWithoutTransition(slideStateVals.closed, this._closedSlideHeight);
+    }
+};
+
+VerticalSlider.prototype._setSlidesToInitialMobileState = function() {
+    this._slidesArr[0].changeStateWithoutTransition(slideStateVals.collapsed, this._collapsedSlideHeight);
+    this._slidesArr[1].changeStateWithoutTransition(slideStateVals.open, this._openSlideHeight);
+    this._slidesArr[2].changeStateWithoutTransition(slideStateVals.collapsed, this._collapsedSlideHeight);
 };
 
 VerticalSlider.prototype._onMouseOver = function(e) {
@@ -152,6 +222,8 @@ VerticalSlider.prototype._onMouseOver = function(e) {
 };
 
 VerticalSlider.prototype._onMouseOut = function(e) {
+    if (this._initialisation === sliderInitalisation.mobile) return;
+
     var target = e.target;
     var nextTarget = e.relatedTarget;
 
@@ -165,7 +237,7 @@ VerticalSlider.prototype._onMouseOut = function(e) {
     if (this._state === sliderStateVals.moving) {
         this._waitTillSliderReady(e.clientX, e.clientY);
     } else {
-        this._collapseAllSlides.bind(this)();
+        this._closeAllSlides.bind(this)();
     }
 };
 
@@ -195,7 +267,7 @@ VerticalSlider.prototype._openCurrentSlideCloseOthers = function(currentSlide) {
     }
 };
 
-VerticalSlider.prototype._collapseAllSlides = function() {
+VerticalSlider.prototype._closeAllSlides = function() {
 
     for (var i = 0; i < this._slidesArr.length; i++) {
         if (this._slidesArr[i].getCurrentState() !== sliderStateVals.closed) {
@@ -203,7 +275,6 @@ VerticalSlider.prototype._collapseAllSlides = function() {
         }
     }
 };
-
 
 VerticalSlider.prototype._openSlide = function(slide) {
     slide.changeState(slideStateVals.open, this._openSlideHeight);
@@ -220,22 +291,25 @@ VerticalSlider.prototype._closeSlide = function(slide) {
 VerticalSlider.prototype._onSlideChangingState = function(e) {
     /*console.log('caught _onSlideChangingState event');*/
     var target = e.target;
+    var slide = this._getSlideByElem.bind(this)(target);
 
     this._state = sliderStateVals.moving;
     this._zIndexController.resetIndexes();
     this._tabController.resetTabsPosition();
-    this._tabController.addTransitionToAll();
 
-    var slide = this._getSlideByElem.bind(this)(target);
+    if (this._initialisation === sliderInitalisation.desktop) {
 
-    if (slide._videoState === videoStateVals.playing) {
-        this._videoController.resetVideo(slide);
-    }
+        this._tabController.addTransitionToAll();
 
-    var slideStateInfo = slide.getStateInfo(e.detail.state);
+        if (slide._videoState === videoStateVals.playing) {
+            this._videoController.resetVideo(slide);
+        }
 
-    if (slideStateInfo.type === slideStateVals.transitionalBeforeBP) {
-        this._iconController.moveIcon(slide);
+        var slideStateInfo = slide.getStateInfo(e.detail.state);
+
+        if (slideStateInfo.type === slideStateVals.transitionalBeforeBP) {
+            this._iconController.moveIcon(slide);
+        }
     }
 
 };
@@ -245,12 +319,13 @@ VerticalSlider.prototype._onSlideChangedState = function(e) {
     var target = e.target;
     var slideStateInfo;
     var slide = this._getSlideByElem.bind(this)(target);
-    this._iconController.removeTransition(slide);
 
-    if (e.detail.state === slideStateVals.open) {
-        this._videoController.startVideo(slide);
-    } else {
-        /*console.log(e.detail.state);*/
+    if (this._initialisation === sliderInitalisation.desktop) {
+        this._iconController.removeTransition(slide);
+
+        if (e.detail.state === slideStateVals.open) {
+            this._videoController.startVideo(slide);
+        }
     }
 
     for (var i = 0; i < this._slidesArr.length; i++) {
@@ -264,7 +339,7 @@ VerticalSlider.prototype._onSlideChangedState = function(e) {
     });
 
     this._state = sliderStateVals.ready;
-    this._tabController.removeTransitionFromAll();
+    this._initialisation === sliderInitalisation.desktop ? this._tabController.removeTransitionFromAll() : false;
     this._elem.dispatchEvent(widgetEvent);
 };
 
@@ -279,13 +354,13 @@ VerticalSlider.prototype._onSliderReady = function(e) {
 
     var target = document.elementFromPoint(this._clientX, this._clientY);
 
-    var currentSlideElem = target? target.closest('.slide') : null;
+    var currentSlideElem = target ? target.closest('.slide') : null;
     var currentSlide = this._getSlideByElem.bind(this)(currentSlideElem);
 
     if (currentSlide) {
         this._openCurrentSlideCloseOthers.bind(this)(currentSlide);
     } else {
-        this._collapseAllSlides.bind(this)();
+        this._initialisation === sliderInitalisation.desktop ? this._closeAllSlides.bind(this)() : false;
     }
 
     delete this._clientX;
@@ -305,8 +380,6 @@ VerticalSlider.prototype._waitTillSliderReady = function(clientX, clientY) {
 
 function Slide(options) {
     this._elem = options.elem;
-    this._state = options.initialState;
-    this._currentHeight = options.initialHeight;
     this._transitionDuration = options.transitionDuration;
     this._currentZIndex = options.initialZIndex;
     this._position = options.position;
@@ -314,6 +387,7 @@ function Slide(options) {
     this.getCurrentState = this.getCurrentState.bind(this);
     this.getPreviousState = this.getPreviousState.bind(this);
     this.changeState = this.changeState.bind(this);
+    this.changeStateWithoutTransition = this.changeStateWithoutTransition.bind(this);
     this._onTransitionEnd = this._onTransitionEnd.bind(this);
     this.zIndex = this.zIndex.bind(this);
     this.getPosition = this.getPosition.bind(this);
@@ -407,6 +481,15 @@ Slide.prototype.changeState = function(newState, finalSlideHeight) {
 
     this._elem.style.height = newSlideHeight + 'px';
     this._elem.dispatchEvent(widgetEvent);
+};
+
+Slide.prototype.changeStateWithoutTransition = function(newState, finalSlideHeight) {
+
+    this._currentHeight = finalSlideHeight;
+    this._state = newState;
+    this._changeStateClass.bind(this)();
+
+    this._elem.style.height = finalSlideHeight + 'px';
 };
 
 Slide.prototype._changeStateClass = function() {
@@ -690,7 +773,12 @@ TabController.prototype._refreshSlidesInfo = function() {
         this._slides[position].stateInfo = this._slidesArr[i].getStateInfo(this._slides[position].state);
         this._slides[position].previousState = this._slidesArr[i].getPreviousState();
         if (!this._slidesArr[i]._tabPosition) {
-            this._setTabPositionBottom(this._slides[position].slide);
+            if (i === 2) {
+                this._setTabPositionTop(this._slides[position].slide);
+            } else {
+                this._setTabPositionBottom(this._slides[position].slide);
+            }
+
         }
         this._slides[position].tabs = this._getTabs(this._slides[position].slide._elem);
     }

@@ -26,11 +26,13 @@ function ready2() {
 
     var verticalSliderElem = document.querySelector('#vertical-slider');
     if (verticalSliderElem) {
-        var verticalSlide = new VerticalSlider({
+        window.verticalSlide = new VerticalSlider({
             elem: verticalSliderElem,
-            height: 699,
-            openSlideHeight: 515,                       //px
-            transitionDuration: 400                     //ms
+            desktopHeight: 699,                                 //px
+            mobileHeight: 441,                                  //px
+            openSlideHeightDesktop: 515,                        //px
+            openSlideHeightMobile: 332,                         //px
+            transitionDuration: 400                             //ms
         });
     }
 
