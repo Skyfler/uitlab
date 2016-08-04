@@ -23,28 +23,14 @@
     display: block;
 }
 
-/*.info .spec_list li {
-    display: block;
-    float: left;
-    width: 50%;
-    color: white;
-    font-size: 1.6em;
-    padding: 7px 0;
-}*/
 
 .info .spec_list li a {
-    display: block;
+    display: inline-block;
     color: white;
     font-size: 1.6em;
     padding: 7px 0;
+    position: relative;
     transition: text-shadow 0.5s ease 0s;
-}
-
-.info .spec_list li a:hover {
-    text-shadow:
-            0 0 10px rgb(39, 145, 242),
-            0 0 10px rgb(39, 145, 242),
-            0 0 10px rgb(39, 145, 242);
 }
 
     .info .spec_list li {
@@ -56,6 +42,27 @@
     .info .spec_list li+li {
         margin-left: 25px;
     }
+
+
+.info .spec_list li a:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 1px;
+    height: 0;
+    border-bottom: 2px solid #2791f2;
+    left: 1px;
+    bottom: 3px;
+    transition: width ease 0.5s;
+}
+
+.info .spec_list li a:hover:after {
+    width: 100%;
+    /*text-shadow:
+            0 0 10px rgb(39, 145, 242),
+            0 0 10px rgb(39, 145, 242),
+            0 0 10px rgb(39, 145, 242);*/
+}
 
 .info .spec_list li span {
     position: relative;
@@ -93,29 +100,47 @@
     overflow: hidden;
     color: transparent;
     transition: box-shadow 0.5s ease 0s;
+    background-image: url('../img/socials_uit.svg');
+    background-size: auto 200%;
+    background-repeat: no-repeat;
 }
 
-.info .soc_menu li a:hover {
-    box-shadow:
-            0 0 15px rgb(39, 145, 242),
-            inset 0 0 10px rgb(39, 145, 242);
-}
-
-.info .soc_menu li.vkontakte a {
-    background: url('../img/icon_vk.png');
-}
 .info .soc_menu li.facebook a {
-    background: url('../img/icon_facebook.png');
+    background-position: 0 0;
+}
+.info .soc_menu li.facebook a:hover {
+    background-position: 0% 101%;
 }
 .info .soc_menu li.linkedin a {
-    background: url('../img/icon_linkedin.png');
+    background-position: 50% 0;
+}
+.info .soc_menu li.linkedin a:hover {
+    background-position: 50% 101%;
 }
 .info .soc_menu li.twitter a {
-    background: url('../img/icon_twitter.png');
+    background-position: 25% 0;
 }
-.info .soc_menu li.instagram a {
-    background: url('../img/icon_instagram.png');
+.info .soc_menu li.twitter a:hover  {
+    background-position: 25% 101%;
 }
+.info .soc_menu li.gplus a {
+    background-position: 75% 0;
+}
+.info .soc_menu li.gplus a:hover {
+    background-position: 75% 101%;
+}
+.info .soc_menu li.behance a {
+    background-position: 100% 0;
+}
+.info .soc_menu li.behance a:hover {
+    background-position: 100% 101%;
+}
+    .info .soc_menu li.instagram a {
+        /*background: url('../img/icon_instagram.png');*/
+    }
+    .info .soc_menu li.vkontakte a {
+        /*background: url('../img/icon_vk.png');*/
+    }
 
 @media screen and (max-width: 350px) {
 

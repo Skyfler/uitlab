@@ -42,7 +42,7 @@ function CustomSelect(options) {
     }
 
     function toggle() {
-        if (isOpen) close()
+        if (isOpen) close();
         else open();
     }
 

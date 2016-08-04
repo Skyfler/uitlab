@@ -33,18 +33,16 @@
 .technologies .tab {
     display: inline-block;
     padding: 10px 15px;
-    color: black;
+    color: #a6a6a6;
     cursor: pointer;
     font-family: Tahoma, sans-serif;
     font-size: 1.4em;
     text-transform: uppercase;
-    transition: text-shadow 0.5s ease 0s, color 0.5s ease 0s;
+    transition: color 1s ease;
 }
 
 .technologies .tab:hover {
-    text-shadow:
-            0 0 10px rgb(39, 145, 242),
-            0 0 10px rgb(39, 145, 242);
+    color: #000;
 }
 
 .technologies .tab.active {
@@ -61,16 +59,25 @@
 .technologies .grid-item img {
     display: block;
     margin: 0 auto;
+    max-height: 100%;
 }
 
 .technologies .grid-item--height1 {
-    height: 114px;
+    height: 115px;
     /*background: rgba(255, 0, 0, 0.1);*/
 }
 
 .technologies .grid-item--height2 {
     height: 185px;
     /*background: rgba(0, 0, 255, 0.1);*/
+}
+
+.technologies .grid-item--height3 {
+    height: 150px;
+}
+
+.technologies .grid-item--height3.prev--height1 img {
+    margin-top: 18px;
 }
 
 @media screen and (min-width: 768px) {

@@ -147,7 +147,8 @@
 
 .web_services_block_container {
     padding-bottom: 65px;
-    overflow: visible;
+    margin: 0 auto;
+    max-width: 1200px;
 }
 
 .web_services_block_container .block {
@@ -163,8 +164,8 @@
 
 .web_services_block_container .block .icon {
     display: block;
-    width: 189px;
-    height: 169px;
+    width: 155px;
+    height: 144px;
     position: relative;
     margin: 0 auto 35px;
 }

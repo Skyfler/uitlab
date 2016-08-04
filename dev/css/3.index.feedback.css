@@ -3,7 +3,7 @@
     padding-top: 78px;
     padding-bottom: 100px;
     background: #161616;
-    ovrflow-x: hidden;
+    overflow-x: hidden;
 }
 
 .feedback .block_main_title,
@@ -480,20 +480,50 @@
     width: 200px;
     height: 50px;
     margin: 0 auto;
+    position: relative;
+}
+
+.feedback .submit:after {
+    content: "";
+    width: 50px;
+    height: 0;
+    position: absolute;
+    border-bottom: 4px solid #2687e0;
+    top: 23px;
+    transition: opacity ease 0.5s, left ease 0.5s;
+    left: 0;
+    opacity: 0;
+}
+
+.feedback .submit:hover:after {
+    left: -35px;
+    opacity: 1;
 }
 
 @media screen and (min-width: 768px) {
 
-    .feedback .row {
-        display: none;
-    }
-
-    .feedback.form1_visible .short_form {
+    .feedback .short_form,
+    .feedback .extended_form {
         display: block;
     }
 
-    .feedback.form2_visible .extended_form {
-        display: block;
+    .feedback .form-switcher {
+        position: relative;
+        width: 200%;
+        transition: margin ease 1s;
+    }
+
+    .feedback .form-switcher .slide {
+        width: 50%;
+        float: left;
+    }
+
+    .feedback.form1_visible .form-switcher {
+        margin-left: 0;
+    }
+
+    .feedback.form2_visible .form-switcher {
+        margin-left: -100%;
     }
 
     .feedback .short_form .first_col, .feedback .second_col {

@@ -54,6 +54,9 @@ MasonryTabs.prototype._appendItemsGroup = function(itemsGroupName) {
 
     for (var i = 0; i < this._itemGroupsObject[itemsGroupName].length; i++) {
         clonedItem = this._itemGroupsObject[itemsGroupName][i].cloneNode(true);
+        if (itemsGroupName !== 'grid-item') {
+            this._changeHeightClassTo3.bind(this)(clonedItem);
+        }
         itemsToInsert.push(clonedItem);
         fragment.appendChild(clonedItem);
     }
@@ -63,6 +66,18 @@ MasonryTabs.prototype._appendItemsGroup = function(itemsGroupName) {
 
     this._masonry.layout();
 
+};
+
+MasonryTabs.prototype._changeHeightClassTo3 = function(item) {
+    if (item.classList.contains('grid-item--height1')) {
+        item.classList.remove('grid-item--height1');
+        item.classList.add('prev--height1');
+    }
+    if (item.classList.contains('grid-item--height2')) {
+        item.classList.remove('grid-item--height2');
+        item.classList.add('prev--height2');
+    }
+    item.classList.add('grid-item--height3');
 };
 
 MasonryTabs.prototype._onClick = function(e) {
