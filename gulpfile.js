@@ -28,13 +28,15 @@ var path = {
         html: './public/',
         js: './public/scripts/',
         css: './public/css/',
-        img: './public/img/'
+        img: './public/img/',
+        video: './public/video/'
     },
     dev: { //Пути откуда брать исходники
         html: './dev/*.html', //Синтаксис src/*.html говорит gulp что мы хотим взять все файлы с расширением .html
         js: './dev/scripts/page.js',//В стилях и скриптах нам понадобятся только main файлы
         jsie: './dev/scripts/ie/*',
         css: './dev/css/*.css',
+        video: './dev/video/*',
         img: './dev/img/**/*.*' //Синтаксис img/**/*.* означает - взять все файлы всех расширений из папки и из вложенных каталогов
     },
     clean: './public'
@@ -90,6 +92,11 @@ gulp.task('image', function () {
         .pipe(gulp.dest(path.public.img));
 });
 
+gulp.task('video', function () {
+    gulp.src(path.dev.video)
+        .pipe(gulp.dest(path.public.video));
+});
+
 gulp.task('html', function() {
     gulp.src(path.dev.html)
         .pipe(fileinclude({
@@ -114,4 +121,4 @@ gulp.task('clean', function (cb) {
 
 gulp.task('l', ['html', 'css']);
 
-gulp.task('default', ['html', 'css', 'js', 'image']);
+gulp.task('default', ['html', 'css', 'js', 'image', 'video']);

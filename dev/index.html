@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>UITLab</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">-->
     <link rel="stylesheet" href="css/stylesheet.min.css">
     <script defer src="scripts/build.min.js"></script>
@@ -25,61 +25,76 @@
             </button>
         </div>
         <div class="dropdown_container clr">
-            <ul class="dropdown_bar clr">
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Our Work</a></li>
-                <li><a href="#">Expertise</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-            <div class="navbar_end">
-                <a href="#" class="start_project">Start your Project</a>
+            <div class="dropdown_bar clr">
+                <ul class="clr">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Work</a></li>
+                    <li><a href="#">Expertise</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <div class="navbar_end">
+                    <a href="#" class="start_project">Start your Project</a>
+                </div>
             </div>
         </div>
     </nav>
 </header>
-<section id="vertical_carousel">
-    <div class="overflow">
-        <div class="slide">
-            <div class="content clr">
-                <div class="text_block">
-                    <div class="title"><span>Web-design</span> <span>project</span></div>
-                    <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </div>
-                    <a href="#" class="details">start Web-design project</a>
-                </div>
-                <div class="img_block">
-                    <div class="image_static"></div>
-                    <div class="image_active"></div>
-                </div>
+<div class="vertical-slider" id="vertical-slider">
+    <div class="slide closed front-end">
+        <div class="content clr">
+            <div class="text_block">
+                <div class="title"><span>Web-design</span> <span>project</span></div>
+                <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </div>
+                <a href="#" class="details">start Web-design project</a>
+            </div>
+            <div class="img_container">
+                <div class="img"></div>
+            </div>
+            <div class="video-container">
+                <video src="video/Front-end.mp4" muted preload></video>
             </div>
         </div>
-        <div class="slide selected">
-            <div class="content clr">
-                <div class="text_block">
-                    <div class="title"><span>Web-design</span> <span>project</span></div>
-                    <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </div>
-                    <a href="#" class="details">start Web-design project</a>
-                </div>
-                <div class="img_block">
-                    <div class="image_static"></div>
-                    <div class="image_active"></div>
-                </div>
-            </div>
-        </div>
-        <div class="slide">
-            <div class="content clr">
-                <div class="text_block">
-                    <div class="title"><span>Web-design</span> <span>project</span></div>
-                    <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </div>
-                    <a href="#" class="details">start Web-design project</a>
-                </div>
-                <div class="img_block">
-                    <div class="image_static"></div>
-                    <div class="image_active"></div>
-                </div>
-            </div>
-        </div>
+        <div class="bg_layer"></div>
+        <div class="tab top-tab"></div>
+        <div class="tab bottom-tab"></div>
     </div>
-</section>
+    <div class="slide closed center back-end">
+        <div class="content clr">
+            <div class="text_block">
+                <div class="title"><span>Web-design</span> <span>project</span></div>
+                <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </div>
+                <a href="#" class="details">start Web-design project</a>
+            </div>
+            <div class="img_container">
+                <div class="img"></div>
+            </div>
+            <div class="video-container">
+                <video src="video/BackEnd.mp4" muted preload></video>
+            </div>
+        </div>
+        <div class="bg_layer"></div>
+        <div class="tab top-tab"></div>
+        <div class="tab bottom-tab"></div>
+    </div>
+    <div class="slide closed design">
+        <div class="content clr">
+            <div class="text_block">
+                <div class="title"><span>Web-design</span> <span>project</span></div>
+                <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </div>
+                <a href="#" class="details">start Web-design project</a>
+            </div>
+            <div class="img_container">
+                <div class="img"></div>
+            </div>
+            <div class="video-container">
+                <video src="video/Design-.mp4" muted preload></video>
+            </div>
+        </div>
+        <div class="bg_layer"></div>
+        <div class="tab top-tab"></div>
+        <div class="tab bottom-tab"></div>
+    </div>
+</div>
 <section class="get_results">
     <div class="container">
         <p class="first_line">Do you want to <strong>GET&nbsp;RESULTS</strong> from your new website?</p>
@@ -95,7 +110,7 @@
     <div class="web_services_block_container clr">
         <div class="block" >
             <div class="icon">
-                <img src="img/icon1.png" class="responsive_img" alt="icon">
+                <img src="img/icon_slider_1.png" class="responsive_img" alt="icon">
             </div>
             <div class="title">web-design</div>
             <div class="text">
@@ -107,7 +122,7 @@
         </div>
         <div class="block">
             <div class="icon">
-                <img src="img/icon2.png" class="responsive_img" alt="icon">
+                <img src="img/icon_slider_2.png" class="responsive_img" alt="icon">
             </div>
             <div class="title">front-end</div>
             <div class="text">
@@ -119,7 +134,7 @@
         </div>
         <div class="block">
             <div class="icon">
-                <img src="img/icon3.png" class="responsive_img" alt="icon">
+                <img src="img/icon_slider_3.png" class="responsive_img" alt="icon">
             </div>
             <div class="title">development</div>
             <div class="text">
@@ -201,16 +216,36 @@
             <span class="tab" data-show-items-group="back-end">Back-end</span>
         </div>
         <div class="masonry-items-container">
-            <div class="grid-item grid-item--height1 front-end"></div>
-            <div class="grid-item grid-item--height2 back-end"></div>
-            <div class="grid-item grid-item--height2 web-design"></div>
-            <div class="grid-item grid-item--height1 back-end"></div>
-            <div class="grid-item grid-item--height1 front-end"></div>
-            <div class="grid-item grid-item--height2 back-end"></div>
-            <div class="grid-item grid-item--height2 back-end"></div>
-            <div class="grid-item grid-item--height2 front-end"></div>
-            <div class="grid-item grid-item--height1 web-design"></div>
-            <div class="grid-item grid-item--height1 front-end"></div>
+            <div class="grid-item grid-item--height1 front-end">
+                <img src="img/icon_ajax.png" alt="ajax">
+            </div>
+            <div class="grid-item grid-item--height2 back-end">
+                <img src="img/icon_css3.png" alt="css 3">
+            </div>
+            <div class="grid-item grid-item--height2 web-design">
+                <img src="img/icon_javascript.png" alt="jsvascript">
+            </div>
+            <div class="grid-item grid-item--height1 back-end">
+                <img src="img/icon_ajax.png" alt="ajax">
+            </div>
+            <div class="grid-item grid-item--height1 front-end">
+                <img src="img/icon_asp.net.png" alt="asp.net">
+            </div>
+            <div class="grid-item grid-item--height2 back-end">
+                <img src="img/icon_jquery.png" alt="jquery">
+            </div>
+            <div class="grid-item grid-item--height2 back-end">
+                <img src="img/icon_javascript.png" alt="jsvascript">
+            </div>
+            <div class="grid-item grid-item--height2 front-end">
+                <img src="img/icon_css3.png" alt="css 3">
+            </div>
+            <div class="grid-item grid-item--height1 web-design">
+                <img src="img/icon_ajax.png" alt="ajax">
+            </div>
+            <div class="grid-item grid-item--height1 front-end">
+                <img src="img/icon_asp.net.png" alt="asp.net">
+            </div>
         </div>
     </div>
 </section>
@@ -329,7 +364,7 @@
                 <div class="clearfix"></div>
                 <div class="input_group half_width clr no_margin_bottom_768">
                     <label class="uploadbutton">
-                        <div class='input'>Attach file</div>
+                        <span class='input'>Attach file</span>
                         <input type="file" class="hidden-input">
                     </label>
                 </div>
@@ -350,11 +385,11 @@
             <!--<li><a href=#"><span>SEO</span> / SMM</a></li>-->
         </ul>
         <ul class="soc_menu">
-            <li><a href="#" class="icon">Vkontakte</a></li>
-            <li><a href="#" class="icon">Facebook</a></li>
-            <li><a href="#" class="icon">LinkedIn</a></li>
-            <li><a href="#" class="icon">Twitter</a></li>
-            <li><a href="#" class="icon">Instagram</a></li>
+            <li class="vkontakte"><a href="#" class="icon">Vkontakte</a></li>
+            <li class="facebook"><a href="#" class="icon">Facebook</a></li>
+            <li class="linkedin"><a href="#" class="icon">LinkedIn</a></li>
+            <li class="twitter"><a href="#" class="icon">Twitter</a></li>
+            <li class="instagram"><a href="#" class="icon">Instagram</a></li>
         </ul>
     </div>
 </section>

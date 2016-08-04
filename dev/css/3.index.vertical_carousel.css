@@ -1,77 +1,272 @@
-#vertical_carousel {
+#vertical-slider {
     display: none;
 }
 
-@media (min-width: 800px) {
 
-    #vertical_carousel {
+
+@media screen and (min-width: 800px) {
+
+    #vertical-slider {
         display: block;
+    }
+
+    .vertical-slider .slide .bg_layer {
+        transition-timing-function: linear;
+        transition-duration: 0.4s;
+        transition-delay: 0s;
+    }
+
+    .vertical-slider .slide .bg_layer {
+        transition-property: top;
+    }
+
+    .vertical-slider .slide .bg_layer {
+        transition-property: background-color;
+    }
+
+    .vertical-slider .slide .title {
+        transition: margin linear 0.4s;
+    }
+
+
+
+    .vertical-slider {
         height: 699px;
+        overflow: hidden;
     }
 
-    #vertical_carousel .slide {
+    .vertical-slider .slide {
         height: 233px;
-        border-bottom: 1px solid #2791f2;
+        position: relative;
+        box-shadow: 0 0 10px black;
     }
 
-    /*#vertical_carousel .slide.visible {
+    .vertical-slider .slide.closing-after-breakpoint,
+    .vertical-slider .slide.closed {
+        box-shadow: 0 0 0 black;
+    }
+
+    .vertical-slider .slide .bg_layer {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        top: 0;
+        left: 0;
         background: #262626;
+        border: 0 solid #5197d6;
     }
 
-    #vertical_carousel .slide.visible+.slide.visible {
-        background: #161616;
-    }
-
-    #vertical_carousel .slide.visible+.slide.visible+.slide.visible {
+    .vertical-slider .slide.center.closing-before-breakpoint .bg_layer,
+    .vertical-slider .slide.center.closing-after-breakpoint .bg_layer,
+    .vertical-slider .slide.center.closed .bg_layer,
+    .vertical-slider .slide.center.closing-before-breakpoint .tab,
+    .vertical-slider .slide.center.closing-after-breakpoint .tab,
+    .vertical-slider .slide.center.closed .tab {
         background: #0e0e0e;
-    }*/
-
-    #vertical_carousel .slide {
-        background: #262626;
     }
 
-    #vertical_carousel .slide .content {
-        width: 769px;
+    .vertical-slider .slide .tab {
+        position: absolute;
+    }
+
+    .vertical-slider .slide .top-tab {
+        width: 318px;
+        height: 139px;
+        z-index: 2;
+        left: calc(50% + 50px);
+    }
+
+    .vertical-slider .slide .bottom-tab {
+        width: 320px;
+        height: 140px;
+        border: 1px solid #5197d6;
+        z-index: 0;
+        left: calc(50% + 49px);
+        box-shadow: 0 0 10px black;
+    }
+
+    .vertical-slider .slide.closed .bottom-tab {
+        box-shadow: 0 0 0 black;
+    }
+
+    .vertical-slider .slide.tab-bottom .tab {
+        top: 0;
+    }
+
+    .vertical-slider .slide.tab-top .top-tab {
+        top: calc(100% - 139px);
+    }
+
+    .vertical-slider .slide.tab-top .bottom-tab {
+        top: calc(100% - 140px);
+    }
+
+    .vertical-slider .slide.opening-after-breakpoint .bg_layer,
+    .vertical-slider .slide.open .bg_layer {
+        border-width: 0;
+    }
+
+    .vertical-slider .slide.tab-bottom.closing-after-breakpoint+.slide.tab-top.closing-after-breakpoint .bg_layer,
+    .vertical-slider .slide.tab-bottom.closed+.slide.tab-top.closed .bg_layer {
+        border-width: 0;
+    }
+
+    .vertical-slider .slide.tab-bottom .bg_layer {
+        border-width: 0 0 1px 0;
+    }
+
+    .vertical-slider .slide.tab-top .bg_layer {
+        border-width: 1px 0 0 0;
+    }
+
+    .vertical-slider .slide.closing-after-breakpoint.tab-top .bg_layer,
+    .vertical-slider .slide.closed.tab-top .bg_layer {
+        border-width: 1px 0 0 0;
+    }
+
+    .vertical-slider .slide.closing-before-breakpoint .bg_layer,
+    .vertical-slider .slide.closing-after-breakpoint .bg_layer,
+    .vertical-slider .slide.closed .bg_layer,
+    .vertical-slider .slide.closing-before-breakpoint .tab,
+    .vertical-slider .slide.closing-after-breakpoint .tab,
+    .vertical-slider .slide.closed .tab {
+        background-color: #161616;
+    }
+
+    .vertical-slider .slide.opening-before-breakpoint .bg_layer,
+    .vertical-slider .slide.opening-after-breakpoint .bg_layer,
+    .vertical-slider .slide.open .bg_layer,
+    .vertical-slider .slide.opening-before-breakpoint .tab,
+    .vertical-slider .slide.opening-after-breakpoint .tab,
+    .vertical-slider .slide.open .tab {
+        background-color: #0f0d0f;
+    }
+
+    .vertical-slider .slide.collapsing-before-breakpoint .bg_layer,
+    .vertical-slider .slide.collapsing-after-breakpoint .bg_layer,
+    .vertical-slider .slide.collapsed .bg_layer,
+    .vertical-slider .slide.collapsing-before-breakpoint .tab,
+    .vertical-slider .slide.collapsing-after-breakpoint .tab,
+    .vertical-slider .slide.collapsed .tab,
+    .vertical-slider .slide.open+.slide.collapsed+.slide.collapsed .bg_layer,
+    .vertical-slider .slide.open+.slide.collapsed+.slide.collapsed .tab,
+    .vertical-slider .slide.opening-before-breakpoint+.slide.collapsing-before-breakpoint+.slide.collapsing-before-breakpoint .tab,
+    .vertical-slider .slide.opening-after-breakpoint+.slide.collapsing-after-breakpoint+.slide.collapsing-after-breakpoint .tab,
+    .vertical-slider .slide.opening-before-breakpoint+.slide.collapsing-before-breakpoint+.slide.collapsing-before-breakpoint .bg_layer,
+    .vertical-slider .slide.opening-after-breakpoint+.slide.collapsing-after-breakpoint+.slide.collapsing-after-breakpoint .bg_layer {
+        background-color: #262626;
+    }
+
+    .vertical-slider .slide.collapsed+.slide.collapsing-before-breakpoint .bg_layer,
+    .vertical-slider .slide.collapsed+.slide.collapsing-after-breakpoint .bg_layer,
+    .vertical-slider .slide.collapsed+.slide.collapsed .bg_layer,
+    .vertical-slider .slide.collapsed+.slide.collapsing-before-breakpoint .tab,
+    .vertical-slider .slide.collapsed+.slide.collapsing-after-breakpoint .tab,
+    .vertical-slider .slide.collapsed+.slide.collapsed .tab,
+    .vertical-slider .slide.collapsing-before-breakpoint+.slide.collapsing-before-breakpoint .tab,
+    .vertical-slider .slide.collapsing-after-breakpoint+.slide.collapsing-after-breakpoint .tab,
+    .vertical-slider .slide.collapsing-before-breakpoint+.slide.collapsing-before-breakpoint .bg_layer,
+    .vertical-slider .slide.collapsing-after-breakpoint+.slide.collapsing-after-breakpoint .bg_layer,
+    .vertical-slider .slide:first-child.opening-before-breakpoint+.slide.collapsing-before-breakpoint .bg_layer,
+    .vertical-slider .slide:first-child.opening-after-breakpoint+.slide.collapsing-after-breakpoint .bg_layer,
+    .vertical-slider .slide:first-child.open+.slide.collapsed .bg_layer,
+    .vertical-slider .slide:first-child.opening-before-breakpoint+.slide.collapsing-before-breakpoint .tab,
+    .vertical-slider .slide:first-child.opening-after-breakpoint+.slide.collapsing-after-breakpoint .tab,
+    .vertical-slider .slide:first-child.open+.slide.collapsed .tab {
+        background-color: #161616;
+    }
+
+
+    .vertical-slider .slide .content {
+        width: 725px;
         margin: 0 auto;
         position: relative;
+        z-index: 3;
+        height: 100%;
     }
 
-    #vertical_carousel .slide .text_block {
-        float: left;
-        width: 50%;
-    }
-
-    #vertical_carousel .slide .img_block {
-        /*float: right;*/
+    .vertical-slider .slide .video-container {
         position: absolute;
-        right: 20px;
-        top: 47px;
+        right: 0;
+        top: 0;
+        height: 300px;
+        width: 400px;
+        display: none;
     }
 
-    #vertical_carousel .slide .title {
-        margin-top: 111px;
+    .vertical-slider .slide .img_container {
+        position: absolute;
+        width: 100%;
+        top: -48px;
+    }
+
+    .vertical-slider .slide .img {
+        position: absolute;
+        right: 60px;
+        width: 175px;
+        height: 125px;
+    }
+
+    .vertical-slider .slide.front-end .img {
+        background-image: url('../img/front-end_125x175.png');
+    }
+    .vertical-slider .slide.back-end .img {
+        background-image: url('../img/back-end_125x175.png');
+    }
+    .vertical-slider .slide.design .img {
+        background-image: url('../img/design_125x175.png');
+    }
+
+    .vertical-slider .slide.front-end.open .video-container {
+        top: 105px;
+        right: -47px;
+    }
+
+    .vertical-slider .slide.back-end.open .video-container {
+        top: 105px;
+        right: -52px;
+    }
+
+    .vertical-slider .slide.design.open .video-container {
+        top: 105px;
+        right: -52px;
+    }
+
+    .vertical-slider .slide.open .video-container {
+        display: block;
+    }
+
+    .vertical-slider .slide .text_block {
+        width: 350px;
+        padding-top: 1px;
+    }
+
+    .vertical-slider .slide .title {
         text-transform: uppercase;
         font-weight: 300;
-        font-size: 1.8em;
-    }
-
-    #vertical_carousel .slide .title span {
-        color: #fff;
-    }
-
-    #vertical_carousel .slide .title span+span {
-        color: #2791f2;
-    }
-
-    #vertical_carousel .slide .text {
-        font-weight: 300;
-        color: #fff;
-        font-size: 1.5em;
+        font-size: 18px; /*1.8em*/
 
         display: none;
     }
 
-    #vertical_carousel .slide .details {
+    .vertical-slider .slide .title span {
+        color: #fff;
+    }
+
+    .vertical-slider .slide .title span+span {
+        color: #2791f2;
+    }
+
+    .vertical-slider .slide .text {
+        font-weight: 300;
+        color: #fff;
+        font-size: 15px;
+
+        display: none;
+    }
+
+    .vertical-slider .slide .details {
         width: 350px;
         height: 52px;
         background: #ffda00;
@@ -80,107 +275,127 @@
         color: #000;
         text-align: center;
         text-transform: uppercase;
-        font-size: 2em;
+        font-size: 20px;
         font-weight: 800;
         padding-top: 15px;
         position: relative;
 
+        transition: margin linear 0.4s;
+
         display: none;
     }
 
-    #vertical_carousel .slide .details:after {
+    .vertical-slider .slide .details:after {
         content: "";
         width: 50px;
         height: 0;
         position: absolute;
         border-bottom: 4px solid #2687e0;
         top: 24px;
+        transition: opacity ease 0.5s, right ease 0.5s;
+        right: 0;
+        opacity: 0;
+    }
+
+    .vertical-slider .slide .details:hover:after {
         right: -35px;
+        opacity: 1;
     }
 
-    #vertical_carousel .slide .image_static {
-        width: 260px;
-        height: 130px;
-        background: rgba(255, 0, 0, 0.1);
+
+    .vertical-slider .slide.closing-before-breakpoint .title,
+    .vertical-slider .slide.closing-after-breakpoint .title,
+    .vertical-slider .slide.closed .title {
+        display: block;
+        margin-top: 111px;
     }
 
-    #vertical_carousel .slide .image_active {
-        width: 260px;
-        height: 130px;
-        background: rgba(0, 0, 255, 0.1);
-
+    .vertical-slider .slide.center.closed .title {
         display: none;
     }
 
-    #vertical_carousel .slide.selected {
-        background: #0e0e0e;
-    }
-
-    #vertical_carousel .slide.selected .title {
-        display: none;
-    }
-
-    #vertical_carousel .slide.selected .details {
+    .vertical-slider .slide.center.closed .details {
         display: block;
         margin-top: 85px;
     }
 
-
-
-    #vertical_carousel:hover .slide{
-        height: 93px;
+    .vertical-slider .slide.opening-before-breakpoint .title,
+    .vertical-slider .slide.opening-after-breakpoint .title,
+    .vertical-slider .slide.open .title {
+        margin-top: 150px;
+        display: block;
     }
 
-    #vertical_carousel:hover .slide .title,
-    #vertical_carousel:hover .slide.selected .title {
+    .vertical-slider .slide.opening-before-breakpoint .text,
+    .vertical-slider .slide.opening-after-breakpoint .text,
+    .vertical-slider .slide.open .text {
+        margin-top: 25px;
+    }
+
+    .vertical-slider .slide.open .text {
+        display: block;
+    }
+
+    .vertical-slider .slide.open .details {
+        margin-top: 34px;
+        display: block;
+    }
+
+    .vertical-slider .slide.collapsing-before-breakpoint .title,
+    .vertical-slider .slide.collapsing-after-breakpoint .title,
+    .vertical-slider .slide.collapsed .title {
         display: block;
         margin-top: 34px;
     }
 
-    #vertical_carousel:hover .slide .details,
-    #vertical_carousel:hover .slide.selected .details {
+    .vertical-slider .slide.collapsing-before-breakpoint .details,
+    .vertical-slider .slide.collapsing-after-breakpoint .details,
+    .vertical-slider .slide.collapsed .details {
         display: none;
     }
 
-    #vertical_carousel:hover .slide .details,
-    #vertical_carousel:hover .slide.selected .details {
-        display: none;
+}
+
+@media screen and (min-width: 940px) {
+
+    .vertical-slider .slide .content {
+        width: 770px;
     }
 
-    #vertical_carousel:hover .slide .img_block,
-    #vertical_carousel:hover .slide.selected .img_block {
-        top: 30px;
+    .vertical-slider .slide .top-tab {
+        left: calc(50% + 74px);
     }
 
-
-    #vertical_carousel .slide:hover {
-        height: 513px;
+    .vertical-slider .slide .bottom-tab {
+        left: calc(50% + 73px);
     }
 
-    #vertical_carousel .slide:hover .title,
-    #vertical_carousel .slide.selected:hover .title {
-        display: block;
-        margin-top: 150px;
+}
+
+@media screen and (min-width: 1040px) {
+
+    .vertical-slider .slide .top-tab {
+        left: calc(50% + 136px);
     }
 
-    #vertical_carousel .slide:hover .text,
-    #vertical_carousel .slide.selected:hover .text {
-        display: block;
-        margin-top: 25px;
+    .vertical-slider .slide .bottom-tab {
+        left: calc(50% + 135px);
     }
 
-    #vertical_carousel .slide:hover .details,
-    #vertical_carousel .slide.selected:hover .details {
-        display: block;
-        margin-top: 35px;
+    .vertical-slider .slide .img {
+        right: 0;
     }
 
-    #vertical_carousel .slide:hover .img_block,
-    #vertical_carousel .slide.selected:hover .img_block {
-        display: block;
-        top: 130px;
+    .vertical-slider .slide.front-end.open .video-container {
+        right: -107px;
     }
 
+    .vertical-slider .slide.back-end.open .video-container {
+        right: -112px;
+    }
 
+    .vertical-slider .slide.design.open .video-container {
+        right: -112px;
+    }
 
 }

@@ -13,6 +13,7 @@ function ready2() {
     
     var Menu = require('./menu.js');
     /*var Slider = require('./slider.js');*/
+    var VerticalSlider = require('./vertical-slider.js');
     var CustomUploadButton = require('./custom-upload-button.js');
     var CustomSelect = require('./customselect.js');
     var FormSwitcher = require('./formswitcher');
@@ -22,6 +23,16 @@ function ready2() {
     var mainMenu = new Menu({
         elem: document.querySelector('#main_menu')
     });
+
+    var verticalSliderElem = document.querySelector('#vertical-slider');
+    if (verticalSliderElem) {
+        var verticalSlide = new VerticalSlider({
+            elem: verticalSliderElem,
+            height: 699,
+            openSlideHeight: 515,                       //px
+            transitionDuration: 400                     //ms
+        });
+    }
 
     /*var horizontalCarouselElem = document.querySelector('#horizontal_carousel');
     if (horizontalCarouselElem) {

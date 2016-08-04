@@ -133,7 +133,7 @@
     right: -15px;
 }
 
-@media (min-width: 415px) {
+@media screen and (min-width: 415px) {
 
     #horizontal_carousel .arrow.left_arrow {
         left: 0;
@@ -163,11 +163,10 @@
 
 .web_services_block_container .block .icon {
     display: block;
-    width: 135px;
-    height: 159px;
+    width: 189px;
+    height: 169px;
     position: relative;
     margin: 0 auto 35px;
-    background: rgba(255, 0, 0, 0.1);
 }
 
 .web_services_block_container .block .title {
@@ -248,7 +247,7 @@
     right: -15px;
 }
 
-@media(min-width: 768px) {
+@media screen and (min-width: 768px) {
 
     .web_services_block_container .block,
     .web_services_block_container .block+.block {

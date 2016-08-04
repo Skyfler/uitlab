@@ -60,17 +60,17 @@ header {
     margin: 0 -15px;
 }
 
-#main_menu .dropdown_bar {
+#main_menu ul {
     padding: 15px 0;
 }
 
-#main_menu .dropdown_bar li a {
+#main_menu ul li a {
     font-size: 2rem;
     color: #a6a6a6;
     padding: 10px 0 10px 25px;
 }
 
-#main_menu .dropdown_bar li a:hover {
+#main_menu ul li a:hover {
     color: #000;
     background: rgba(39, 145, 242, 0.39);
 }
@@ -104,7 +104,7 @@ header {
     transform: scale(1.1);
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
 
     #main_menu .navbar_header {
         margin: 0 -30px;
@@ -125,11 +125,7 @@ header {
 
 }
 
-@media (min-width: 800px) {
-
-    header {
-        padding-top: 60px;
-    }
+@media screen and (min-width: 800px) {
 
     #main_menu .navbar_header .navbar_brand {
         font-size: 4em;
@@ -144,19 +140,19 @@ header {
         border: none;
     }
 
-    #main_menu .dropdown_bar {
+    #main_menu ul {
         padding: 0;
         height: 98px;
         float: left;
     }
 
-    #main_menu .dropdown_bar li {
+    #main_menu ul li {
         display: block;
         float: left;
         height: 100%;
     }
 
-    #main_menu .dropdown_bar li a {
+    #main_menu ul li a {
         width: 100px;
         text-align: center;
         height: 100%;
@@ -167,7 +163,7 @@ header {
         color: #a6a6a6;
     }
 
-    #main_menu .dropdown_bar li a:hover {
+    #main_menu ul li a:hover {
         font-weight: 700;
         background: none;
     }
@@ -188,9 +184,9 @@ header {
 
 }
 
-@media (min-width: 998px) {
+@media screen and (min-width: 998px) {
 
-    #main_menu .dropdown_bar li a {
+    #main_menu ul li a {
         width: 120px;
     }
 
@@ -204,9 +200,9 @@ header {
 
 }
 
-@media (min-width: 1200px) {
+@media screen and (min-width: 1200px) {
 
-    #main_menu .dropdown_bar li a {
+    #main_menu ul li a {
         width: 144px;
     }
 

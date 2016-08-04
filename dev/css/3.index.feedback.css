@@ -404,9 +404,9 @@
 .feedback .close_form {
     position: absolute;
     display: block;
-    width: 35px;
-    height: 35px;
-    background: rgba(255, 0, 0, 0.2);
+    width: 30px;
+    height: 30px;
+    background: url('../img/icon_close.png') no-repeat;
     top: -15px;
     right: 10px;
 }
@@ -447,17 +447,19 @@
 }
 
 .feedback .uploadbutton .input {
+    display: block;
     max-width: 100%;
     text-align: left;
     height: 100%;
     color: white;
     font-size: 1.4em;
-    /*background: rgba(255, 0, 0, 0.1);*/
     padding: 17px 15px 0px 45px;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    display: block;
+    background: url('../img/icon_clip.png') no-repeat;
+    background-position: 13px 8px;
+    background-size: auto 33px;
     transition: text-shadow ease 0.5s;
 }
 
@@ -480,7 +482,7 @@
     margin: 0 auto;
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
 
     .feedback .row {
         display: none;
@@ -529,7 +531,7 @@
 
 }
 
-@media (min-width: 998px) {
+@media screen and (min-width: 998px) {
 
     .feedback .extended_form .input_group {
         width: 33.333333333%;

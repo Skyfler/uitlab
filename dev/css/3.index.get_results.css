@@ -7,7 +7,7 @@
 }
 
 .get_results .first_line {
-    font-size: 2.2em;
+    font-size: 1.8em;
     font-weight: 300;
 }
 
@@ -17,7 +17,7 @@
 }
 
 .get_results .second_line {
-    font-size: 3.4em;
+    font-size: 2.4em;
     font-weight: 800;
     text-transform: uppercase;
     margin-top: 10px;
@@ -25,4 +25,16 @@
 
 .get_results .second_line span {
     font-family: Arial, sans-serif;
+}
+
+@media screen and (min-width: 678px) {
+
+    .get_results .first_line {
+        font-size: 2.2em;
+    }
+
+    .get_results .second_line {
+        font-size: 3.4em;
+    }
+
 }

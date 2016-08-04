@@ -58,17 +58,22 @@
     float: left;
 }
 
+.technologies .grid-item img {
+    display: block;
+    margin: 0 auto;
+}
+
 .technologies .grid-item--height1 {
     height: 114px;
-    background: rgba(255, 0, 0, 0.1);
+    /*background: rgba(255, 0, 0, 0.1);*/
 }
 
 .technologies .grid-item--height2 {
     height: 185px;
-    background: rgba(0, 0, 255, 0.1);
+    /*background: rgba(0, 0, 255, 0.1);*/
 }
 
-@media(min-width: 768px) {
+@media screen and (min-width: 768px) {
 
     .technologies {
         display: block;
@@ -76,7 +81,7 @@
 
 }
 
-@media(min-width: 998px) {
+@media screen and (min-width: 998px) {
 
     .technologies .grid-item {
         /*width: 277px;*/
