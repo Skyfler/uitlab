@@ -14,7 +14,18 @@ CustomUploadButton.prototype._onChange = function(e) {
 
     if (target !== this._hiddenInput) return;
 
-    this._visibleInput.innerHTML = this._hiddenInput.value;
+    var fileName;
+
+    if (this._hiddenInput.value === '') {
+        fileName = 'Attach file';
+    } else {
+        var valArr = this._hiddenInput.value.split('\\');
+        fileName = valArr[valArr.length - 1];
+    }
+
+
+
+    this._visibleInput.innerHTML = fileName;
 };
 
 module.exports = CustomUploadButton;

@@ -1,7 +1,6 @@
 label.uploadbutton {
     height: 30px;
     display: inline-block;
-    overflow: hidden;
     cursor: pointer;
 }
 
