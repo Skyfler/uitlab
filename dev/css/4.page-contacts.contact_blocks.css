@@ -1,0 +1,169 @@
+.contact_blocks {
+    background: #000;
+}
+
+.contact_block_container {
+    padding: 10px 10px 43px;
+}
+
+.contact_block_container .contact_block {
+    float: left;
+    width: 100%;
+}
+
+.contact_block_container .contact_block .block_content {
+    display: inline-block;
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.contact_block_container .contact_block .icon {
+    width: 50px;
+    height: 36px;
+    background-image: url("../img/sprites/sprite_1.png");
+    margin: 40px auto 15px;
+}
+
+.contact_block_container .contact_block.mail .icon {
+    background-position: -100px 0;
+}
+.contact_block_container .contact_block.skype .icon {
+    background-position: -50px 0;
+}
+.contact_block_container .contact_block.tel .icon {
+    background-position: -150px 0;
+}
+.contact_block_container .contact_block.address .icon {
+    background-position: 0 0;
+}
+
+.contact_block_container .contact_block .text {
+    color: #fff;
+    font-size: 1.6em;
+    line-height: 20px;
+}
+
+.contact_block_container .contact_block .title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+@media screen and (min-width: 510px) {
+
+    .contact_block_container .contact_block {
+        width: 50%;
+    }
+
+}
+
+@media screen and (min-width: 768px) {
+
+    .contact_block_container {
+        padding: 0;
+    }
+
+    .contact_block_container .contact_block {
+        height: 140px;
+    }
+
+    .contact_block_container .contact_block .block_content {
+        text-align: left;
+    }
+
+    .contact_block_container .contact_block {
+        width: 46%;
+    }
+
+    .contact_block_container .contact_block+.contact_block {
+        width: 54%;
+    }
+
+    /*.contact_block_container .contact_block.address,
+    .contact_block_container .contact_block.tel,
+    .contact_block_container .contact_block.skype,
+    .contact_block_container .contact_block.mail {
+        width: 50%;
+    }*/
+
+    .contact_block_container .contact_block .icon {
+        position: absolute;
+        margin: 0;
+        top: calc(50% - 18px);
+        /*left: calc(5% + 10px);*/
+        left: calc(14%);
+    }
+
+    .contact_block_container .contact_block .text {
+        /*padding-left: calc(5% + 58px);*/
+        padding-left: calc(14% + 80px);
+        padding-top: 50px;
+    }
+
+    .contact_block_container .contact_block.address .text {
+        padding-top: 29px;
+    }
+
+}
+
+@media screen and (min-width: 830px) {
+
+    .contact_block_container .contact_block,
+    .contact_block_container .contact_block+.contact_block {
+        width: 50%;
+    }
+
+}
+
+/*@media screen and (min-width: 930px) {
+
+    .contact_block_container .contact_block .icon {
+        left: calc(14%);
+    }
+
+    .contact_block_container .contact_block .text {
+        padding-left: calc(14% + 80px);
+    }
+
+}*/
+
+@media screen and (min-width: 1200px) {
+
+    .contact_block_container .contact_block:first-child {
+        text-align: left;
+    }
+
+    .contact_block_container .contact_block:last-child {
+        text-align: right;
+    }
+
+    .contact_block_container .contact_block.address {
+        width: 29%;
+    }
+
+    .contact_block_container .contact_block.tel {
+        width: 25%;
+    }
+
+    .contact_block_container .contact_block.skype {
+        width: 23%;
+    }
+
+    .contact_block_container .contact_block.mail {
+        width: 23%;
+    }
+
+    .contact_block_container .contact_block .block_content {
+        width: auto;
+    }
+
+    .contact_block_container .contact_block .icon {
+        left: 0;
+    }
+
+    .contact_block_container .contact_block .text {
+        padding-left: 75px;
+    }
+
+}

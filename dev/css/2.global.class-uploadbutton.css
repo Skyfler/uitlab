@@ -1,0 +1,28 @@
+label.uploadbutton {
+    height: 30px;
+    display: inline-block;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+label.uploadbutton input {
+    position: absolute;
+    clip: rect(0,0,0,0);
+}
+
+label.uploadbutton .button {
+    line-height: 30px;
+    text-align: center;
+    background: #7300df;
+    transition: background 0.2s;
+    border: 1px solid rgba(0,0,0,0.1);
+    color: #fff;
+    display: inline-block;
+}
+label.uploadbutton:hover .button {
+    background: green;
+}
+
+label.uploadbutton .input {
+    display: inline-block;
+}

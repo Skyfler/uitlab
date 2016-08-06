@@ -1,46 +1,24 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>UITLab</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">-->
-    <link rel="stylesheet" href="css/stylesheet.min.css">
-    <script defer src="scripts/build.min.js"></script>
-    <!--[if lt IE 9]>
-    <script src="scripts/css3-mediaqueries.js"></script>
-    <script src="scripts/aight.min.js"></script>
-    <![endif]-->
-</head>
-<body>
-<header>
-    <nav class="closed collapsed menu clr container" id="main_menu">
-        <div class="navbar_header clr">
-            <a href="index.html" class="navbar_brand"><span>UIT</span><span>Lab</span></a>
-            <button class="dropdown_toggle" data-component="dropdown_toggle">
-                <span class="icon_bar"></span>
-                <span class="icon_bar"></span>
-                <span class="icon_bar"></span>
-            </button>
-        </div>
-        <div class="dropdown_container clr">
-            <div class="dropdown_bar clr">
-                <ul class="clr">
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Our Work</a></li>
-                    <li><a href="#">Expertise</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-                <div class="navbar_end">
-                    <a href="#" class="start_project">Start your Project</a>
-                </div>
+@@include('./templates/top.html')
+<div class="vertical-slider" id="vertical-slider">
+    <div class="slide closed design">
+        <div class="content clr">
+            <div class="text_block">
+                <div class="title"><span>Web-design</span> <span>project</span></div>
+                <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </div>
+                <a href="#" class="details">start Web-design project</a>
+            </div>
+            <div class="img_container">
+                <div class="img"></div>
+            </div>
+            <div class="video-container">
+                <video src="video/Design-.mp4" muted preload></video>
             </div>
         </div>
-    </nav>
-</header>
-<div class="vertical-slider" id="vertical-slider">
-    <div class="slide closed front-end">
+        <div class="bg_layer"></div>
+        <div class="tab top-tab"></div>
+        <div class="tab bottom-tab"></div>
+    </div>
+    <div class="slide closed center front-end">
         <div class="content clr">
             <div class="text_block">
                 <div class="title"><span>Web-design</span> <span>project</span></div>
@@ -58,7 +36,7 @@
         <div class="tab top-tab"></div>
         <div class="tab bottom-tab"></div>
     </div>
-    <div class="slide closed center back-end">
+    <div class="slide closed back-end">
         <div class="content clr">
             <div class="text_block">
                 <div class="title"><span>Web-design</span> <span>project</span></div>
@@ -70,24 +48,6 @@
             </div>
             <div class="video-container">
                 <video src="video/BackEnd.mp4" muted preload></video>
-            </div>
-        </div>
-        <div class="bg_layer"></div>
-        <div class="tab top-tab"></div>
-        <div class="tab bottom-tab"></div>
-    </div>
-    <div class="slide closed design">
-        <div class="content clr">
-            <div class="text_block">
-                <div class="title"><span>Web-design</span> <span>project</span></div>
-                <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </div>
-                <a href="#" class="details">start Web-design project</a>
-            </div>
-            <div class="img_container">
-                <div class="img"></div>
-            </div>
-            <div class="video-container">
-                <video src="video/Design-.mp4" muted preload></video>
             </div>
         </div>
         <div class="bg_layer"></div>
@@ -372,6 +332,7 @@
                     <div class="clearfix"></div>
                     <div class="input_group half_width clr no_margin_bottom_768">
                         <label class="uploadbutton">
+                            <span class="icon"></span>
                             <span class='input'>Attach file</span>
                             <input type="file" class="hidden-input">
                         </label>
@@ -385,30 +346,4 @@
         </div>
     </div>
 </section>
-<section class="info">
-    <div class="container">
-        <a href="index.html" class="brand"><span>UIT</span><span>Lab</span></a>
-        <ul class="spec_list clr">
-            <li><a href="#"><span>Web</span>-design</a></li>
-            <li><a href="#"><span>Front</span>-End</a></li>
-            <li><a href="#"><span>Back</span>-End</a></li>
-            <!--<li><a href=#"><span>SEO</span> / SMM</a></li>-->
-        </ul>
-        <ul class="soc_menu">
-            <li class="facebook"><a href="#" class="icon">Facebook</a></li>
-            <li class="twitter"><a href="#" class="icon">Twitter</a></li>
-            <li class="linkedin"><a href="#" class="icon">LinkedIn</a></li>
-            <li class="gplus"><a href="#" class="icon">Gplus</a></li>
-            <li class="behance"><a href="#" class="icon">Behance</a></li>
-        </ul>
-    </div>
-</section>
-<footer>
-    <div class="container">
-        <div class="copyright">
-            &copy;&nbsp;2016,&nbsp;UITlab. All&nbsp;Rights&nbsp;Reserved.
-        </div>
-    </div>
-</footer>
-</body>
-</html>
+@@include('./templates/bottom.html')

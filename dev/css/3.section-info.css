@@ -100,7 +100,7 @@
     overflow: hidden;
     color: transparent;
     transition: box-shadow 0.5s ease 0s;
-    background-image: url('../img/socials_uit.svg');
+    background-image: url('../img/sprites/socials_uit.svg');
     background-size: auto 200%;
     background-repeat: no-repeat;
 }
@@ -109,19 +109,19 @@
     background-position: 0 0;
 }
 .info .soc_menu li.facebook a:hover {
-    background-position: 0% 101%;
+    background-position: 0 100%;
 }
 .info .soc_menu li.linkedin a {
     background-position: 50% 0;
 }
 .info .soc_menu li.linkedin a:hover {
-    background-position: 50% 101%;
+    background-position: 50% 100%;
 }
 .info .soc_menu li.twitter a {
     background-position: 25% 0;
 }
 .info .soc_menu li.twitter a:hover  {
-    background-position: 25% 101%;
+    background-position: 25% 100%;
 }
 .info .soc_menu li.gplus a {
     background-position: 75% 0;
@@ -133,7 +133,7 @@
     background-position: 100% 0;
 }
 .info .soc_menu li.behance a:hover {
-    background-position: 100% 101%;
+    background-position: 100% 100.4%;
 }
     .info .soc_menu li.instagram a {
         /*background: url('../img/icon_instagram.png');*/

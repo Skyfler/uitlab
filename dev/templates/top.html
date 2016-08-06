@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UITLab</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">-->
+    <link rel="stylesheet" href="css/stylesheet.min.css">
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDi4zWU2MRAWZOX9OXKRULjPp4qU0yeToI"></script>
+    <script defer src="scripts/build.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="scripts/css3-mediaqueries.js"></script>
+    <script src="scripts/aight.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<header>
+    <nav class="closed collapsed menu clr container" id="main_menu">
+        <div class="navbar_header clr">
+            <a href="index.html" class="navbar_brand"><span>UIT</span><span>Lab</span></a>
+            <button class="dropdown_toggle" data-component="dropdown_toggle">
+                <span class="icon_bar"></span>
+                <span class="icon_bar"></span>
+                <span class="icon_bar"></span>
+            </button>
+        </div>
+        <div class="dropdown_container clr">
+            <div class="dropdown_bar clr">
+                <ul class="menu_bar clr">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Work</a></li>
+                    <li class="closed collapsed" data-component="submenu_container" data-state="closed">
+                        <a href="#" data-component="submenu_toggle" data-preventDefaultUntil="99999">Expertise</a>
+                        <div class="submenu_bar">
+                            <ul class="submenu" data-component="submenu">
+                                <li><a href="#">web design</a></li>
+                                <li><a href="#">front end development</a></li>
+                                <li><a href="#">back-end development</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="contacts.html">Contact</a></li>
+                </ul>
+                <div class="navbar_end">
+                    <a href="#" class="start_project">Start your Project</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
