@@ -1,0 +1,48 @@
+.development_subcategory_list {
+    background: #f6f6f6;
+}
+
+.development_subcategory_list ul {
+    display: block;
+    padding-top: 35px;
+    padding-bottom: 35px;
+}
+
+.development_subcategory_list li {
+    /*display: block;*/
+    display: inline-block;
+}
+
+.development_subcategory_list li a {
+    /*display: inline-block;*/
+    display: block;
+    padding: 10px;
+    text-transform: uppercase;
+    font-size: 1.4em;
+    font-family: Tahoma, sans-serif;
+    color: black;
+}
+
+.development_subcategory_list.cms li.cms a {
+    color: #2687e0;
+}
+
+.development_subcategory_list.custom li.custom a {
+    color: #2687e0;
+}
+
+.development_subcategory_list.ecommerce li.ecommerce a {
+    color: #2687e0;
+}
+
+/*@media screen and (min-width: 768px) {
+
+    .development_subcategory_list li {
+        display: inline-block;
+    }
+
+    .development_subcategory_list li a {
+        display: block;
+    }
+
+}*/

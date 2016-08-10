@@ -77,6 +77,7 @@ header {
 
 #main_menu .dropdown_container {
     margin: 0 -15px;
+    border-bottom: 1px solid rgb(221, 221, 221);
 }
 
 #main_menu .menu_bar {
@@ -216,6 +217,7 @@ header {
     #main_menu .dropdown_container {
         margin: 0;
         float: right;
+        border: none;
     }
 
     #main_menu .submenu_bar {

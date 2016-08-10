@@ -1,0 +1,125 @@
+.start_your_project {
+    padding-top: 75px;
+}
+
+.start_your_project .block_main_title {
+    font-size: 3em;
+    margin-bottom: 25px;
+}
+
+.start_your_project .dark_block {
+    background: #161616;
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+
+.start_your_project .dark_block .first_line {
+    color: #fff;
+    font-size: 2.2em;
+    font-weight: 300;
+}
+
+.start_your_project .dark_block .second_line {
+    color: #fff;
+    font-size: 3.4em;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.start_your_project .dropdown {
+    background: #161616;
+    padding-bottom: 45px;
+    min-height: 105px;
+}
+
+.start_your_project .dropdown .navbar_header {
+    position: absolute;
+    width: 100%;
+}
+
+.start_your_project .dropdown .dropdown_container {
+    position: relative;
+    background: #161616;
+}
+
+.start_your_project .dropdown .dropdown_toggle {
+    text-transform: uppercase;
+    border-right: 0;
+    border: none;
+    background: #ffda00;
+    color: #000;
+    width: 250px;
+    height: 60px;
+    font-size: 1.6em;
+    font-weight: 800;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    max-width: 80%;
+}
+
+.start_your_project .dropdown .dropdown_toggle:before,
+.start_your_project .dropdown .dropdown_toggle:after {
+    content: "";
+    width: 40px;
+    height: 0;
+    position: absolute;
+    border-bottom: 4px solid #2687e0;
+    top: 28px;
+    transition: opacity ease 0.5s, left ease 0.5s, right ease 0.5s;
+
+    opacity: 0;
+}
+
+.start_your_project .dropdown .dropdown_toggle:before {
+    left: 0;
+}
+.start_your_project .dropdown .dropdown_toggle:after {
+    right: 0;
+}
+
+.start_your_project .dropdown .dropdown_toggle:hover:before {
+    left: -20px;
+    opacity: 1;
+}
+.start_your_project .dropdown .dropdown_toggle:hover:after {
+    right: -20px;
+    opacity: 1;
+}
+
+.start_your_project .form-switcher input[type="text"],
+.start_your_project .form-switcher input[type="email"],
+.start_your_project .form-switcher textarea {
+    background: #161616;
+    color: #fff;
+}
+
+.start_your_project .form-switcher .customselect .title {
+    background: #161616;
+}
+
+.start_your_project .form-switcher .customselect.option_selected .title {
+    color: #fff;
+}
+
+.start_your_project .form-switcher .customselect ul {
+    color: #fff;
+    background: #161616;
+}
+
+.start_your_project .form-switcher .uploadbutton .input {
+    color: #2687e0;
+}
+
+.start_your_project .form-switcher .uploadbutton .icon {
+    background: url('../img/sprites/sprite_1.png') no-repeat;
+    background-position: -220px 0;
+}
+
+.start_your_project .form-switcher .uploadbutton:hover .input {
+    text-shadow:
+            0 0 12px #2687e0,
+            0 0 12px #2687e0,
+            0 0 12px #2687e0;
+}

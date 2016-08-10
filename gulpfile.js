@@ -2,8 +2,8 @@ var gulp = require('gulp'),
     webpack = require('webpack'), 
     gulpWebpack = require('webpack-stream'),
     cssmin = require('gulp-cssmin'),
-    /*imagemin = require('gulp-imagemin'),
-    pngquant = require('imagemin-pngquant'),*/
+    imagemin = require('gulp-imagemin'),
+    pngquant = require('imagemin-pngquant'),
     fileinclude = require('gulp-file-include'),
     htmlmin = require('gulp-htmlmin'),
     browserSync = require("browser-sync"),
@@ -77,18 +77,18 @@ gulp.task('css', function () {
             'Opera >= 12',
             'Safari >= 6'
         ]))
-        //.pipe(cssmin())
+        .pipe(cssmin())
         .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest(path.public.css));
 });
 
 gulp.task('image', function () {
     gulp.src(path.dev.img)
-        /*.pipe(imagemin({
+        .pipe(imagemin({
             progressive: true,
             svgoPlugins: [{removeViewBox: false}],
             use: [pngquant()]
-        }))*/
+        }))
         .pipe(gulp.dest(path.public.img));
 });
 

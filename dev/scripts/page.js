@@ -10,7 +10,8 @@ function ready2() {
 }*/
 
 (function ready() {
-    
+
+    var Dropdown = require('./dropdown.js');
     var Menu = require('./menu.js');
     /*var Slider = require('./slider.js');*/
     var VerticalSlider = require('./vertical-slider.js');
@@ -267,6 +268,18 @@ function ready2() {
         var formSwitcher = new FormSwitcher({
             elem: formswithcerElem
         });
+    }
+
+    var dropdownElemArr = document.querySelectorAll('.dropdown');
+    if (dropdownElemArr.length > 0) {
+        var dropdownArr = [];
+
+        for (var i = 0; i < dropdownElemArr.length; i++) {
+            dropdownArr[i] = new Dropdown({
+                elem: dropdownElemArr[i]
+            });
+        }
+
     }
 
     var customSelectElemArr = document.querySelectorAll('.customselect');

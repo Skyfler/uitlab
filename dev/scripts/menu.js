@@ -13,14 +13,15 @@ Menu.prototype._onClick = function(e) {
     var target = e.target;
 
     this._preventDefaultCheck.bind(this)(e);
-    this._toggleDropdown.bind(this)(target);
+    this._toggleDropdown.bind(this)(target, e);
     this._toggleSubMenu.bind(this)(target);
 };
 
-Menu.prototype._toggleSubMenu = function(target) {
+Menu.prototype._toggleSubMenu = function(target, e) {
     var submenuToggleBtn = target.closest('[data-component="submenu_toggle"]');
 
     if (submenuToggleBtn) {
+        e.preventDefault();
         var submenuContainer = submenuToggleBtn.closest('[data-component="submenu_container"]');
 
         if ('closed' === submenuContainer.dataset.state) {

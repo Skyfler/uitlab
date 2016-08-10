@@ -13,14 +13,16 @@ function Dropdown(options) {
 }
 
 Dropdown.prototype._onClick = function(e) {
-    e.preventDefault();
     var target = e.target;
 
-    this._toggleDropdown.bind(this)(target);
+    this._toggleDropdown.bind(this)(target, e);
 };
 
-Dropdown.prototype._toggleDropdown = function(target) {
+Dropdown.prototype._toggleDropdown = function(target, e) {
+
     if (this._openBtn.contains(target)) {
+        e.preventDefault();
+
         if (this._state === 'closed') {
             this._openDropdown.bind(this)();
         } else {

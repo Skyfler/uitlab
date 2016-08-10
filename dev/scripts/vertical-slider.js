@@ -57,17 +57,17 @@ var videoStateVals = {
 
 var imgTopVals = {
     topCollapsed: 54,
-    topClosed: 94,
-    topOpen: 250,
+    topClosed: 102,
+    topOpen: 242,
 
     middleCollapsedOnTabBottom: 54,
     middleCollapsedOnTabTop: 6,
-    middleClosed: 94,
+    middleClosed: 102,
     middleOpen: 250,
 
     bottomCollapsed: 6,
     bottomClosed: 104,
-    bottomOpen: 250
+    bottomOpen: 242
 };
 
 var sliderInitalisation = {
