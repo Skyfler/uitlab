@@ -10,8 +10,8 @@
 @media screen and (min-width: 768px) {
 
     .container {
-        padding-left: 30px;
-        padding-right: 30px;
+        padding-left: 30px!important;
+        padding-right: 30px!important;
     }
 
 }
@@ -19,8 +19,8 @@
 @media screen and (min-width: 998px) {
 
     .container {
-        padding-left: 65px;
-        padding-right: 65px;
+        padding-left: 65px!important;
+        padding-right: 65px!important;
     }
 
 }

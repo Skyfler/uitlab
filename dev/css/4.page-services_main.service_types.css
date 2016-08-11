@@ -1,3 +1,7 @@
+.service_types {
+    border-top: 3px solid black;
+}
+
 .service_types .container {
     padding-top: 45px;
     padding-bottom: 55px;
@@ -21,6 +25,11 @@
     color: #a6a6a6;
     margin: 10px auto 0;
     max-width: 90%;
+}
+
+.service_types .img_container {
+    max-width: 335px;
+    margin: 0 auto;
 }
 
 .service_types .details {
@@ -68,17 +77,37 @@
         width: 48%;
     }
 
+    .service_types .frontend .text_container {
+        margin-left: 52%;
+        text-align: right;
+    }
+
     .service_types .text {
         margin: 35px 0 0;
         max-width: none;
     }
 
+    .service_types .frontend .text {
+        text-align: right;
+    }
+
     .service_types .img_container {
         position: absolute;
         bottom: 50px;
-        right: 4%;
+        right: 0;
         height: 100%;
         top: 50%;
+    }
+
+    .service_types .design .img_container {
+        right: -36px;
+    }
+    .service_types .frontend .img_container {
+        right: auto;
+        left: -25px;
+    }
+    .service_types .backend .img_container {
+        right: -42px;
     }
 
     .service_types .img_container img {
@@ -88,6 +117,10 @@
 
     .service_types .details {
         margin: 25px 0 0;
+    }
+
+    .service_types .frontend .details {
+        margin-left: auto;
     }
 
 }

@@ -144,20 +144,14 @@
     .inner_circle {
         transform: translate(0, 0);
 
-        -webkit-animation-duration: 4s;
         animation-duration: 4s;
-        -webkit-animation-timing-function: linear;
         animation-timing-function: linear;
-        -webkit-animation-iteration-count: infinite;
         animation-iteration-count: infinite;
-        -webkit-animation-fill-mode: both;
         animation-fill-mode: both;
-        -webkit-animation-play-state: paused;
         animation-play-state: paused;
     }
 
     .animated_circle:hover .inner_circle {
-        -webkit-animation-play-state: running;
         animation-play-state: running;
     }
 
@@ -171,21 +165,21 @@
         /*box-shadow: inset 0 0 0 5px rgba(39, 145, 242, 1);*/
     }
 
-    .animated_circle_1 .inner_circle,
+    .animated_circle_1 .inner_circle:nth-child(2n),
     .animated_circle_1 .initial_circle {
         border: 4px solid rgba(39, 145, 242, 1);
     }
-
-    @-webkit-keyframes circle_1_animation-border {
-        100% {
-            width: 160%;
-            height: 160%;
-            top: -30%;
-            left: -30%;
-            /* transform: translate(-50%, -50%); */
-            border: 0 solid rgba(39, 145, 242, 0);
-        }
+    .animated_circle_1 .inner_circle:nth-child(2n+1) {
+        border: 4px solid yellow;
     }
+
+    .animated_circle_1 .initial_circle {
+        transition: border-color ease 1s;
+    }
+    .animated_circle_1 .initial_circle:hover {
+        border: 4px solid yellow;
+    }
+
     @keyframes circle_1_animation-border {
         100% {
             width: 160%;
@@ -198,29 +192,26 @@
     }
 
     .animated_circle_1 .inner_circle {
-        -webkit-animation-name: circle_1_animation-border;
         animation-name: circle_1_animation-border;
     }
 
     .animated_circle_1 .inner_circle.inner_circle_1 {
-        -webkit-animation-delay: 0s!important;
         animation-delay: 0s!important;
     }
     .animated_circle_1 .inner_circle.inner_circle_2 {
-        -webkit-animation-delay: -0.8s!important;
-        animation-delay: -0.8s!important;
+        animation-delay: -0.6666666666666667s!important;
     }
     .animated_circle_1 .inner_circle.inner_circle_3 {
-        -webkit-animation-delay: -1.6s!important;
-        animation-delay: -1.6s!important;
+        animation-delay: -1.333333333333333s!important;
     }
     .animated_circle_1 .inner_circle.inner_circle_4 {
-        -webkit-animation-delay: -2.4s!important;
-        animation-delay: -2.4s!important;
+        animation-delay: -2s!important;
     }
     .animated_circle_1 .inner_circle.inner_circle_5 {
-        -webkit-animation-delay: -3.2s!important;
-        animation-delay: -3.2s!important;
+        animation-delay: -2.666666666666667s!important;
+    }
+    .animated_circle_1 .inner_circle.inner_circle_6 {
+        animation-delay: -3.333333333333333s!important;
     }
     /*---animated_circle_1---*/
 
@@ -234,21 +225,14 @@
         /*box-shadow: inset 0 0 0 5px rgba(39, 145, 242, 1);*/
     }
 
-    .animated_circle_2 .inner_circle,
+    .animated_circle_2 .inner_circle:nth-child(2n),
     .animated_circle_2 .initial_circle {
         border: 1px solid rgba(39, 145, 242, 0.7);
     }
-
-    @-webkit-keyframes circle_2_animation-border {
-        100% {
-            width: 350%;
-            height: 350%;
-            top: -125%;
-            left: -125%;
-            /* transform: translate(-50%, -50%); */
-            border: 0 solid rgba(39, 145, 242, 0);
-        }
+    .animated_circle_2 .inner_circle:nth-child(2n+1) {
+        border: 1px solid yellow;
     }
+
     @keyframes circle_2_animation-border {
         100% {
             width: 350%;
@@ -261,24 +245,19 @@
     }
 
     .animated_circle_2 .inner_circle {
-        -webkit-animation-name: circle_2_animation-border;
         animation-name: circle_2_animation-border;
     }
 
     .animated_circle_2 .inner_circle.inner_circle_1 {
-        -webkit-animation-delay: 0s!important;
         animation-delay: 0s!important;
     }
     .animated_circle_2 .inner_circle.inner_circle_2 {
-        -webkit-animation-delay: -1s!important;
         animation-delay: -1s!important;
     }
     .animated_circle_2 .inner_circle.inner_circle_3 {
-        -webkit-animation-delay: -2s!important;
         animation-delay: -2s!important;
     }
     .animated_circle_2 .inner_circle.inner_circle_4 {
-        -webkit-animation-delay: -3s!important;
         animation-delay: -3s!important;
     }
     /*---animated_circle_2---*/
@@ -293,21 +272,14 @@
         /*box-shadow: inset 0 0 0 5px rgba(39, 145, 242, 1);*/
     }
 
-    .animated_circle_3 .inner_circle,
+    .animated_circle_3 .inner_circle:nth-child(2n),
     .animated_circle_3 .initial_circle {
         border: 1px solid rgba(39, 145, 242, 1);
     }
-
-    @-webkit-keyframes circle_3_animation-border {
-        100% {
-            width: 210%;
-            height: 210%;
-            top: -55%;
-            left: -55%;
-            /* transform: translate(-50%, -50%); */
-            border: 0 solid rgba(39, 145, 242, 0);
-        }
+    .animated_circle_3 .inner_circle:nth-child(2n+1) {
+        border: 1px solid yellow;
     }
+
     @keyframes circle_3_animation-border {
         100% {
             width: 210%;
@@ -320,24 +292,19 @@
     }
 
     .animated_circle_3 .inner_circle {
-        -webkit-animation-name: circle_3_animation-border;
         animation-name: circle_3_animation-border;
     }
 
     .animated_circle_3 .inner_circle.inner_circle_1 {
-        -webkit-animation-delay: 0s!important;
         animation-delay: 0s!important;
     }
     .animated_circle_3 .inner_circle.inner_circle_2 {
-        -webkit-animation-delay: -1s!important;
         animation-delay: -1s!important;
     }
     .animated_circle_3 .inner_circle.inner_circle_3 {
-        -webkit-animation-delay: -2s!important;
         animation-delay: -2s!important;
     }
     .animated_circle_3 .inner_circle.inner_circle_4 {
-        -webkit-animation-delay: -3s!important;
         animation-delay: -3s!important;
     }
     /*---animated_circle_3---*/
@@ -352,21 +319,14 @@
         /*box-shadow: inset 0 0 0 5px rgba(39, 145, 242, 1);*/
     }
 
-    .animated_circle_4 .inner_circle,
+    .animated_circle_4 .inner_circle:nth-child(2n),
     .animated_circle_4 .initial_circle {
         border: 1px solid rgba(39, 145, 242, 1);
     }
-
-    @-webkit-keyframes circle_4_animation-border {
-        100% {
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            /* transform: translate(-50%, -50%); */
-            border: 0 solid rgba(39, 145, 242, 0);
-        }
+    .animated_circle_4 .inner_circle:nth-child(2n+1) {
+        border: 1px solid yellow;
     }
+
     @keyframes circle_4_animation-border {
         100% {
             width: 200%;
@@ -379,24 +339,19 @@
     }
 
     .animated_circle_4 .inner_circle {
-        -webkit-animation-name: circle_4_animation-border;
         animation-name: circle_4_animation-border;
     }
 
     .animated_circle_4 .inner_circle.inner_circle_1 {
-        -webkit-animation-delay: 0s!important;
         animation-delay: 0s!important;
     }
     .animated_circle_4 .inner_circle.inner_circle_2 {
-        -webkit-animation-delay: -1s!important;
         animation-delay: -1s!important;
     }
     .animated_circle_4 .inner_circle.inner_circle_3 {
-        -webkit-animation-delay: -2s!important;
         animation-delay: -2s!important;
     }
     .animated_circle_4 .inner_circle.inner_circle_4 {
-        -webkit-animation-delay: -3s!important;
         animation-delay: -3s!important;
     }
     /*---animated_circle_4---*/
@@ -453,7 +408,7 @@
     max-width: 100%;
     text-align: left;
     height: 100%;
-    color: #fff;
+    color: #2687e0;
     font-size: 1.4em;
     padding: 17px 15px 0 45px;
     white-space: nowrap;
@@ -468,13 +423,18 @@
     width: 20px;
     position: absolute;
     background: url('../img/sprites/sprite_1.png') no-repeat;
-    background-position: -200px 0;
+    /*background-position: -200px 0;*/
+    background-position: -220px 0;
     top: 8px;
     left: 14px;
 }
 
 .feedback .uploadbutton:hover .input {
-    text-shadow: 0 0 12px white;
+    /*text-shadow: 0 0 12px white;*/
+    text-shadow:
+            0 0 12px #2687e0,
+            0 0 12px #2687e0,
+            0 0 12px #2687e0;
 }
 
 .feedback .submit {

@@ -105,7 +105,8 @@
 .vertical-slider .slide.opening-before-breakpoint .tab,
 .vertical-slider .slide.opening-after-breakpoint .tab,
 .vertical-slider .slide.open .tab {
-    background-color: #0f0d0f;
+    /*background-color: #0f0d0f;*/
+    background-color: #0B0B0B;
 }
 
 .vertical-slider .slide.collapsing-before-breakpoint .bg_layer,
