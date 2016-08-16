@@ -20,6 +20,7 @@ function ready2() {
     var FormSwitcher = require('./formswitcher');
     /*var Masonry = require('masonry-layout');*/
     var MasonryTabs = require('./masonry-tabs');
+    var AnimatedCircle = require('./animated-circle');
     
     var mainMenu = new Menu({
         elem: document.querySelector('#main_menu')
@@ -29,10 +30,10 @@ function ready2() {
     if (verticalSliderElem) {
         window.verticalSlide = new VerticalSlider({
             elem: verticalSliderElem,
-            desktopHeight: 699,                                 //px
-            mobileHeight: 441,                                  //px
-            openSlideHeightDesktop: 515,                        //px
-            openSlideHeightMobile: 332,                         //px
+            minDesktopHeight: 420,                                 //px
+            minMobileHeight: 395,                                  //px
+            collapsedSlideHeightDesktop: 92,                        //px
+            collapsedSlideHeightMobile: 54.5,                         //px
             transitionDuration: 400                             //ms
         });
     }
@@ -277,6 +278,19 @@ function ready2() {
         for (var i = 0; i < dropdownElemArr.length; i++) {
             dropdownArr[i] = new Dropdown({
                 elem: dropdownElemArr[i]
+            });
+        }
+
+    }
+
+    var animatedCircleElemArr = document.querySelectorAll('.animated_circle');
+    if (animatedCircleElemArr.length > 0) {
+        var animatedCircleArr = [];
+
+        for (var i = 0; i < animatedCircleElemArr.length; i++) {
+            animatedCircleArr[i] = new AnimatedCircle({
+                elem: animatedCircleElemArr[i],
+                delayBeforeStop: 1000                   //ms
             });
         }
 

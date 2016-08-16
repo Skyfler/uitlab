@@ -151,7 +151,11 @@
         animation-play-state: paused;
     }
 
-    .animated_circle:hover .inner_circle {
+    /*.animated_circle:hover .inner_circle {
+        animation-play-state: running;
+    }*/
+
+    .animated_circle.js-play .inner_circle {
         animation-play-state: running;
     }
 
@@ -165,20 +169,21 @@
         /*box-shadow: inset 0 0 0 5px rgba(39, 145, 242, 1);*/
     }
 
-    .animated_circle_1 .inner_circle:nth-child(2n),
+    /*.animated_circle_1 .inner_circle:nth-child(2n),*/
+    .animated_circle_1 .inner_circle,
     .animated_circle_1 .initial_circle {
         border: 4px solid rgba(39, 145, 242, 1);
     }
-    .animated_circle_1 .inner_circle:nth-child(2n+1) {
+    /*.animated_circle_1 .inner_circle:nth-child(2n+1) {
         border: 4px solid yellow;
-    }
+    }*/
 
-    .animated_circle_1 .initial_circle {
+    /*.animated_circle_1 .initial_circle {
         transition: border-color ease 1s;
     }
     .animated_circle_1 .initial_circle:hover {
         border: 4px solid yellow;
-    }
+    }*/
 
     @keyframes circle_1_animation-border {
         100% {
@@ -225,13 +230,14 @@
         /*box-shadow: inset 0 0 0 5px rgba(39, 145, 242, 1);*/
     }
 
-    .animated_circle_2 .inner_circle:nth-child(2n),
+    /*.animated_circle_2 .inner_circle:nth-child(2n),*/
+    .animated_circle_2 .inner_circle,
     .animated_circle_2 .initial_circle {
         border: 1px solid rgba(39, 145, 242, 0.7);
     }
-    .animated_circle_2 .inner_circle:nth-child(2n+1) {
+    /*.animated_circle_2 .inner_circle:nth-child(2n+1) {
         border: 1px solid yellow;
-    }
+    }*/
 
     @keyframes circle_2_animation-border {
         100% {
@@ -272,13 +278,14 @@
         /*box-shadow: inset 0 0 0 5px rgba(39, 145, 242, 1);*/
     }
 
-    .animated_circle_3 .inner_circle:nth-child(2n),
+    /*.animated_circle_3 .inner_circle:nth-child(2n),*/
+    .animated_circle_3 .inner_circle,
     .animated_circle_3 .initial_circle {
         border: 1px solid rgba(39, 145, 242, 1);
     }
-    .animated_circle_3 .inner_circle:nth-child(2n+1) {
+    /*.animated_circle_3 .inner_circle:nth-child(2n+1) {
         border: 1px solid yellow;
-    }
+    }*/
 
     @keyframes circle_3_animation-border {
         100% {
@@ -319,13 +326,14 @@
         /*box-shadow: inset 0 0 0 5px rgba(39, 145, 242, 1);*/
     }
 
-    .animated_circle_4 .inner_circle:nth-child(2n),
+    /*.animated_circle_4 .inner_circle:nth-child(2n),*/
+    .animated_circle_4 .inner_circle,
     .animated_circle_4 .initial_circle {
         border: 1px solid rgba(39, 145, 242, 1);
     }
-    .animated_circle_4 .inner_circle:nth-child(2n+1) {
+    /*.animated_circle_4 .inner_circle:nth-child(2n+1) {
         border: 1px solid yellow;
-    }
+    }*/
 
     @keyframes circle_4_animation-border {
         100% {

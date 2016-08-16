@@ -81,10 +81,10 @@ var sliderInitalisation = {
 
 function VerticalSlider(options) {
     this._elem = options.elem;
-    this._mobileHeight = options.mobileHeight;
-    this._desktopHeight = options.desktopHeight;
-    this._openSlideHeightDesktop = options.openSlideHeightDesktop;
-    this._openSlideHeightMobile = options.openSlideHeightMobile;
+    this._minMobileHeight = options.minMobileHeight;
+    this._minDesktopHeight = options.minDesktopHeight;
+    this._collapsedSlideHeightDesktop = options.collapsedSlideHeightDesktop;
+    this._collapsedSlideHeightMobile = options.collapsedSlideHeightMobile;
     this._transitionDuration = options.transitionDuration / 2;
 
     this._init.bind(this)();
@@ -101,7 +101,9 @@ function VerticalSlider(options) {
 }
 
 VerticalSlider.prototype._init = function() {
-    if (this._elem.offsetWidth < 800) {
+    // console.log('offsetWidth = ' + this._elem.offsetWidth);
+    // console.log('window.innerWidth = ' + window.innerWidth);
+    if (window.innerWidth < 800) {
         this._initMobile.bind(this)();
     } else {
         this._initDesktop.bind(this)();
@@ -109,6 +111,7 @@ VerticalSlider.prototype._init = function() {
 };
 
 VerticalSlider.prototype._initDesktop = function() {
+    // console.log('Initializing DESKTOP');
     this._elem.removeEventListener('sliderready', this._onSliderReady);
     this._elem.removeEventListener('mousemove', this._onMouseMove);
 
@@ -116,7 +119,6 @@ VerticalSlider.prototype._initDesktop = function() {
 
     this._calculateValues.bind(this)();
     this._createSlides.bind(this)();
-    this._setSlidesToInitialDesktopState.bind(this)();
 
     this._zIndexController = new ZIndexController({
         slidesArr: this._slidesArr
@@ -125,18 +127,22 @@ VerticalSlider.prototype._initDesktop = function() {
         slidesArr: this._slidesArr,
         transitionDuration: this._transitionDuration
     });
-    this._iconController = new IconController({
-        slidesArr: this._slidesArr,
-        transitionDuration: this._transitionDuration * 2
-    });
+    // this._iconController = new IconController({
+    //     slidesArr: this._slidesArr,
+    //     transitionDuration: this._transitionDuration * 2
+    // });
+    this._iconController = '';
     this._videoController = new VideoController({
         slidesArr: this._slidesArr
     });
+
+    this._setSlidesToInitialDesktopState.bind(this)();
 
     this._state = sliderStateVals.ready;
 };
 
 VerticalSlider.prototype._initMobile = function() {
+    // console.log('Initializing MOBILE');
     this._elem.removeEventListener('sliderready', this._onSliderReady);
     this._elem.removeEventListener('mousemove', this._onMouseMove);
 
@@ -144,7 +150,6 @@ VerticalSlider.prototype._initMobile = function() {
 
     this._calculateValues.bind(this)();
     this._createSlides.bind(this)();
-    this._setSlidesToInitialMobileState.bind(this)();
 
     this._zIndexController = new ZIndexController({
         slidesArr: this._slidesArr
@@ -155,6 +160,8 @@ VerticalSlider.prototype._initMobile = function() {
     });
     this._iconController = '';
     this._videoController = '';
+
+    this._setSlidesToInitialMobileState.bind(this)();
 
     this._state = sliderStateVals.ready;
 };
@@ -168,10 +175,23 @@ VerticalSlider.prototype._onResize = function() {
 };
 
 VerticalSlider.prototype._calculateValues = function() {
+    this._mobileHeight = window.innerHeight - 85;
+    if (this._mobileHeight < this._minMobileHeight) {
+        this._mobileHeight = this._minMobileHeight;
+    }
+    this._desktopHeight = window.innerHeight - 98;
+    if (this._desktopHeight < this._minDesktopHeight) {
+        this._desktopHeight = this._minDesktopHeight;
+    }
+
     this._height = this._initialisation === sliderInitalisation.mobile ? this._mobileHeight : this._desktopHeight;
-    this._openSlideHeight = this._initialisation === sliderInitalisation.mobile ? this._openSlideHeightMobile : this._openSlideHeightDesktop;
+    this._elem.style.height = this._height + 'px';
+    // this._openSlideHeight = this._initialisation === sliderInitalisation.mobile ? this._openSlideHeightMobile : this._openSlideHeightDesktop;
     this._closedSlideHeight = this._height / 3;
-    this._collapsedSlideHeight = (this._height - this._openSlideHeight) / 2;
+    // this._collapsedSlideHeight = (this._height - this._openSlideHeight) / 2;
+    this._openSlideHeight = this._initialisation === sliderInitalisation.mobile ? this._height - (this._collapsedSlideHeightMobile * 2) : this._height - (this._collapsedSlideHeightDesktop * 2);
+
+    this._collapsedSlideHeight = this._initialisation === sliderInitalisation.mobile ? this._collapsedSlideHeightMobile : this._collapsedSlideHeightDesktop ;
 };
 
 VerticalSlider.prototype._createSlides = function() {
@@ -195,12 +215,14 @@ VerticalSlider.prototype._setSlidesToInitialDesktopState = function() {
     for (var i = 0; i < this._slidesArr.length; i++) {
         this._slidesArr[i].changeStateWithoutTransition(slideStateVals.closed, this._closedSlideHeight);
     }
+    this._zIndexController.resetIndexes();
 };
 
 VerticalSlider.prototype._setSlidesToInitialMobileState = function() {
     this._slidesArr[0].changeStateWithoutTransition(slideStateVals.collapsed, this._collapsedSlideHeight);
     this._slidesArr[1].changeStateWithoutTransition(slideStateVals.open, this._openSlideHeight);
     this._slidesArr[2].changeStateWithoutTransition(slideStateVals.collapsed, this._collapsedSlideHeight);
+    this._zIndexController.resetIndexes();
 };
 
 VerticalSlider.prototype._onMouseOver = function(e) {
@@ -308,7 +330,7 @@ VerticalSlider.prototype._onSlideChangingState = function(e) {
         var slideStateInfo = slide.getStateInfo(e.detail.state);
 
         if (slideStateInfo.type === slideStateVals.transitionalBeforeBP) {
-            this._iconController.moveIcon(slide);
+            // this._iconController.moveIcon(slide);
         }
     }
 
@@ -321,7 +343,7 @@ VerticalSlider.prototype._onSlideChangedState = function(e) {
     var slide = this._getSlideByElem.bind(this)(target);
 
     if (this._initialisation === sliderInitalisation.desktop) {
-        this._iconController.removeTransition(slide);
+        // this._iconController.removeTransition(slide);
 
         if (e.detail.state === slideStateVals.open) {
             this._videoController.startVideo(slide);
