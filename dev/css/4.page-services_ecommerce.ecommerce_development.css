@@ -96,6 +96,20 @@
     margin: 0 auto;
 }
 
+.ecommerce_development .ecommerce_block_container .block .hover-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity ease 1s;
+    top: 0;
+    left: 0;
+}
+
+.ecommerce_development .ecommerce_block_container .block:hover .hover-container {
+    opacity: 1;
+}
+
 @media screen and (min-width: 768px) {
 
     .ecommerce_development .first_col,
@@ -117,6 +131,14 @@
 
     .ecommerce_development .ecommerce_block_container .row {
         max-height: none;
+
+        transition-property: margin;
+        transition-timing-function: ease;
+        transition-duration: 1s;
+    }
+
+    .ecommerce_development .ecommerce_block_container .row:hover {
+        margin-left: 0!important;
     }
 
     .ecommerce_development .ecommerce_block_container .row+.row {

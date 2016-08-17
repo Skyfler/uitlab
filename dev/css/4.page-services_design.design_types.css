@@ -1,0 +1,112 @@
+.design_types {
+    /*border-top: 3px solid black;*/
+    padding-top: 45px;
+    padding-bottom: 55px;
+}
+
+.design_types .block {
+    position: relative;
+    text-align: center;
+    padding: 50px 0;
+}
+
+.design_types .block+.block {
+    border-top: 2px solid rgb(218, 218, 218);
+}
+
+.design_types .title {
+    font-size: 3em;
+    font-weight: 800;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+}
+
+.design_types .text {
+    text-align: left;
+    font-size: 1.8em;
+    color: #a6a6a6;
+    margin: 45px auto 0;
+    max-width: 90%;
+    position: relative;
+    z-index: 1;
+}
+
+.design_types .img_container {
+    margin: 0 auto;
+    max-width: 90%;
+}
+
+.design_types .img_container img {
+    margin: 30px auto 0;
+}
+
+@media screen and (min-width: 768px) {
+
+    .design_types .block {
+        text-align: left;
+        padding: 0;
+    }
+
+    .design_types .block .row {
+        height: 255px;
+    }
+
+    .design_types .text_container {
+        text-align: right;
+
+        position: absolute;
+        top: 50%;
+        transform: translate(0px, -50%);
+        width: 50%;
+        left: 0;
+        padding: 0 30px 0 0;                  /* 30px is half of central margin between image block and text block (60px)*/
+    }
+
+    .design_types .block:nth-child(2n) .text_container {
+        left: 50%;
+        padding: 0 0 0 30px;                    /* 30px is half of central margin between image block and text block (60px)*/
+        text-align: left;
+    }
+
+    .design_types .text {
+        margin: 25px 0 0;
+        max-width: none;
+        text-align: right;
+    }
+
+    .design_types .block:nth-child(2n) .text {
+        text-align: left;
+    }
+
+    .design_types .img_container {
+        position: absolute;
+
+        max-width: none;
+        height: 255px;
+        /*width: 100%;*/
+        width: calc(100% - 30px);                       /* 30px is half of central margin between image block and text block (60px)*/
+        bottom: 50%;
+        transform: translate(0px, 50%);
+        left: calc(100% + 30px);                        /* 30px is half of central margin between image block and text block (60px)*/
+    }
+
+    .design_types .block:nth-child(2n) .img_container {
+        left: -100%;
+    }
+
+    .design_types .img_container img {
+        margin: 0;
+
+        transform: none;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+
+    .design_types .block:nth-child(2n) .img_container img {
+        left: auto;
+        right: 0;
+    }
+
+}

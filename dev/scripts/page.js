@@ -64,7 +64,7 @@ function ready2() {
     if (mapElem) {
         var pos = {lat: 49.99335, lng: 36.23237};
         var map = new google.maps.Map(mapElem, {
-            zoom: 6,
+            zoom: 4,
             center: pos,
             streetViewControl: false,
             mapTypeControl: false,

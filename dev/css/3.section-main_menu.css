@@ -222,7 +222,9 @@ header {
 
     #main_menu .submenu_bar {
         background-color: #fff;
+        top: calc(100% - 1px) ;
         border-top: 3px solid black;
+        border-bottom: 3px solid black;
     }
 
     #main_menu [data-component="submenu_container"]:hover .submenu_bar {

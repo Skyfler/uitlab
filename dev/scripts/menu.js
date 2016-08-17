@@ -17,11 +17,10 @@ Menu.prototype._onClick = function(e) {
     this._toggleSubMenu.bind(this)(target);
 };
 
-Menu.prototype._toggleSubMenu = function(target, e) {
+Menu.prototype._toggleSubMenu = function(target) {
     var submenuToggleBtn = target.closest('[data-component="submenu_toggle"]');
 
     if (submenuToggleBtn) {
-        e.preventDefault();
         var submenuContainer = submenuToggleBtn.closest('[data-component="submenu_container"]');
 
         if ('closed' === submenuContainer.dataset.state) {

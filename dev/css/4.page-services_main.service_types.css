@@ -59,7 +59,10 @@
     position: absolute;
     border-bottom: 4px solid #2687e0;
     top: 23px;
-    transition: opacity ease 0.5s, right ease 0.5s;
+    transition:
+            opacity ease 0.5s,
+            right ease 0.5s,
+            left ease 0.5s;
     right: 0;
     opacity: 0;
 }
@@ -101,7 +104,7 @@
 
     .service_types .img_container {
         position: absolute;
-        bottom: 50px;
+        /*bottom: 50px;*/
         /*right: 0;*/
         height: 100%;
         top: 50%;
@@ -128,6 +131,23 @@
 
     .service_types .frontend .details {
         margin-left: 0;
+    }
+
+    .service_types .design .details:after,
+    .service_types .backend .details:after {
+        right: auto;
+        left: 0;
+    }
+
+    .service_types .details:hover:after {
+        right: -25px;
+
+    }
+
+    .service_types .design .details:hover:after,
+    .service_types .backend .details:hover:after {
+        right: auto;
+        left: -25px;
     }
 
 }
