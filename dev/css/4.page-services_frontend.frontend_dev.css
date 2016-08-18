@@ -1,0 +1,12 @@
+.frontent_dev {
+    position: relative;
+    padding-top: 78px;
+    padding-bottom: 40px;
+}
+
+.frontent_dev .divider:after {
+    height: 25px;
+    border-right: 4px solid #2687e0;
+    top: -10px;
+    right: 13px;
+}

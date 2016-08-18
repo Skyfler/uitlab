@@ -2,10 +2,30 @@
     display: none!important;
 }
 
+@media screen and (min-width: 465px) {
+
+    .max-width-465 {
+        display: none!important;
+    }
+
+    .min-width-465 {
+        display: block!important;
+    }
+
+}
+
 @media screen and (min-width: 768px) {
 
     .min-width-768 {
         display: block!important;
+    }
+
+}
+
+@media screen and (min-width: 900px) {
+
+    .max-width-900 {
+        display: none!important;
     }
 
 }
