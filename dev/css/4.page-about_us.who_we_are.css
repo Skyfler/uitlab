@@ -1,0 +1,112 @@
+.who_we_are {
+    
+}
+
+.who_we_are .block_main_title {
+    color: white;
+    font-size: 3em;
+}
+
+.who_we_are .block_description {
+    color: white;
+    font-size: 1.8em;
+    font-weight: 500;
+    text-transform: none;
+    max-width: 595px;
+}
+
+.who_we_are .divider:after {
+    width: 25px;
+    border-bottom: 4px solid #2687e0;
+    top: 13px;
+    left: -10px;
+}
+
+.who_we_are .row {
+    background: url('../img/about_us_imgs/background_about_us.jpg') no-repeat top center;
+    background-size: auto 100%;
+    color: white;
+    padding-top: 90px;
+    padding-bottom: 70px;
+}
+
+.who_we_are .row+.row {
+    background: #0e0e0e;
+    padding-top: 88px;
+    padding-bottom: 50px;
+}
+
+.who_we_are .row+.row+.row {
+    background: none;
+    color: #0e0e0e;
+    padding-top: 50px;
+}
+
+.who_we_are .text_block {
+    font-size: 1.8em;
+    max-width: 895px;
+    margin: 0 auto;
+}
+
+.who_we_are .about_us_block_container {
+    margin-top: 30px;
+}
+
+.who_we_are .about_us_block_container .block {
+    float: left;
+    width: 100%;
+    padding: 30px 0 20px;
+}
+
+.who_we_are .about_us_block_container .block .icon {
+    margin: 0 auto 20px;
+    width: 82px;
+    height: 82px;
+    /*background: rgba(255, 0, 0, 0.1);*/
+}
+
+.who_we_are .about_us_block_container .clients_interests .icon {
+    background: url("../img/about_us_imgs/icon_target.png");
+}
+.who_we_are .about_us_block_container .results_oriented .icon {
+    background: url("../img/about_us_imgs/icon_success.png");
+}
+.who_we_are .about_us_block_container .standarts_of_quality .icon {
+    background: url("../img/about_us_imgs/icon_target.png");
+}
+
+.who_we_are .about_us_block_container .block .text {
+    text-transform: uppercase;
+    font-size: 1.6em;
+    font-weight: 300;
+    max-width: 210px;
+    margin: 0 auto;
+}
+
+@media screen and (min-width: 768px) {
+
+    .who_we_are .about_us_block_container .block {
+        width: 50%;
+    }
+
+    .who_we_are .about_us_block_container .block.full-width-997 {
+        width: 100%;
+    }
+
+}
+
+@media screen and (min-width: 998px) {
+
+    .who_we_are .about_us_block_container .block {
+        width: 33.3333333%!important;
+    }
+
+}
+
+@media screen and (min-width: 1400px) {
+
+    .who_we_are .row {
+        background-size: 100%;
+    }
+
+}

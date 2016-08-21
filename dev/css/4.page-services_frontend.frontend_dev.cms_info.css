@@ -25,8 +25,9 @@
 }
 
 .frontent_dev .cms_info .block img {
-    max-height: 100%;
+    max-height: 160px;
     width: auto;
+    margin: 0 auto;
 }
 
 .frontent_dev .cms_info .block .hover-container {

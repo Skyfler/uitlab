@@ -1,0 +1,126 @@
+.testimonals {
+    padding: 100px 0;
+}
+
+.testimonals .block_main_title {
+    font-size: 3em;
+}
+
+.testimonals .divider:after {
+    height: 25px;
+    border-right: 4px solid #2687e0;
+    left: 13px;
+    top: -10px;
+}
+
+.testimonals .arrows_container {
+    position: absolute;
+    height: 0;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 90%;
+    max-width: 1000px;
+    z-index: 1;
+}
+
+.testimonals .arrow {
+    display: block;
+    /*background: rgba(255, 0, 0, 0.1);*/
+    width: 35px;
+    height: 50px;
+    top: -25px;
+    position: absolute;
+}
+
+.testimonals .arrow.right_arrow {
+    right: -17px;
+}
+.testimonals .arrow.left_arrow {
+    left: -17px;
+}
+
+.testimonals .arrow .line {
+    display: block;
+    border-bottom: 4px solid #2687e0;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 23px;
+    will-change: transform;
+    transition: transform ease 0.5s;
+}
+
+.testimonals .arrow.right_arrow .line {
+    transform-origin: right center;
+}
+.testimonals .arrow.left_arrow .line {
+    transform-origin: left center;
+}
+
+.testimonals .arrow.right_arrow:hover .line,
+.testimonals .arrow.left_arrow:hover .line+.line {
+    transform: skewY(34deg);
+}
+.testimonals .arrow.left_arrow:hover .line,
+.testimonals .arrow.right_arrow:hover .line+.line {
+    transform: skewY(-34deg);
+}
+
+.testimonals .overflow_block {
+    width: 300%;
+}
+
+.testimonals .slider_slide {
+    width: 33.33333333333%;
+}
+
+.testimonals .slider_slide .block {
+    width: 90%;
+    max-width: 1000px;
+    background: black;
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+    padding: 76px 15px 65px;
+}
+
+.testimonals .slider_slide .text {
+    margin: 0 auto;
+    font-size: 1.6em;
+    font-weight: 300;
+    max-width: 730px;
+}
+
+.testimonals .slider_slide .title {
+    /*margin: 0 auto;*/
+    display: inline-block;
+    text-align: left;
+    position: relative;
+    padding: 0 0 0 50px;
+    margin-top: 40px;
+}
+
+.testimonals .slider_slide .icon {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 30px;
+    width: 30px;
+    /*background: #ffda00;*/
+    background: url("../img/about_us_imgs/icon_square.jpg");
+}
+
+.testimonals .slider_slide .name {
+    font-weight: 600;
+    font-size: 1.4em;
+    text-transform: uppercase;
+}
+
+.testimonals .slider_slide .position {
+    font-weight: 300;
+    font-size: 1.4em;
+}

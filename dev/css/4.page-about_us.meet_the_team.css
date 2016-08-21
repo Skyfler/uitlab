@@ -1,0 +1,129 @@
+.meet_the_team {
+
+}
+
+.meet_the_team .block_main_title {
+    font-size: 3em;
+}
+
+.meet_the_team .divider:after {
+    height: 25px;
+    border-right: 4px solid #2687e0;
+    left: 13px;
+    top: -10px;
+}
+
+.meet_the_team .team_blocks_container {
+    max-width: 960px;
+    padding-top: 20px;
+    padding-bottom: 0;
+    margin: 0 auto;
+}
+
+.meet_the_team .team_blocks_container .block {
+    float: left;
+    width: 100%;
+    min-height: 320px;
+}
+
+.meet_the_team .team_blocks_container .block .block_content {
+    max-width: 230px;
+    padding: 0 10px;
+    margin: 0 auto;
+    cursor: default;
+}
+
+.meet_the_team .team_blocks_container .block .img_container {
+    width: 210px;
+    max-width: 100%;
+    height: 210px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    will-change: transform;
+    transition: transform ease 0.5s;
+}
+
+.meet_the_team .team_blocks_container .block .block_content:hover .img_container {
+    transform: scale(1.1);
+}
+
+.meet_the_team .team_blocks_container .block .img_container .description {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 13px 10px;
+    font-size: 1.1em;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: #fbd711;
+    color: #000;
+    will-change: transform;
+    transition: transform ease 0.5s;
+}
+
+.meet_the_team .team_blocks_container .block .block_content:hover .img_container .description {
+    transform: translateY(-100%);
+}
+
+.meet_the_team .team_blocks_container .block .name {
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 1.6em;
+    color: #000;
+    max-width: 210px;
+    margin: 10px auto 0;
+    will-change: margin;
+    transition: margin ease 0.5s;
+    position: relative;
+}
+
+.meet_the_team .team_blocks_container .block .name:after {
+    content: "";
+    position: absolute;
+    display: block;
+    height: 25px;
+    opacity: 0;
+    border: 2px solid #2687e0;
+    top: 0;
+    left: calc(50% - 1px);
+    will-change: opacity, transform;
+    transition:
+        transform ease 0.5s,
+        opacity ease 0.5s;
+}
+
+.meet_the_team .team_blocks_container .block .block_content:hover .name {
+    margin-top: 35px;
+}
+
+.meet_the_team .team_blocks_container .block .block_content:hover .name:after {
+    transform: translateY(-100%);
+    opacity: 1;
+}
+
+.meet_the_team .team_blocks_container .block .position {
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 1.2em;
+    color: #2687e0;
+    max-width: 210px;
+    margin: 5px auto 0;
+}
+
+@media screen and (min-width: 525px) {
+
+    .meet_the_team .team_blocks_container .block {
+        width: 50%;
+    }
+
+}
+
+@media screen and (min-width: 998px) {
+
+    .meet_the_team .team_blocks_container .block {
+        width: 25%;
+    }
+
+}

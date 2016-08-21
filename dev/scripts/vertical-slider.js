@@ -94,15 +94,51 @@ function VerticalSlider(options) {
 
     this._elem.addEventListener('slidechangingstate', this._onSlideChangingState.bind(this));
     this._elem.addEventListener('slidechangedstate', this._onSlideChangedState.bind(this));
-    this._elem.addEventListener('mouseout', this._onMouseOut.bind(this));
-    this._elem.addEventListener('mouseover', this._onMouseOver.bind(this));
+
+    this._waitUntilAllVideosAreLoaded();
 
     window.addEventListener('resize', this._onResize.bind(this));
 }
 
+VerticalSlider.prototype._waitUntilAllVideosAreLoaded = function() {
+
+    if (this._allVideosAreLoadedCheck()) {
+        this._elem.addEventListener('mouseout', this._onMouseOut.bind(this));
+        this._elem.addEventListener('mouseover', this._onMouseOver.bind(this));
+    } else {
+        this._elem.addEventListener('videoisloaded', this._onVideoIsLoaded.bind(this));
+    }
+};
+
+VerticalSlider.prototype._onVideoIsLoaded = function(e) {
+
+    // console.log('video is loaded');
+
+    if (!this._allVideosAreLoadedCheck()) return;
+
+    this._elem.removeEventListener('videoisloaded', this._onVideoIsLoaded.bind(this));
+
+    this._elem.addEventListener('mouseout', this._onMouseOut.bind(this));
+    this._elem.addEventListener('mouseover', this._onMouseOver.bind(this));
+
+};
+
+VerticalSlider.prototype._allVideosAreLoadedCheck = function() {
+    for (var i = 0; i < this._slidesArr.length; i++) {
+        if (!this._slidesArr[i]._videoIsLoaded) return false;
+    }
+
+    // console.log('ALL VIDEOS ARE LOADED');
+
+    return true;
+};
+
 VerticalSlider.prototype._init = function() {
     // console.log('offsetWidth = ' + this._elem.offsetWidth);
     // console.log('window.innerWidth = ' + window.innerWidth);
+    /*this._getOpenSlideBackground();
+    setTimeout(this._getOpenSlideBackground.bind(this), 0);*/
+
     if (window.innerWidth < 800) {
         this._initMobile.bind(this)();
     } else {
@@ -159,7 +195,9 @@ VerticalSlider.prototype._initMobile = function() {
         transitionDuration: this._transitionDuration
     });
     this._iconController = '';
-    this._videoController = '';
+    this._videoController = new VideoController({
+        slidesArr: this._slidesArr
+    });
 
     this._setSlidesToInitialMobileState.bind(this)();
 
@@ -405,6 +443,8 @@ function Slide(options) {
     this._transitionDuration = options.transitionDuration;
     this._currentZIndex = options.initialZIndex;
     this._position = options.position;
+    this._bgElem = this._elem.querySelector('.bg_layer');
+    this._topTab = this._elem.querySelector('.top-tab');
 
     this.getCurrentState = this.getCurrentState.bind(this);
     this.getPreviousState = this.getPreviousState.bind(this);
@@ -413,6 +453,9 @@ function Slide(options) {
     this._onTransitionEnd = this._onTransitionEnd.bind(this);
     this.zIndex = this.zIndex.bind(this);
     this.getPosition = this.getPosition.bind(this);
+
+    /*this._getOpenSlideBackground();
+    setTimeout(this._getOpenSlideBackground.bind(this), 0);*/
 
     this.zIndex(this._currentZIndex);
     this._elem.style.height = this._currentHeight + 'px';
@@ -425,6 +468,29 @@ Slide.prototype._addTransition = function() {
     this._elem.style.transitionProperty = [transitionVals.height, transitionVals.boxShadow, transitionVals.backgroundColor].join(', ');
     this._elem.style.transitionDuration = [this._transitionDuration + 'ms', this._transitionDuration + 'ms', (this._transitionDuration * 2) + 'ms'].join(', ');
     this._elem.style.transitionDelay = 0 + 'ms';
+};
+
+Slide.prototype._setBackgroundOnOpeningSlide = function() {
+
+    this._getOpenSlideBackground();
+
+    if (this._openSlideBackground) {
+        if (this._bgElem) {
+            this._bgElem.style.background = this._openSlideBackground;
+            if (this._topTab) {
+                this._topTab.style.background = this._openSlideBackground;
+            }
+        }
+    }
+};
+
+Slide.prototype._removeBackgroundFromSlide = function() {
+    if (this._bgElem) {
+        this._bgElem.style.background = '';
+        if (this._topTab) {
+            this._topTab.style.background = '';
+        }
+    }
 };
 
 Slide.prototype._removeTransition = function() {
@@ -490,6 +556,13 @@ Slide.prototype.changeState = function(newState, finalSlideHeight) {
     this._addTransition.bind(this)();
 
     this._previousState = this._state;
+
+    if (this._previousState === slideStateVals.open) {
+        this._removeBackgroundFromSlide();
+    } else if (stateInfo.finalState === slideStateVals.open) {
+        this._setBackgroundOnOpeningSlide();
+    }
+
     this._state = stateInfo.transitionalStateBeforeBP;
     this._changeStateClass.bind(this)();
     this._nextState = stateInfo.transitionalStateAfterBP;
@@ -507,11 +580,47 @@ Slide.prototype.changeState = function(newState, finalSlideHeight) {
 
 Slide.prototype.changeStateWithoutTransition = function(newState, finalSlideHeight) {
 
+    var stateInfo = this.getStateInfo(newState);
+
+    if (this._previousState === slideStateVals.open) {
+        this._removeBackgroundFromSlide();
+    } else if (stateInfo.finalState === slideStateVals.open) {
+        this._setBackgroundOnOpeningSlide();
+    }
+
     this._currentHeight = finalSlideHeight;
     this._state = newState;
     this._changeStateClass.bind(this)();
 
     this._elem.style.height = finalSlideHeight + 'px';
+};
+
+Slide.prototype._getOpenSlideBackground = function() {
+    var videoElem = this._elem.querySelector('video');
+
+    var canvas = document.createElement('canvas');
+    canvas.width = 640;
+    canvas.height = 480;
+    var ctx = canvas.getContext('2d');
+
+    ctx.drawImage(videoElem, 0, 0, canvas.width, canvas.height);
+
+    var x = 0;
+    var y = 0;
+
+    var imgData = ctx.getImageData(x, y, 1, 1);
+    var red = imgData.data[0];
+    var green = imgData.data[1];
+    var blue = imgData.data[2];
+    var alpha = imgData.data[3];
+
+    if (red === 0 && green === 0 && blue === 0 && alpha === 0) {
+        this._openSlideBackground = '';
+    } else {
+        this._openSlideBackground = 'rgba(' + red + ", " + green + ", " + blue + ", " + alpha + ')';
+    }
+
+    // console.log(this._openSlideBackground);
 };
 
 Slide.prototype._changeStateClass = function() {
@@ -949,10 +1058,25 @@ function VideoController(options) {
 VideoController.prototype._init = function() {
     for (var i = 0; i < this._slidesArr.length; i ++) {
         this._slidesArr[i]._videoElem = this._slidesArr[i]._elem.querySelector('video');
+        if (this._slidesArr[i]._videoElem.readyState === 4) {
+            this._onVideoLoaded.bind(this._slidesArr[i])();
+        } else {
+            this._slidesArr[i]._videoElem.addEventListener('loadeddata', this._onVideoLoaded.bind(this._slidesArr[i]));
+        }
         this._slidesArr[i]._videoElem.addEventListener('ended', this._onVideoEnd.bind(this._slidesArr[i]));
 
         this._slidesArr[i]._videoState = videoStateVals.stoped;
     }
+};
+
+VideoController.prototype._onVideoLoaded = function() {
+    this._videoIsLoaded = true;
+
+    var widgetEvent = new CustomEvent("videoisloaded", {
+        bubbles: true
+    });
+
+    this._elem.dispatchEvent(widgetEvent);
 };
 
 VideoController.prototype._onVideoEnd = function() {

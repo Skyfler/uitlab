@@ -13,7 +13,7 @@ function ready2() {
 
     var Dropdown = require('./dropdown.js');
     var Menu = require('./menu.js');
-    /*var Slider = require('./slider.js');*/
+    var Slider = require('./slider.js');
     var VerticalSlider = require('./vertical-slider.js');
     var CustomUploadButton = require('./custom-upload-button.js');
     var CustomSelect = require('./customselect.js');
@@ -28,7 +28,7 @@ function ready2() {
 
     var verticalSliderElem = document.querySelector('#vertical-slider');
     if (verticalSliderElem) {
-        window.verticalSlide = new VerticalSlider({
+        var verticalSlider = new VerticalSlider({
             elem: verticalSliderElem,
             minDesktopHeight: 420,                                 //px
             minMobileHeight: 395,                                  //px
@@ -58,6 +58,14 @@ function ready2() {
                 percentPosition: true
             }
         })
+    }
+
+    var sliderElem = document.querySelector('.slider');
+    if (sliderElem) {
+        var slider = new Slider({
+            elem: sliderElem,
+            delay: 0
+        });
     }
 
     var mapElem = document.querySelector('#map');
