@@ -55,12 +55,22 @@
     border: 1px solid lightgray;
     float: left;
     position: relative;
+    text-align: center;
 }
 
 .technologies .grid-item img {
-    display: block;
+    display: inline-block;
+    vertical-align: middle;
     margin: 0 auto;
     max-height: 100%;
+}
+
+.technologies .grid-item:before,
+.technologies .grid-item .hover-container:before {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
 }
 
 .technologies .grid-item .hover-container {
@@ -78,17 +88,8 @@
 }
 
 .technologies .grid-item--height1 {
-    height: 115px;
-    /*background: rgba(255, 0, 0, 0.1);*/
-}
-
-.technologies .grid-item--height2 {
-    height: 185px;
-    /*background: rgba(0, 0, 255, 0.1);*/
-}
-
-.technologies .grid-item--height3 {
     height: 150px;
+    /*background: rgba(255, 0, 0, 0.1);*/
 }
 
 .technologies .grid-item--height3.prev--height1 img {

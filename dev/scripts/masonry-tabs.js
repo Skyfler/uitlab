@@ -52,11 +52,14 @@ MasonryTabs.prototype._appendItemsGroup = function(itemsGroupName) {
     var itemsToInsert = [];
     var clonedItem;
 
-    for (var i = 0; i < this._itemGroupsObject[itemsGroupName].length; i++) {
+    // var maxVal = this._itemGroupsObject[itemsGroupName].length;
+    var maxVal = this._itemGroupsObject[itemsGroupName].length > 10 ? 10 : this._itemGroupsObject[itemsGroupName].length;
+
+    for (var i = 0; i < maxVal; i++) {
         clonedItem = this._itemGroupsObject[itemsGroupName][i].cloneNode(true);
-        if (itemsGroupName !== 'grid-item') {
+        /*if (itemsGroupName !== 'grid-item') {
             this._changeHeightClassTo3.bind(this)(clonedItem);
-        }
+        }*/
         itemsToInsert.push(clonedItem);
         fragment.appendChild(clonedItem);
     }

@@ -367,9 +367,9 @@ VerticalSlider.prototype._onSlideChangingState = function(e) {
 
         var slideStateInfo = slide.getStateInfo(e.detail.state);
 
-        if (slideStateInfo.type === slideStateVals.transitionalBeforeBP) {
-            // this._iconController.moveIcon(slide);
-        }
+        /*if (slideStateInfo.type === slideStateVals.transitionalBeforeBP) {
+            this._iconController.moveIcon(slide);
+        }*/
     }
 
 };
@@ -418,9 +418,18 @@ VerticalSlider.prototype._onSliderReady = function(e) {
     var currentSlide = this._getSlideByElem.bind(this)(currentSlideElem);
 
     if (currentSlide) {
-        this._openCurrentSlideCloseOthers.bind(this)(currentSlide);
+        var currentSlideState = currentSlide.getCurrentState();
+
+        if (currentSlideState !== slideStateVals.open) {
+            this._openCurrentSlideCloseOthers.bind(this)(currentSlide);
+        }
+
     } else {
-        this._initialisation === sliderInitalisation.desktop ? this._closeAllSlides.bind(this)() : false;
+        var firstSlideState = this._slidesArr[0].getCurrentState();
+
+        if (firstSlideState !== slideStateVals.closed) {
+            this._initialisation === sliderInitalisation.desktop ? this._closeAllSlides.bind(this)() : false;
+        }
     }
 
     delete this._clientX;
@@ -596,28 +605,33 @@ Slide.prototype.changeStateWithoutTransition = function(newState, finalSlideHeig
 };
 
 Slide.prototype._getOpenSlideBackground = function() {
-    var videoElem = this._elem.querySelector('video');
 
-    var canvas = document.createElement('canvas');
-    canvas.width = 640;
-    canvas.height = 480;
-    var ctx = canvas.getContext('2d');
+    try {
+        var videoElem = this._elem.querySelector('video');
 
-    ctx.drawImage(videoElem, 0, 0, canvas.width, canvas.height);
+        var canvas = document.createElement('canvas');
+        canvas.width = 640;
+        canvas.height = 480;
+        var ctx = canvas.getContext('2d');
 
-    var x = 0;
-    var y = 0;
+        ctx.drawImage(videoElem, 0, 0, canvas.width, canvas.height);
 
-    var imgData = ctx.getImageData(x, y, 1, 1);
-    var red = imgData.data[0];
-    var green = imgData.data[1];
-    var blue = imgData.data[2];
-    var alpha = imgData.data[3];
+        var x = 0;
+        var y = 0;
 
-    if (red === 0 && green === 0 && blue === 0 && alpha === 0) {
-        this._openSlideBackground = '';
-    } else {
-        this._openSlideBackground = 'rgba(' + red + ", " + green + ", " + blue + ", " + alpha + ')';
+        var imgData = ctx.getImageData(x, y, 1, 1);
+        var red = imgData.data[0];
+        var green = imgData.data[1];
+        var blue = imgData.data[2];
+        var alpha = imgData.data[3];
+
+        if (red === 0 && green === 0 && blue === 0 && alpha === 0) {
+            this._openSlideBackground = '';
+        } else {
+            this._openSlideBackground = 'rgba(' + red + ", " + green + ", " + blue + ", " + alpha + ')';
+        }
+    } catch (err) {
+        console.log(err);
     }
 
     // console.log(this._openSlideBackground);

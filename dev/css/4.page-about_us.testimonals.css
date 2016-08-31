@@ -7,23 +7,18 @@
 }
 
 .testimonals .divider:after {
-    height: 25px;
-    border-right: 4px solid #2687e0;
-    left: 13px;
-    top: -10px;
+    width: 25px;
+    border-bottom: 4px solid #2687e0;
+    top: 13px;
+    right: -10px;
 }
 
-.testimonals .arrows_container {
-    position: absolute;
-    height: 0;
-    right: 0;
-    left: 0;
-    margin: 0 auto;
-    top: 50%;
-    transform: translateY(-50%);
+.testimonals .slider {
     width: 90%;
     max-width: 1000px;
-    z-index: 1;
+    background: #000;
+    margin: 0 auto;
+    overflow: visible;
 }
 
 .testimonals .arrow {
@@ -31,8 +26,11 @@
     /*background: rgba(255, 0, 0, 0.1);*/
     width: 35px;
     height: 50px;
-    top: -25px;
+    /*top: -25px;*/
+    transform: translateY(-50%);
+    top: 50%;
     position: absolute;
+    z-index: 10;
 }
 
 .testimonals .arrow.right_arrow {
@@ -69,19 +67,26 @@
     transform: skewY(-34deg);
 }
 
+.testimonals .overflow_hidden_container {
+    overflow: hidden;
+}
+
 .testimonals .overflow_block {
     width: 300%;
 }
 
 .testimonals .slider_slide {
+    float: none!important;
     width: 33.33333333333%;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .testimonals .slider_slide .block {
-    width: 90%;
+    /*width: 90%;
     max-width: 1000px;
     background: black;
-    margin: 0 auto;
+    margin: 0 auto;*/
     text-align: center;
     color: white;
     padding: 76px 15px 65px;

@@ -149,7 +149,7 @@
 }
 
 .vertical-slider .slide .text_block {
-    width: 100%;
+    width: 90%;
     /*padding-top: 1px;*/
     max-width: 500px;
     margin: 0 auto;
@@ -159,6 +159,7 @@
     right: 0;
     transform: translate(0px, -50%);
     z-index: 1;
+    text-align: justify;
 }
 
 .vertical-slider .slide .title {
@@ -190,7 +191,7 @@
     font-size: 1.6em;
     max-width: 400px;
     margin: 0 auto;
-    min-height: 70px;
+    /*min-height: 70px;*/
 
     display: none;
 }
@@ -198,7 +199,7 @@
 .vertical-slider .slide .details {
     width: 100%;
     max-width: 300px;
-    height: 52px;
+    /*height: 52px;*/
     background: #ffda00;
     border: none;
     border-radius: 0;
@@ -207,7 +208,7 @@
     text-transform: uppercase;
     font-size: 1.6em;
     font-weight: 800;
-    padding-top: 18px;
+    padding: 13px 10px;
     position: relative;
     margin: 0 auto;
 
@@ -222,7 +223,8 @@
     height: 0;
     position: absolute;
     border-bottom: 4px solid #2687e0;
-    top: 24px;
+    top: 50%;
+    transform: translateY(-50%);
     transition: opacity ease 0.5s, right ease 0.5s;
     right: 0;
     opacity: 0;
@@ -250,7 +252,7 @@
 .vertical-slider .slide.opening-before-breakpoint .text,
 .vertical-slider .slide.opening-after-breakpoint .text,
 .vertical-slider .slide.open .text {
-    margin-top: 40px;
+    margin-top: 25px;
 }
 
 .vertical-slider .slide.open .text {
@@ -258,7 +260,7 @@
 }
 
 .vertical-slider .slide.open .details {
-    margin-top: 40px;
+    margin-top: 25px;
     display: block;
 }
 
@@ -408,7 +410,7 @@
     .vertical-slider .slide .text {
         max-width: none;
         margin: 0;
-        min-height: 70px;
+        /*min-height: 70px;*/
     }
 
     .vertical-slider .slide .title {
@@ -419,7 +421,7 @@
     .vertical-slider .slide .details {
         width: 350px;
         font-size: 2em;
-        padding-top: 15px;
+        padding: 15px 10px;
         margin: 0;
         max-width: none;
     }
@@ -432,38 +434,38 @@
         right: -35px;
     }
 
-    .vertical-slider .slide.closing-before-breakpoint .title,
+    /*.vertical-slider .slide.closing-before-breakpoint .title,
     .vertical-slider .slide.closing-after-breakpoint .title,
     .vertical-slider .slide.closed .title {
-        /*margin-top: 111px;*/
-    }
+        margin-top: 111px;
+    }*/
 
-    .vertical-slider .slide.center.closed .details {
-        /*margin-top: 85px;*/
-    }
+    /*.vertical-slider .slide.center.closed .details {
+        margin-top: 85px;
+    }*/
 
-    .vertical-slider .slide.opening-before-breakpoint .title,
+    /*.vertical-slider .slide.opening-before-breakpoint .title,
     .vertical-slider .slide.opening-after-breakpoint .title,
     .vertical-slider .slide.open .title {
-        /*margin-top: 150px;*/
-    }
+        margin-top: 150px;
+    }*/
 
-    .vertical-slider .slide.opening-before-breakpoint .text,
+    /*.vertical-slider .slide.opening-before-breakpoint .text,
     .vertical-slider .slide.opening-after-breakpoint .text,
     .vertical-slider .slide.open .text {
         margin-top: 25px;
-    }
+    }*/
 
     .vertical-slider .slide.open .details {
         /*margin-top: 34px;*/
         margin-top: 17px;
     }
 
-    .vertical-slider .slide.collapsing-before-breakpoint .title,
+    /*.vertical-slider .slide.collapsing-before-breakpoint .title,
     .vertical-slider .slide.collapsing-after-breakpoint .title,
     .vertical-slider .slide.collapsed .title {
-        /*margin-top: 34px;*/
-    }
+        margin-top: 34px;
+    }*/
 
 }
 

@@ -10,24 +10,54 @@
 }
 
 .frontent_dev .cms_info .cms_block_container {
-    margin-top: 64px;
-    display: inline-block;
+    margin: 64px auto 0;
+    max-width: 260px;
+    /*display: inline-block;*/
 }
 
 .frontent_dev .cms_info .block {
     position: relative;
-    max-height: 160px;
     background: #f6f6f6;
-    border: 1px solid #e4e4e4;
     float: left;
-    max-width: 130px;
+    /*max-width: 130px;*/
+    /*width: 50%;*/
+    /*height: 160px;*/
     width: 50%;
 }
 
+.frontent_dev .cms_info .block:last-child {
+    margin-left: 25%;
+}
+
+.frontent_dev .cms_info .block .img_placeholder {
+    padding-top: 123.0769230769231%;                  /* = img.height * (img.width / 100) */
+    /*display: none;*/
+}
+
+.frontent_dev .cms_info .block .img_content {
+    border: 1px solid #cfcfcf;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #f6f6f6;
+    width: 100%;
+    height: 100%;
+}
+
+.frontent_dev .block .img_content:before,
+.frontent_dev .block .hover-container:before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
 .frontent_dev .cms_info .block img {
-    max-height: 160px;
     width: auto;
     margin: 0 auto;
+    max-height: 100%;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .frontent_dev .cms_info .block .hover-container {
@@ -52,11 +82,39 @@
 
 }
 
+@media screen and (min-width: 500px) {
+
+    .frontent_dev .cms_info .cms_block_container {
+        max-width: 520px;
+    }
+
+    .frontent_dev .cms_info .block {
+        width: 25%;
+    }
+    .frontent_dev .cms_info .block:last-child {
+        margin: 0;
+    }
+
+    .frontent_dev .cms_info .clearfix.max-width-997+.block {
+        margin-left: 12.5%;
+    }
+
+}
+
 
 @media screen and (min-width: 998px) {
 
     .frontent_dev .cms_info .text_block {
         max-width: 964px;
+    }
+
+    .frontent_dev .cms_info .cms_block_container {
+        max-width: 910px;
+    }
+
+    .frontent_dev .cms_info .block {
+        width: 14.28571428571429%;
+        margin: 0!important;
     }
 
 }

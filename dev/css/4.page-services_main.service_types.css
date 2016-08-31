@@ -39,17 +39,18 @@
 
 .service_types .details {
     display: block;
-    width: 200px;
-    height: 50px;
+    width: 100%;
+    max-width: 200px;
     margin: 25px auto 0;
     font-size: 1.6em;
     text-transform: uppercase;
     font-weight: 800;
     text-align: center;
     background: #ffda00;
-    padding-top: 16px;
+    padding: 15px 0;
     position: relative;
     z-index: 1;
+    color: black;
 }
 
 .service_types .details:after {

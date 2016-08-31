@@ -2,7 +2,7 @@
 
 function Dropdown(options) {
     this._elem = options.elem;
-    this._openBtn = this._elem.querySelector('[data-component="dropdown_toggle"]');
+    this._openBtnSelector = '[data-component="dropdown_toggle"]';
     if (this._elem.classList.contains('open')) {
         this._state = 'open';
     } else {
@@ -19,8 +19,9 @@ Dropdown.prototype._onClick = function(e) {
 };
 
 Dropdown.prototype._toggleDropdown = function(target, e) {
+    var dropdownToggle = target.closest(this._openBtnSelector);
 
-    if (this._openBtn.contains(target)) {
+    if (dropdownToggle) {
         e.preventDefault();
 
         if (this._state === 'closed') {

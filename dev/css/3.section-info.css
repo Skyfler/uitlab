@@ -31,6 +31,7 @@
     padding: 7px 0;
     position: relative;
     transition: text-shadow 0.5s ease 0s;
+    white-space: nowrap;
 }
 
     .info .spec_list li {
@@ -111,38 +112,57 @@
 .info .soc_menu li.facebook a:hover {
     background-position: 0 100%;
 }
-.info .soc_menu li.linkedin a {
-    background-position: 50% 0;
-}
-.info .soc_menu li.linkedin a:hover {
-    background-position: 50% 100%;
-}
 .info .soc_menu li.twitter a {
-    background-position: 25% 0;
+    background-position: 20% 0;
 }
 .info .soc_menu li.twitter a:hover  {
-    background-position: 25% 100%;
+    background-position: 20% 100%;
+}
+.info .soc_menu li.linkedin a {
+    background-position: 40% 0;
+}
+.info .soc_menu li.linkedin a:hover {
+    background-position: 40% 100%;
 }
 .info .soc_menu li.gplus a {
-    background-position: 75% 0;
+    background-position: 60% 0;
 }
 .info .soc_menu li.gplus a:hover {
-    background-position: 75% 101%;
+    background-position: 60% 100%;
 }
 .info .soc_menu li.behance a {
-    background-position: 100% 0;
+    background-position: 80% 0;
 }
 .info .soc_menu li.behance a:hover {
-    background-position: 100% 100.4%;
+    background-position: 80% 100%;
 }
-    .info .soc_menu li.instagram a {
-        /*background: url('../img/icon_instagram.png');*/
+.info .soc_menu li.instagram a {
+    background-position: 100% 0;
+}
+.info .soc_menu li.instagram a:hover {
+    background-position: 100% 100%;
+}
+    /*.info .soc_menu li.vkontakte a {
+        background-position: 100% 100%;
+    }*/
+@media screen and (max-width: 435px) {
+
+    .info .spec_list li {
+        margin-top: 10px;
+        margin-left: 0!important;
+        display: block;
     }
-    .info .soc_menu li.vkontakte a {
-        /*background: url('../img/icon_vk.png');*/
+}
+
+@media screen and (min-width: 570px) {
+
+    .info .spec_list li+li {
+        margin-left: 60px;
     }
 
-@media screen and (max-width: 350px) {
+}
+
+@media screen and (max-width: 750px) {
 
     .info .spec_list li:last-child {
         margin-top: 10px;
@@ -160,11 +180,3 @@
     }
 
 }*/
-
-@media screen and (min-width: 470px) {
-
-    .info .spec_list li+li {
-        margin-left: 60px;
-    }
-
-}

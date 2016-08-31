@@ -46,21 +46,22 @@
     margin-top: 65px;
 }
 
-.ecommerce_development .ecommerce_block_container {
-    /*top: 0;
+/*.ecommerce_development .ecommerce_block_container {
+    top: 0;
     width: 100%;
     right: -47px;
-    transform: translateY(-50%);*/
-}
+    transform: translateY(-50%);
+}*/
 
 .ecommerce_development .ecommerce_block_container .row {
     /*margin: 0 auto;*/
+    width: 100%;
+    margin-left: 16.6666665%;
 }
 
-.ecommerce_development .ecommerce_block_container .row+.row {
-    width: 66.666666%;
+/*.ecommerce_development .ecommerce_block_container .row+.row {
     margin: 0 auto;
-}
+}*/
 
 .ecommerce_development .ecommerce_block_container .block {
     float: left;
@@ -68,19 +69,15 @@
     position: relative;
 }
 
-.ecommerce_development .ecommerce_block_container .row+.row .block {
-    width: 50%;
-}
-
 .ecommerce_development .ecommerce_block_container .block .img_placeholder {
     /*padding-bottom: 125.3164556962025%*/                      /* = img.height * (img.width / 100) */
     padding-bottom: 125.1%;
-    display: none;
+    /*display: none;*/
 }
 
 .ecommerce_development .ecommerce_block_container .block .img_content {
     border: 1px solid #cfcfcf;
-    position: relative;
+    position: absolute;
     top: 0;
     left: 0;
     background: #f6f6f6;
@@ -91,9 +88,19 @@
     height: 100%;
 }
 
+.ecommerce_development .ecommerce_block_container .block .img_content:before,
+.ecommerce_development .ecommerce_block_container .block .hover-container:before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
 .ecommerce_development .ecommerce_block_container .block .img_content img {
     max-height: 100%;
     margin: 0 auto;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .ecommerce_development .ecommerce_block_container .block .hover-container {
@@ -130,8 +137,6 @@
     }
 
     .ecommerce_development .ecommerce_block_container .row {
-        max-height: none;
-
         transition-property: margin;
         transition-timing-function: ease;
         transition-duration: 1s;
@@ -141,8 +146,11 @@
         margin-left: 0!important;
     }
 
-    .ecommerce_development .ecommerce_block_container .row+.row {
+    .ecommerce_development .ecommerce_block_container .row {
         margin-left: 24%;
+    }
+    .ecommerce_development .ecommerce_block_container .row+.row {
+        margin-left: 0;
     }
 
     .ecommerce_development .ecommerce_block_container .block .img_placeholder {

@@ -1,0 +1,26 @@
+<form action="#" class="first_col clr">
+    <div class="input_group">
+        <input type="text" placeholder="Your name*" class="required" name="Name" data-component="form-input">
+    </div>
+    <div class="input_group">
+        <input type="email" placeholder="Сontact email*" class="required" name="Email" data-component="form-input">
+    </div>
+    <div class="input_group">
+        <div id="category-select-sm" class="customselect required" name="Category" data-component="form-input" >
+            <button class="title" >Choose your category*</button>
+            <ul>
+                <!-- значение хранится в свойстве data-value -->
+                <li data-value="option_1">Project Development - free quote</li>
+                <li data-value="option_2">Project Consulting</li>
+                <li data-value="option_3">Request Callback</li>
+                <li data-value="option_4">Partnership</li>
+            </ul>
+        </div>
+    </div>
+    <div class="input_group">
+        <textarea placeholder="Tell us about your project" name="Message" data-component="form-input"></textarea>
+    </div>
+    <div class="input_group clr">
+        <button type="submit" class="submit">Send</button>
+    </div>
+</form>

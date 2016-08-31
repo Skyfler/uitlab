@@ -46,21 +46,21 @@
     margin-top: 65px;
 }
 
-.cms_development .cms_block_container {
-    /*top: 0;
+/*.cms_development .cms_block_container {
+    top: 0;
     width: 100%;
     right: -47px;
-    transform: translateY(-50%);*/
-}
+    transform: translateY(-50%);
+}*/
 
-.cms_development .cms_block_container .row {
-    /*margin: 0 auto;*/
-}
+/*.cms_development .cms_block_container .row {
+    margin: 0 auto;
+}*/
 
-.cms_development .cms_block_container .row+.row {
+/*.cms_development .cms_block_container .row+.row {
     width: 66.666666%;
     margin: 0 auto;
-}
+}*/
 
 .cms_development .cms_block_container .block {
     float: left;
@@ -68,19 +68,19 @@
     position: relative;
 }
 
-.cms_development .cms_block_container .row+.row .block {
+/*.cms_development .cms_block_container .row+.row .block {
     width: 50%;
-}
+}*/
 
 .cms_development .cms_block_container .block .img_placeholder {
     /*padding-bottom: 125.3164556962025%*/                      /* = img.height * (img.width / 100) */
     padding-bottom: 125.1%;
-    display: none;
+    /*display: none;*/
 }
 
 .cms_development .cms_block_container .block .img_content {
     border: 1px solid #cfcfcf;
-    position: relative;
+    position: absolute;
     top: 0;
     left: 0;
     background: #f6f6f6;
@@ -91,9 +91,19 @@
     height: 100%;
 }
 
+.cms_development .cms_block_container .block .img_content:before,
+.cms_development .cms_block_container .block .hover-container:before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
 .cms_development .cms_block_container .block .img_content img {
     max-height: 100%;
     margin: 0 auto;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .cms_development .cms_block_container .block .hover-container {
@@ -130,11 +140,14 @@
     }
 
     .cms_development .cms_block_container .row {
-        max-height: none;
-
         transition-property: margin;
         transition-timing-function: ease;
         transition-duration: 1s;
+        width: 100%;
+    }
+
+    .cms_development .cms_block_container .block {
+        width: 30%;
     }
 
     .cms_development .cms_block_container .row:hover {
@@ -142,7 +155,7 @@
     }
 
     .cms_development .cms_block_container .row+.row {
-        margin-left: 24%;
+        margin-left: 15%;
     }
 
     .cms_development .cms_block_container .block .img_placeholder {

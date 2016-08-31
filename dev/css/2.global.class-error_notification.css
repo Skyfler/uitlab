@@ -1,0 +1,44 @@
+.error_notification {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    background: rgb(22, 22, 22);
+    border: 2px solid #2791F2;
+    text-align: center;
+    padding: 20px 10px;
+    width: 250px;
+    border-radius: 7px;
+}
+
+.error_notification p {
+    font-size: 2.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: white;
+}
+
+.error_notification p + p {
+    font-size: 1.6em;
+    font-weight: 300;
+    color: #ffda00;
+    margin-top: 10px;
+    text-transform: none;
+}
+
+.error_notification button {
+    padding: 10px 25px;
+    border: 1px solid #2791F2;
+    background: black;
+    border-radius: 5px;
+    color: white;
+    margin-top: 17px;
+    font-size: 1.4em;
+    transition: background 0.5s ease 0s;
+}
+
+.error_notification button:hover {
+    background: rgb(17, 80, 138);
+}

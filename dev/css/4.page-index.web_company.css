@@ -2,6 +2,7 @@
     overflow: hidden;
     position: relative;
     padding-top: 78px;
+    padding-bottom: 65px;
 }
 
 .web_company .divider:after {
@@ -146,9 +147,9 @@
 }*/
 
 .web_services_block_container {
-    padding-bottom: 65px;
     margin: 0 auto;
     max-width: 1200px;
+    position: relative;
 }
 
 .web_services_block_container .block {
@@ -254,11 +255,30 @@
     .web_services_block_container .block+.block {
         width: 33.33333333333%;
         padding-top: 0;
+        padding-bottom: 50px;
+    }
+
+    .web_services_block_container .block .title {
+        margin-bottom: 14px;
+        min-height: 54px;
     }
 
     .web_services_block_container .block .text {
         max-width: 270px;
-        min-height: 110px;
+        padding-bottom: 38px;
+        /*min-height: 110px;*/
+    }
+
+    .web_services_block_container .block .details {
+        position: absolute;
+        bottom: 0;
+        left: calc(16.666665% - 100px);
+    }
+    .web_services_block_container .block+.block .details {
+        left: calc(49.9999995% - 100px);
+    }
+    .web_services_block_container .block+.block+.block .details {
+        left: calc(83.3333325% - 100px);
     }
 
 }

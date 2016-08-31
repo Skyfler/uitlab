@@ -106,7 +106,7 @@ header {
     font-size: 1.6rem;
     color: #0072da;
     font-weight: 600;
-    padding: 10px 0 10px 46px;
+    padding: 10px 10px 10px 46px;
 }
 
 #main_menu .submenu li a:hover {
@@ -240,8 +240,8 @@ header {
     #main_menu .submenu {
         margin: 0 auto;
         max-width: 1330px;
-        padding-left: 65px;
-        padding-right: 65px;
+        /*padding-left: 65px;
+        padding-right: 65px;*/
     }
 
     #main_menu .submenu a {
@@ -262,6 +262,7 @@ header {
 
     #main_menu .navbar_end .start_project {
         height: 70px;
+        padding: 26px 0 0;
     }
 
 }
@@ -276,9 +277,9 @@ header {
         width: 220px;
     }
 
-    #main_menu .navbar_end .start_project {
+    /*#main_menu .navbar_end .start_project {
         padding: 26px 0 0;
-    }
+    }*/
 
 }
 

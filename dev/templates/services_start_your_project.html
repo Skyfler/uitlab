@@ -2,19 +2,25 @@
     <div class="container">
         <div class="block_main_title">start your project</div>
     </div>
-    <div class="dark_block">
-        <div class="container">
-            <p class="first_line">Do you want to <strong>GET&nbsp;RESULTS</strong> from your new website?</p>
-            <p class="second_line">MAKE IT HAPPEN RIGHT NOW</p>
+    <div class="formswitcher_container">
+        <div class="dark_block">
+            <div class="container">
+                <p class="first_line">Want to <strong>GET&nbsp;RESULTS</strong> from your new website?</p>
+                <p class="second_line">Contact us and we'll MAKE IT HAPPEN</p>
+            </div>
         </div>
-    </div>
-    <div class="closed collapsed dropdown">
-        <div class="navbar_header clr">
-            <button class="dropdown_toggle" data-component="dropdown_toggle">Fill the form</button>
-        </div>
-        <div class="dropdown_container">
-            <div class="dropdown_bar">
-                @@include('./contact_form.html')
+        <div class="closed collapsed dropdown">
+            <div class="navbar_header clr">
+                <button class="dropdown_toggle" data-component="dropdown_toggle">Fill the form</button>
+            </div>
+            <div class="dropdown_container">
+                <div class="dropdown_bar">
+                    <div class="waiting_block"></div>
+                    <div class="container inner_toggle_container">
+                        <a href="#" class="inner_toggle" data-component="dropdown_toggle"></a>
+                    </div>
+                    @@include('./contact_form.html')
+                </div>
             </div>
         </div>
     </div>

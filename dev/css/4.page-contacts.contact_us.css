@@ -1,7 +1,6 @@
 .contact_us {
     position: relative;
     padding-top: 78px;
-    padding-bottom: 100px;
     background: white;
     overflow-x: hidden;
 }
@@ -16,6 +15,29 @@
     border-right: 4px solid #2687e0;
     bottom: -10px;
     left: 13px;
+}
+
+.contact_us .formswitcher_container {
+    position: relative;
+}
+
+.contact_us .formswitcher_container .waiting_block {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    background: url("../img/spinner.gif") no-repeat center center rgba(255, 255, 255, 0.5);
+    z-index: 100;
+    top: 0;
+    left: 0;
+}
+
+.contact_us .formswitcher_container.waiting_for_response .waiting_block {
+    display: block;
+}
+
+.contact_us .form-switcher {
+    padding-bottom: 100px;
 }
 
 .contact_us .form-switcher input[type="text"],
@@ -47,9 +69,9 @@
     background-position: -220px 0;
 }
 
-.contact_us .form-switcher .uploadbutton:hover .input {
+/*.contact_us .form-switcher .uploadbutton:hover .input {
     text-shadow:
             0 0 12px #2687e0,
             0 0 12px #2687e0,
             0 0 12px #2687e0;
-}
+}*/

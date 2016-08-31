@@ -60,19 +60,19 @@
 
 .who_we_are .about_us_block_container .block .icon {
     margin: 0 auto 20px;
-    width: 82px;
-    height: 82px;
+    width: 72px;
+    height: 114px;
     /*background: rgba(255, 0, 0, 0.1);*/
 }
 
-.who_we_are .about_us_block_container .clients_interests .icon {
-    background: url("../img/about_us_imgs/icon_target.png");
+.who_we_are .about_us_block_container .individual_approach .icon {
+    background: url("../img/about_us_imgs/icon_individual_aproach.png");
 }
-.who_we_are .about_us_block_container .results_oriented .icon {
-    background: url("../img/about_us_imgs/icon_success.png");
+.who_we_are .about_us_block_container .reactive .icon {
+    background: url("../img/about_us_imgs/icon_reactive.png");
 }
-.who_we_are .about_us_block_container .standarts_of_quality .icon {
-    background: url("../img/about_us_imgs/icon_target.png");
+.who_we_are .about_us_block_container .creative .icon {
+    background: url("../img/about_us_imgs/icon_creative.png");
 }
 
 .who_we_are .about_us_block_container .block .text {

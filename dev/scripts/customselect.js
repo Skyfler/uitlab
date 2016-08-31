@@ -2,14 +2,20 @@
 
 function CustomSelect(options) {
     var elem = options.elem;
+    var titleElem = elem.querySelector('.title');
+    var defaultText = titleElem.innerHTML;
+    var required = elem.classList.contains('required');
+
+    elem.dataset.value = '';
+
 
     elem.onclick = function(event) {
         event.preventDefault();
         
-        if (event.target.className == 'title') {
+        if (event.target === titleElem) {
             toggle();
         } else if (event.target.tagName == 'LI') {
-            setValue(event.target.innerHTML, event.target.dataset.value);
+            setValue(event.target.textContent, event.target.dataset.value);
             elem.classList.add('option_selected');
             close();
         }
@@ -27,9 +33,10 @@ function CustomSelect(options) {
     // ------------------------
 
     function setValue(title, value) {
-        elem.querySelector('.title').innerHTML = title;
+        titleElem.innerHTML = title;
+        elem.dataset.value = title;
 
-        var widgetEvent = new CustomEvent('select', {
+        var widgetEvent = new CustomEvent('customselect', {
             bubbles: true,
             detail: {
                 title: title,
@@ -58,6 +65,49 @@ function CustomSelect(options) {
         isOpen = false;
     }
 
-}
+    function getOptionElems() {
+        return elem.querySelectorAll('li');
+    }
 
+    this.setOption = function(optionIndex) {
+        if (typeof optionIndex !== 'number') return;
+
+        optionIndex = parseInt(optionIndex) + 1;
+
+        var optionElemArr = getOptionElems();
+        if (optionElemArr[optionIndex]) {
+            var option = optionElemArr[optionIndex];
+
+            setValue(option.textContent, option.dataset.value);
+            elem.classList.add('option_selected');
+        } else {
+            this.resetToDefault();
+        }
+
+    };
+
+    this.resetToDefault = function() {
+        elem.classList.remove('option_selected');
+        titleElem.innerHTML = defaultText;
+    };
+
+    this.returnElem = function() {
+        return elem;
+    };
+
+    this.hideByDependency = function() {
+        elem.style.display = 'none';
+        elem.classList.remove('required');
+        elem.classList.remove('error');
+        this.resetToDefault();
+    };
+
+    this.revealByDependency = function() {
+        elem.style.display = '';
+        if (required) {
+            elem.classList.add('required');
+        }
+    };
+
+}
 module.exports = CustomSelect;

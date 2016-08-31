@@ -1,0 +1,75 @@
+<form action="#" class="clr">
+    <div class="input_group">
+        <input type="text" placeholder="Your name*" class="required" name="Name" data-component="form-input">
+    </div>
+    <div class="input_group">
+        <input type="text" placeholder="Your last name*" class="required" name="Last name" data-component="form-input">
+    </div>
+    <div class="clearfix hidden min-width-768 max-width-997"></div>
+    <div class="input_group">
+        <input type="email" placeholder="Сontact email*" class="required" name="Email" data-component="form-input">
+    </div>
+    <div class="clearfix hidden min-width-998"></div>
+    <div class="input_group">
+        <div id="category-select-ext" class="customselect required" name="Category" data-component="form-input" >
+            <button class="title">Choose your category*</button>
+            <ul>
+                <!-- значение хранится в свойстве data-value -->
+                <li data-value="option_1">Project Development - free quote</li>
+                <li data-value="option_2">Project Consulting</li>
+                <li data-value="option_3">Request Callback</li>
+                <li data-value="option_4">Partnership</li>
+            </ul>
+        </div>
+    </div>
+    <div class="clearfix hidden min-width-768 max-width-997"></div>
+    <div class="input_group">
+        <div id="subcategory-select-ext" class="customselect required" name="Subcategory" data-component="form-input" data-dependency="#category-select-ext>Project Development - free quote">
+            <button class="title">Choose subcategory*</button>
+            <ul>
+                <!-- значение хранится в свойстве data-value -->
+                <li data-value="option_1">Website Design</li>
+                <li data-value="option_2">Front-end Development</li>
+                <li data-value="option_3">Back-end Development</li>
+                <li data-value="option_4">Full-cycle Website Development</li>
+            </ul>
+        </div>
+    </div>
+    <div class="input_group">
+        <input type="text" placeholder="Сompany" name="Company" data-component="form-input">
+    </div>
+    <div class="clearfix hidden min-width-768"></div>
+    <div class="input_group">
+        <input type="text" placeholder="Website" name="Wbsite" data-component="form-input">
+    </div>
+    <div class="input_group">
+        <input type="text" placeholder="Your phone number" name="Phone" data-component="form-input">
+    </div>
+    <div class="input_group">
+        <div id="how-find-select-ext" class="customselect" name="How did you find us?" data-component="form-input">
+            <button class="title">How did you find us?</button>
+            <ul>
+                <!-- значение хранится в свойстве data-value -->
+                <li data-value="option_1">Social Networks</li>
+                <li data-value="option_2">References</li>
+                <li data-value="option_3">Advertisement</li>
+                <li data-value="option_4">You are repeat client</li>
+            </ul>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="input_group full_width">
+        <textarea placeholder="Tell us about your project" name="Message" data-component="form-input"></textarea>
+    </div>
+    <div class="clearfix"></div>
+    <div class="input_group half_width clr no_margin_bottom_768">
+        <label class="uploadbutton" data-component="form-input">
+            <span class="icon"></span>
+            <span class='input'>Attach file</span>
+            <input type="file" class="hidden-input">
+        </label>
+    </div>
+    <div class="input_group half_width clr">
+        <button type="submit" class="submit">Send</button>
+    </div>
+</form>
