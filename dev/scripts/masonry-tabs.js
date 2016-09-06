@@ -1,24 +1,41 @@
 "use strict";
 
+var Helper = require('./helper');
 var Masonry = require('masonry-layout');
 
 function MasonryTabs(options) {
+    Helper.call(this, options);
+
     this._elem = options.elem;
     this._masonryItemsContainer = this._elem.querySelector('.masonry-items-container');
 
-    this._getItemGroups.bind(this)(options.itemsGroupClassArr);
-    this._initMasonry.bind(this)(options.masonryOptionsObj);
-    this._resetActiveTab.bind(this)();
+    this._getItemGroups(options.itemsGroupClassArr);
+    this._initMasonry(options.masonryOptionsObj);
+    this._resetActiveTab();
 
-    this._elem.addEventListener('click', this._onClick.bind(this));
+    this._onClick = this._onClick.bind(this);
+    this._onDOMContentLoaded = this._onDOMContentLoaded.bind(this);
 
+    // this._elem.addEventListener('click', this._onClick);
+    this._addListener(this._elem, 'click', this._onClick);
     /*------ FIX FOR FIRST LAYOUT -------*/
-    document.addEventListener("DOMContentLoaded", function() {
-        setTimeout(function() {
-            this._masonry.layout();
-        }.bind(this), 1000);
-    }.bind(this));
+    this._addListener(document, 'DOMContentLoaded', this._onDOMContentLoaded);
 }
+
+MasonryTabs.prototype = Object.create(Helper.prototype);
+MasonryTabs.prototype.constructor = MasonryTabs;
+
+MasonryTabs.prototype._onDOMContentLoaded = function() {
+    setTimeout(function() {
+        if (!this._elem) return;
+        this._masonry.layout();
+    }.bind(this), 1000);
+};
+
+MasonryTabs.prototype.remove = function() {
+    this._destroyMasonry();
+    Helper.prototype.remove.apply(this, arguments);
+};
 
 MasonryTabs.prototype._getItemGroups = function(itemsGroupClassArr) {
     this._itemGroupsObject = {};
@@ -37,6 +54,10 @@ MasonryTabs.prototype._getItemGroups = function(itemsGroupClassArr) {
 
 MasonryTabs.prototype._initMasonry = function(masonryOptionsObj) {
     this._masonry = new Masonry( this._masonryItemsContainer, masonryOptionsObj);
+};
+
+MasonryTabs.prototype._destroyMasonry = function() {
+    this._masonry.destroy();
 };
 
 MasonryTabs.prototype._removeAllItems = function() {

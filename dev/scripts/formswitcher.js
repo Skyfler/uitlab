@@ -1,8 +1,11 @@
 "use strict";
 
+var Helper = require('./helper');
 var FormValidator = require('./form-validator');
 
 function FormSwitcher(options) {
+    Helper.call(this, options);
+
     this._elem = options.elem;
     this._formValidator = new FormValidator({
         selectArr: options.selectArr,
@@ -13,28 +16,28 @@ function FormSwitcher(options) {
 
     this._manageDependencies();
 
-    this._succsessNotificationHTML = '<div class="success_notification">' +
+    /*this._succsessNotificationHTML = '<div class="success_notification">' +
         '<p>Thank you for fiiling up the form</p>' +
         '<p>We will contact You ASAP!</p>' +
-        '</div>';
-    this._errorNotificationHTML = '<div class="error_notification">' +
-        '<p>An Error Occurred!</p>' +
-        '<p>Please Try Again Later.</p>' +
-        '<button>ОК</button>' +
-        '</div>';
+        '</div>';*/
 
     this._onSentRequest = this._onSentRequest.bind(this);
     this._onGotResponse = this._onGotResponse.bind(this);
+    this._onCustomSelect = this._onCustomSelect.bind(this);
+    this._onClick = this._onClick.bind(this);
 
-    this._elem.addEventListener('customselect', this._onCustomSelect.bind(this));
-    this._elem.addEventListener('sentrequest', this._onSentRequest);
-    this._elem.addEventListener('click', this._onClick.bind(this));
+    this._addListener(this._elem, 'customselect', this._onCustomSelect);
+    this._addListener(this._elem, 'sentrequest', this._onSentRequest);
+    this._addListener(this._elem, 'click', this._onClick);
 }
+
+FormSwitcher.prototype = Object.create(Helper.prototype);
+FormSwitcher.prototype.constructor = FormSwitcher;
 
 FormSwitcher.prototype._onClick = function(e) {
     var target = e.target;
 
-    this._switchForm.bind(this)(target, e);
+    this._switchForm(target, e);
 };
 
 FormSwitcher.prototype._switchForm = function(target, e) {
@@ -50,7 +53,7 @@ FormSwitcher.prototype._switchForm = function(target, e) {
 FormSwitcher.prototype._onSentRequest = function() {
     // this._elem.style.display = 'none';
     this._elem.classList.add('waiting_for_response');
-    this._elem.addEventListener('gotresponse', this._onGotResponse);
+    this._addListener(this._elem, 'gotresponse', this._onGotResponse);
 
     // console.log('Caught "sentrequest" event');
 };
@@ -58,7 +61,7 @@ FormSwitcher.prototype._onSentRequest = function() {
 FormSwitcher.prototype._onGotResponse = function(e) {
     // this._elem.style.display = '';
     this._elem.classList.remove('waiting_for_response');
-    this._elem.removeEventListener('gotresponse', this._onGotResponse);
+    this._removeListener(this._elem, 'gotresponse', this._onGotResponse);
 
     // console.log('Caught "gotresponse" event');
 
@@ -71,24 +74,25 @@ FormSwitcher.prototype._onGotResponse = function(e) {
     }
 };
 
-FormSwitcher.prototype._showErrorNotification = function() {
-    var cover = document.createElement('div');
-    cover.style.cssText = 'z-index: 1000; position: fixed; height: 100%; width: 100%; top: 0; left: 0; background: rgba(255, 255, 255, 0.25)';
-    cover.innerHTML = this._errorNotificationHTML;
+/*FormSwitcher.prototype._showErrorNotification = function() {
+    this._cover = document.createElement('div');
+    this._cover.style.cssText = 'z-index: 1000; position: fixed; height: 100%; width: 100%; top: 0; left: 0; background: rgba(255, 255, 255, 0.25)';
+    this._cover.innerHTML = this._errorNotificationHTML;
 
-    document.body.insertAdjacentElement('afterBegin', cover);
+    document.body.insertAdjacentElement('afterBegin', this._cover);
     document.body.style.overflow = 'hidden';
-    document.body.addEventListener('click', closeErrorNotif);
-
-    function closeErrorNotif(e) {
-        var target = e.target;
-        if (target.tagName !== 'BUTTON') return;
-
-        document.body.removeChild(cover);
-        document.body.style.overflow = '';
-        document.body.removeEventListener('click', closeErrorNotif);
-    }
+    this._addListener(document.body, 'click', this._closeErrorNotification);
 };
+
+FormSwitcher.prototype._closeErrorNotification = function(e) {
+    var target = e.target;
+    if (target.tagName !== 'BUTTON') return;
+
+    document.body.removeChild(this._cover);
+    delete this._cover;
+    document.body.style.overflow = '';
+    this._removeListener(document.body, 'click', this._closeErrorNotif);
+};*/
 
 FormSwitcher.prototype._onCustomSelect = function(e) {
     var target = e.target,

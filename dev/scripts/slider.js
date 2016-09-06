@@ -1,13 +1,25 @@
 "use strict";
 
+var Helper = require('./helper');
+
 function Slider(options) {
+    Helper.call(this, options);
+
     this._elem = options.elem;
     this._overflowBlock = this._elem.querySelector('.overflow_block');
     this._moveDelay = options.delay || 0;
 
-    this._initSlider.bind(this)();
-    this._elem.addEventListener('click', this._onClick.bind(this));
+    this._initSlider();
+
+    this._onClick = this._onClick.bind(this);
+    this._onCornerTransitionEnd = this._onCornerTransitionEnd.bind(this);
+    this._onMiddleTransitionEnd = this._onMiddleTransitionEnd.bind(this);
+
+    this._addListener(this._elem, 'click', this._onClick);
 }
+
+Slider.prototype = Object.create(Helper.prototype);
+Slider.prototype.constructor = Slider;
 
 Slider.prototype._initSlider = function() {
     //console.log('_initSlider');
@@ -39,7 +51,7 @@ Slider.prototype._initSlider = function() {
 Slider.prototype._onClick = function(e) {
     e.preventDefault();
     var target = e.target;
-    this._controlSlider.bind(this)(target);
+    this._controlSlider(target);
 };
 
 Slider.prototype._controlSlider = function(target) {
@@ -53,14 +65,14 @@ Slider.prototype._controlSlider = function(target) {
         }
         switch (control.dataset.action) {
             case 'forward':
-                this._moveSlideForward.bind(this)();
+                this._moveSlideForward();
                 break;
             case 'back':
-                this._moveSlideBack.bind(this)();
+                this._moveSlideBack();
                 break;
         }
 
-        if (0 !== this._moveDelay) this._moveOverTime.bind(this)();
+        if (0 !== this._moveDelay) this._moveOverTime();
     }
 };
 
@@ -78,13 +90,11 @@ Slider.prototype._moveSlideForward = function() {
     this._overflowBlock.style.left = -100 * this._currSlide + '%';
 
     if (this._currSlide > this._slidesCount) {
-        this.onTransitionEnd = this._onCornerTransitionEnd.bind(this);
         this._currSlide = 1;
         slidesArr[this._currSlide].classList.add('selected');
-        this._elem.addEventListener('transitionend', this.onTransitionEnd);
+        this._addListener(this._elem, 'transitionend', this._onCornerTransitionEnd);
     } else {
-        this.onTransitionEnd = this._onMiddleTransitionEnd.bind(this);
-        this._elem.addEventListener('transitionend', this.onTransitionEnd);
+        this._addListener(this._elem, 'transitionend', this._onMiddleTransitionEnd);
     }
         
     //console.log('Cur slide = ' + this._currSlide);
@@ -104,13 +114,11 @@ Slider.prototype._moveSlideBack = function() {
     this._overflowBlock.style.left = -100 * this._currSlide + '%';
 
     if (0 === this._currSlide) {
-        this.onTransitionEnd = this._onCornerTransitionEnd.bind(this);
         this._currSlide = this._slidesCount;
         slidesArr[this._currSlide].classList.add('selected');
-        this._elem.addEventListener('transitionend', this.onTransitionEnd);
+        this._addListener(this._elem, 'transitionend', this._onCornerTransitionEnd);
     } else {
-        this.onTransitionEnd = this._onMiddleTransitionEnd.bind(this);
-        this._elem.addEventListener('transitionend', this.onTransitionEnd);
+        this._addListener(this._elem, 'transitionend', this._onMiddleTransitionEnd);
     }
     
     //console.log('Cur slide = ' + this._currSlide);
@@ -118,15 +126,15 @@ Slider.prototype._moveSlideBack = function() {
 
 Slider.prototype._onMiddleTransitionEnd = function(e) {
     if (e.target !== this._overflowBlock) return;
-    
-    this._elem.removeEventListener('transitionend', this.onTransitionEnd);
+
+    this._removeListener(this._elem, 'transitionend', this._onMiddleTransitionEnd);
     this._isMoving = false;
 };
 
 Slider.prototype._onCornerTransitionEnd = function(e) {
     if (e.target !== this._overflowBlock) return;
-    
-    this._elem.removeEventListener('transitionend', this.onTransitionEnd);
+
+    this._removeListener(this._elem, 'transitionend', this._onCornerTransitionEnd);
     
     this._overflowBlock.style.transitionDuration = '0s';
     this._overflowBlock.style.left = -100 * (this._currSlide) + '%';
@@ -138,6 +146,7 @@ Slider.prototype._onCornerTransitionEnd = function(e) {
 
 Slider.prototype._moveOverTime = function () {
     this._moveTimer = setTimeout(function() {
+        if (!this._elem) return;
         if (!this._isMoving) {
             this._moveSlideForward.bind(this)();
         }

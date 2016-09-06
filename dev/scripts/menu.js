@@ -4,17 +4,25 @@ var Dropdown = require('./dropdown.js');
 
 function Menu(options) {
     Dropdown.call(this, options);
+
+    this._addListener(window, 'resize', this._onSignalToCloseMenu.bind(this));
+    this._addListener(document, 'signaltoclosemenu', this._onSignalToCloseMenu.bind(this));
 }
 
 Menu.prototype = Object.create(Dropdown.prototype);
 Menu.prototype.constructor = Menu;
 
 Menu.prototype._onClick = function(e) {
-    var target = e.target;
+    var target = Dropdown.prototype._onClick.apply(this, arguments);
 
-    this._preventDefaultCheck.bind(this)(e);
-    this._toggleDropdown.bind(this)(target, e);
-    this._toggleSubMenu.bind(this)(target);
+    this._preventDefaultCheck(e);
+    this._toggleSubMenu(target);
+};
+
+Menu.prototype._toggleDropdown = function(target, e) {
+    if (Dropdown.prototype._toggleDropdown.apply(this, arguments) && this._openedSubMenu) {
+        this._closeSubMenu(this._openedSubMenu);
+    }
 };
 
 Menu.prototype._toggleSubMenu = function(target) {
@@ -24,6 +32,9 @@ Menu.prototype._toggleSubMenu = function(target) {
         var submenuContainer = submenuToggleBtn.closest('[data-component="submenu_container"]');
 
         if ('closed' === submenuContainer.dataset.state) {
+            if (this._openedSubMenu) {
+                this._closeSubMenu(this._openedSubMenu);
+            }
             this._openSubMenu(submenuContainer);
         } else {
             this._closeSubMenu(submenuContainer);
@@ -32,6 +43,7 @@ Menu.prototype._toggleSubMenu = function(target) {
 };
 
 Menu.prototype._openSubMenu = function(submenuContainer) {
+    this._openedSubMenu = submenuContainer;
     var submenuBar = submenuContainer.querySelector('.submenu_bar');
     var submenu = submenuBar.querySelector('.submenu');
 
@@ -41,6 +53,7 @@ Menu.prototype._openSubMenu = function(submenuContainer) {
     submenuBar.style.height = submenu.offsetHeight + 'px';
     submenuContainer.classList.remove('collapsed');
     setTimeout(function(){
+        if (!submenuBar) return;
         submenuBar.style.height = '';
     }, 500);
 };
@@ -50,11 +63,20 @@ Menu.prototype._closeSubMenu = function(submenuContainer) {
     submenuContainer.classList.add('closed');
     submenuContainer.classList.remove('open');
     submenuContainer.classList.add('collapsed');
+    delete this._openedSubMenu;
 };
 
 Menu.prototype._preventDefaultCheck = function(e) {
-    if (e.target.hasAttribute('data-preventDefaultUntil') && this._elem.offsetWidth < e.target.getAttribute('data-preventDefaultUntil')) {
+    if (e.target.hasAttribute('data-preventDefaultUntil') &&
+        this._elem.offsetWidth < e.target.getAttribute('data-preventDefaultUntil')) {
         e.preventDefault();
+    }
+};
+
+Menu.prototype._onSignalToCloseMenu = function(e) {
+    // console.log('Got signal to close menu');
+    if (this._state === 'open') {
+        this._toggleDropdown();
     }
 };
 

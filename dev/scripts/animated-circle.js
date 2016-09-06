@@ -1,12 +1,23 @@
 "use strict";
 
+var Helper = require('./helper');
+
 function AnimateCircle(options) {
+    Helper.call(this, options);
+
     this._elem = options.elem;
     this._delayBeforeStop = options.delayBeforeStop;
+    this._listenerArr = [];
 
-    this._elem.addEventListener('mouseover', this._onMouseOver.bind(this));
-    this._elem.addEventListener('mouseout', this._onMouseOut.bind(this));
+    this._onMouseOver = this._onMouseOver.bind(this);
+    this._onMouseOut = this._onMouseOut.bind(this);
+
+    this._addListener(this._elem, 'mouseover', this._onMouseOver);
+    this._addListener(this._elem, 'mouseout', this._onMouseOut);
 }
+
+AnimateCircle.prototype = Object.create(Helper.prototype);
+AnimateCircle.prototype.constructor = AnimateCircle;
 
 AnimateCircle.prototype._playAnimation = function() {
     if (this._timer) {

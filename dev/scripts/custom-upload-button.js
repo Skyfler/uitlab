@@ -1,6 +1,10 @@
 "use strict";
 
+var Helper = require('./helper');
+
 function CustomUploadButton(options) {
+    Helper.call(this, options);
+
     this._elem = options.elem;
 
     this._visibleInput = this._elem.querySelector('.input');
@@ -9,8 +13,15 @@ function CustomUploadButton(options) {
     this._defaultValue = this._visibleInput.textContent;
     this._hiddenInput.value = '';
 
-    this._elem.addEventListener('change', this._onChange.bind(this));
+    this._listenerArr = [];
+
+    this._onChange = this._onChange.bind(this);
+
+    this._addListener(this._elem, 'change', this._onChange);
 }
+
+CustomUploadButton.prototype = Object.create(Helper.prototype);
+CustomUploadButton.prototype.constructor = CustomUploadButton;
 
 CustomUploadButton.prototype._onChange = function(e) {
     var target = e.target;

@@ -1,0 +1,7 @@
+.main_container {
+    position: relative;
+}
+
+.main_container .main {
+    background: white;
+}

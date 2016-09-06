@@ -1,13 +1,23 @@
 "use strict";
 
+var Helper = require('./helper');
+
 function FormValidator(options) {
+    Helper.call(this, options);
+
     this._selectArr = options.selectArr;
     this._uploadArr = options.uploadArr;
 
     this._waitingForResponse = false;
 
-    document.addEventListener('submit', this._onSubmit.bind(this));
+    this._onSubmit = this._onSubmit.bind(this);
+    this._onFocus = this._onFocus.bind(this);
+
+    this._addListener(document, 'submit', this._onSubmit);
 }
+
+FormValidator.prototype = Object.create(Helper.prototype);
+FormValidator.prototype.constructor = FormValidator;
 
 FormValidator.prototype._onSubmit = function(e) {
     e.preventDefault();
@@ -131,12 +141,18 @@ FormValidator.prototype._postFormData = function(formData, callback) {
     var xhr = new XMLHttpRequest();
 
     xhr.open("POST", "php/send.php", true);
-    xhr.onreadystatechange = function() {
+
+    xhr.addEventListener('readystatechange', function onReadyStateChange() {
         if (this.readyState != 4) return;
 
-        // console.log(this);
+        xhr.removeEventListener('readystatechange', onReadyStateChange);
         callback(this);
-    };
+    });
+    /*xhr.onreadystatechange = function() {
+        if (this.readyState != 4) return;
+
+        callback(this);
+    };*/
 
     this._waitingForResponse = true;
     this._cusomEvent.bind(this)('sentrequest');
@@ -145,6 +161,8 @@ FormValidator.prototype._postFormData = function(formData, callback) {
 };
 
 FormValidator.prototype._onReqEnd = function(xhr) {
+    if (!this._sumitingForm) return;
+
     this._waitingForResponse = false;
 
     try {
@@ -159,12 +177,9 @@ FormValidator.prototype._onReqEnd = function(xhr) {
     } else {
         this._cusomEvent.bind(this)('gotresponse', {success: false});
     }
-    /*console.log( 'Response from Ajax request' );
-    console.log( response.responseText );*/
 };
 
 FormValidator.prototype._cusomEvent = function(evenName, detail) {
-
     if (!this._sumitingForm) return;
 
     var widgetEvent = new CustomEvent(evenName, {
@@ -177,10 +192,11 @@ FormValidator.prototype._cusomEvent = function(evenName, detail) {
 
 FormValidator.prototype._valideateField = function(input, value) {
 
-    function onFocus(e) {
-        this.removeEventListener('focus', onFocus);
+    /*function onFocus(e) {
+        console.log('focus!');
+        this.removeEventListener('focus', onFocus, true);
         this.classList.remove('error');
-    }
+    }*/
 
     if (
         input.classList.contains('required') &&
@@ -189,11 +205,19 @@ FormValidator.prototype._valideateField = function(input, value) {
         )
     ) {
         input.classList.add('error');
-        input.addEventListener('focus', onFocus, true);
+
+        this._addListener(input, 'focus', this._onFocus, true);
+        // input.addEventListener('focus', onFocus, true);
         return false;
     }
 
     return true;
+};
+
+FormValidator.prototype._onFocus = function(e) {
+    var currentTarget = e.currentTarget;
+    this._removeListener(currentTarget, 'focus', this._onFocus, true);
+    currentTarget.classList.remove('error');
 };
 
 FormValidator.prototype._isValidEmailAddress = function(emailAddress) {

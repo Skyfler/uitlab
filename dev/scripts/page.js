@@ -11,67 +11,27 @@ function ready2() {
 
 (function ready() {
 
-    var Dropdown = require('./dropdown.js');
     var Menu = require('./menu.js');
+    var GMapController = require('./gmap-controller');
+    var AjaxPaginator = require('./ajax-paginator');
+    /*var Dropdown = require('./dropdown.js');
     var Slider = require('./slider.js');
     var VerticalSlider = require('./vertical-slider.js');
     var CustomUploadButton = require('./custom-upload-button.js');
     var CustomSelect = require('./customselect.js');
     var FormSwitcher = require('./formswitcher');
-    /*var Masonry = require('masonry-layout');*/
     var MasonryTabs = require('./masonry-tabs');
-    var AnimatedCircle = require('./animated-circle');
-    
+    var AnimatedCircle = require('./animated-circle');*/
+
     var mainMenu = new Menu({
         elem: document.querySelector('#main_menu')
     });
 
-    var verticalSliderElem = document.querySelector('#vertical-slider');
-    if (verticalSliderElem) {
-        var verticalSlider = new VerticalSlider({
-            elem: verticalSliderElem,
-            minDesktopHeight: 420,                                 //px
-            minMobileHeight: 395,                                  //px
-            collapsedSlideHeightDesktop: 92,                        //px
-            collapsedSlideHeightMobile: 54.5,                         //px
-            transitionDuration: 400                             //ms
-        });
-    }
-
-    /*var horizontalCarouselElem = document.querySelector('#horizontal_carousel');
-    if (horizontalCarouselElem) {
-        var horizontalCarousel = new Slider({
-            elem: horizontalCarouselElem,
-            delay: 0
-        });
-    }*/
-
-    var masonryTabsElem = document.querySelector('.masonry-tabs');
-    if (masonryTabsElem) {
-        var masonryTabs = new MasonryTabs({
-            elem: masonryTabsElem,
-            itemsGroupClassArr: ['grid-item', 'front-end', 'cms', 'ecommerce', 'custom'],
-            masonryOptionsObj: {
-                itemSelector: '.grid-item',
-                columnWidth: '.grid-item',
-                /*fitWidth: true,*/
-                percentPosition: true
-            }
-        })
-    }
-
-    var sliderElem = document.querySelector('.slider');
-    if (sliderElem) {
-        var slider = new Slider({
-            elem: sliderElem,
-            delay: 0
-        });
-    }
-
-    var mapElem = document.querySelector('#map');
-    if (mapElem) {
-        var pos = {lat: 49.99335, lng: 36.23237};
-        var map = new google.maps.Map(mapElem, {
+    // var mapElem = document.querySelector('#map');
+    var pos = {lat: 49.99335, lng: 36.23237};
+    var gMap = new GMapController({
+        elem: null,
+        gMapOptions: {
             zoom: 4,
             center: pos,
             streetViewControl: false,
@@ -244,94 +204,20 @@ function ready2() {
                     ]
                 }
             ]
-        });
-
-        var marker = new google.maps.Marker({
-            // icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+        },
+        markers: [{
             icon: 'img/icon_mapmarker.png',
             position: pos,
-            map: map,
             title: 'г. Харьков, ул. Сумская, 2'
-        });
-    }
+        }]
+    });
 
-    /*var masonryGridElem = document.querySelector('.masonry-grid');
-    if (masonryGridElem) {
-        var msnry = new Masonry( masonryGridElem, {
-            // options
-             itemSelector: '.grid-item',
-             columnWidth: '.grid-item',
-             fitWidth: true
-        });
-
-        document.addEventListener("DOMContentLoaded", function() {
-            setTimeout(function() {
-                console.log('msnry.layout');
-                msnry.layout();
-            }, 1000);
-        })
-    }*/
-    
-    var dropdownElemArr = document.querySelectorAll('.dropdown');
-    if (dropdownElemArr.length > 0) {
-        var dropdownArr = [];
-
-        for (var i = 0; i < dropdownElemArr.length; i++) {
-            dropdownArr[i] = new Dropdown({
-                elem: dropdownElemArr[i]
-            });
-        }
-
-    }
-
-    var animatedCircleElemArr = document.querySelectorAll('.animated_circle');
-    if (animatedCircleElemArr.length > 0) {
-        var animatedCircleArr = [];
-
-        for (var i = 0; i < animatedCircleElemArr.length; i++) {
-            animatedCircleArr[i] = new AnimatedCircle({
-                elem: animatedCircleElemArr[i],
-                delayBeforeStop: 1000                   //ms
-            });
-        }
-
-    }
-
-    var customSelectElemArr = document.querySelectorAll('.customselect');
-    var customSelectArr = [];
-    if (customSelectElemArr.length > 0) {
-
-        for (var i = 0; i < customSelectElemArr.length; i++) {
-            /*console.log('Custom select ' + i +':');
-            console.log(customSelectElemArr[i]);*/
-            customSelectArr[i] = new CustomSelect({
-                elem: customSelectElemArr[i]
-            });
-        }
-        
-    }
-
-    var customUploadButtonElemArr = document.querySelectorAll('.uploadbutton');
-    var customUploadButtonArr = [];
-    if (customUploadButtonElemArr.length > 0) {
-
-        for (var i = 0; i < customUploadButtonElemArr.length; i++) {
-            /*console.log('Custom upload button ' + i +':');
-            console.log(customUploadButtonElemArr[i]);*/
-            customUploadButtonArr[i] = new CustomUploadButton({
-                elem: customUploadButtonElemArr[i]
-            });
-        }
-
-    }
-
-    var formswithcerElem = document.querySelector('.formswitcher_container');
-    if (formswithcerElem) {
-        var formSwitcher = new FormSwitcher({
-            elem: formswithcerElem,
-            selectArr: customSelectArr,
-            uploadArr: customUploadButtonArr
-        });
-    }
+    var ajaxPaginator = new AjaxPaginator({
+        startLabel: '<!--[if !IE]>main_beginnig<![endif]-->',
+        endLabel: '<!--[if !IE]>main_end<![endif]-->',
+        transitionDuration: 0.2,
+        innerPageClass: 'main',
+        mapInstance: gMap
+    });
 
 })();
