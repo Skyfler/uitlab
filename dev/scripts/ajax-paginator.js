@@ -35,7 +35,7 @@ AjaxPaginator.prototype._init = function() {
 
     // добавляем элемент истории
     // console.log('Adding first history state.');
-    history.replaceState({innerPageInnerHTML: innerPageContent, url: ''}, '');
+    history.replaceState({innerPageInnerHTML: innerPageContent, url: '', title: document.title}, '');
 
     // console.log('DONE!');
     return true;
@@ -48,6 +48,7 @@ AjaxPaginator.prototype._onPopState = function(e) {
 
         // console.log('Retrieving visited page content.');
         var innerPageElem = document.querySelector('.' + this._innerPageClass);
+        document.title = e.state.title;
         innerPageElem.innerHTML = e.state.innerPageInnerHTML;
 
         this._innerPage = new InnerPage(innerPageElem, this._mapInstance);
@@ -187,7 +188,9 @@ AjaxPaginator.prototype._replaceInnerPageContent = function(htmlPage, url, updat
     if (updateHistory) {
         // добавляем элемент истории
         // console.log('Adding new history state.');
-        history.pushState({innerPageInnerHTML: newInnerPageContent, url: url}, '', url);
+        var title = this._findTitle(htmlPage) || document.title;
+        document.title = title;
+        history.pushState({innerPageInnerHTML: newInnerPageContent, url: url, title: title}, '', url);
     }
 
     // console.log('DONE!');
@@ -209,7 +212,25 @@ AjaxPaginator.prototype._findInnerPageContent = function(htmlPage) {
     }
 
     return htmlPage.substring(start, end);
+};
 
+AjaxPaginator.prototype._findTitle = function(htmlPage) {
+    var startLabel = '<title>';
+    var endLabel = '</title>';
+    var start = htmlPage.indexOf(startLabel);
+    if (start === -1) {
+        // console.log('Start not found!');
+        return false;
+    }
+    start += startLabel.length;
+
+    var end = htmlPage.indexOf(endLabel, start);
+    if (end === -1) {
+        // console.log('End not found!');
+        return false;
+    }
+
+    return htmlPage.substring(start, end);
 };
 
 AjaxPaginator.prototype._insertNewInnerPage = function(newInnerPageContent, innerPageElem) {
