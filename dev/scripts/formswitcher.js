@@ -16,10 +16,10 @@ function FormSwitcher(options) {
 
     this._manageDependencies();
 
-    /*this._succsessNotificationHTML = '<div class="success_notification">' +
+    this._succsessNotificationHTML = '<div class="success_notification">' +
         '<p>Thank you for fiiling up the form</p>' +
         '<p>We will contact You ASAP!</p>' +
-        '</div>';*/
+        '</div>';
 
     this._onSentRequest = this._onSentRequest.bind(this);
     this._onGotResponse = this._onGotResponse.bind(this);
