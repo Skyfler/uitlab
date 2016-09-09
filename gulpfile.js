@@ -41,7 +41,11 @@ var path = {
         php: './dev/php/**/*.*',
         img: './dev/img/**/*.*' //Синтаксис img/**/*.* означает - взять все файлы всех расширений из папки и из вложенных каталогов
     },
-    clean: './public'
+    clean: './public',
+    hosttesting: {
+        public: './public/**/*.*',
+        destination: 'Z:/home/test.com/www'
+    }
 };
 
 gulp.task('webpack', function() {
@@ -138,3 +142,16 @@ gulp.task('clean', function (cb) {
 gulp.task('l', ['html', 'css']);
 
 gulp.task('default', ['html', 'css', 'js', 'image', 'video', 'php']);
+
+/*----------*/
+gulp.task('cleanHost', function (cb) {
+    rimraf(path.hosttesting.destination, cb);
+});
+
+gulp.task('copyFilesHost', function () {
+    gulp.src(path.hosttesting.public)
+        .pipe(gulp.dest(path.hosttesting.destination));
+});
+
+gulp.task('denwer', ['cleanHost', 'copyFilesHost']);
+/*----------*/
