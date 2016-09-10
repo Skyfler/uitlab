@@ -1,7 +1,7 @@
 "use strict";
 
 var Helper = require('./helper');
-var FormValidator = require('./form-validator');
+var FormValidator = require('./formValidator');
 
 function FormSwitcher(options) {
     Helper.call(this, options);

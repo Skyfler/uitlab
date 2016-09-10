@@ -11,9 +11,9 @@ function ready2() {
 
 (function ready() {
 
-    var Menu = require('./menu.js');
-    var GMapController = require('./gmap-controller');
-    var AjaxPaginator = require('./ajax-paginator');
+    var Menu = require('./dropdown-menu.js');
+    var GMapController = require('./gmapController');
+    var AjaxPaginator = require('./ajaxPaginator');
     /*var Dropdown = require('./dropdown.js');
     var Slider = require('./slider.js');
     var VerticalSlider = require('./vertical-slider.js');
@@ -24,7 +24,14 @@ function ready2() {
     var AnimatedCircle = require('./animated-circle');*/
 
     var mainMenu = new Menu({
-        elem: document.querySelector('#main_menu')
+        elem: document.querySelector('#main_menu'),
+        transitionDuration: 0.5,
+        openBtnSelector: '[data-component="dropdown_toggle"]',
+        dropdownContainerSelector: '.dropdown_container',
+        dropdownBarSelector: '.dropdown_bar',
+        closeOnResize: true,
+        listenToCloseSignal: true,
+        cancelDropdownOnGreaterThan: 799
     });
 
     // var mapElem = document.querySelector('#map');

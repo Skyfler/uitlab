@@ -2,12 +2,12 @@
 
 var Dropdown = require('./dropdown.js');
 var Slider = require('./slider.js');
-var VerticalSlider = require('./vertical-slider.js');
-var CustomUploadButton = require('./custom-upload-button.js');
-var CustomSelect = require('./customselect.js');
+var VerticalSlider = require('./verticalSlider.js');
+var CustomUploadButton = require('./customUploadButton.js');
+var CustomSelect = require('./customSelect.js');
 var FormSwitcher = require('./formswitcher');
-var MasonryTabs = require('./masonry-tabs');
-var AnimatedCircle = require('./animated-circle');
+var MasonryTabs = require('./masonryTabs');
+var AnimatedCircle = require('./animatedCircle');
 
 function InnerPage(innerPageElem, mapInstance) {
     this._innerPageElem = innerPageElem;
@@ -66,7 +66,12 @@ function InnerPage(innerPageElem, mapInstance) {
 
         for (var i = 0; i < dropdownElemArr.length; i++) {
             this._dropdownArr[i] = new Dropdown({
-                elem: dropdownElemArr[i]
+                elem: dropdownElemArr[i],
+                openBtnSelector: '[data-component="dropdown_toggle"]',
+                dropdownContainerSelector: '.dropdown_container',
+                dropdownBarSelector: '.dropdown_bar',
+                transitionDuration: 0.5,
+                closeOnResize: true
             });
         }
 

@@ -1,7 +1,7 @@
 "use strict";
 
 var Helper = require('./helper');
-var InnerPage = require('./inner-page');
+var InnerPage = require('./ajaxPaginator-innerPage');
 
 function AjaxPaginator(options) {
     Helper.call(this, options);

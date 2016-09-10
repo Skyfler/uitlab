@@ -1,11 +1,11 @@
 "use strict";
 
-var CONSTANTS = require('./vertical-slider-constants');
-// var IconController = require('./vertical-slider-icon-controller');
-var ZIndexController = require('./vertical-slider-zindex-controller');
-var VideoController = require('./vertical-slider-video-controller');
-var TabController = require('./vertical-slider-tab-controller');
-var Slide = require('./vertical-slider-slide');
+var CONSTANTS = require('./verticalSlider-constants');
+// var IconController = require('./verticalSlider-iconController');
+var ZIndexController = require('./verticalSlider-zindexController');
+var VideoController = require('./verticalSlider-videoController');
+var TabController = require('./verticalSlider-tabController');
+var Slide = require('./verticalSlider-slide');
 var Helper = require('./helper');
 
 function VerticalSlider(options) {

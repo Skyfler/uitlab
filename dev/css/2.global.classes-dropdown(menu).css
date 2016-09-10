@@ -10,7 +10,7 @@
 
 .menu .dropdown_container,
 .dropdown .dropdown_container {
-    transition: height ease 0.5s;
+    /*transition: height ease 0.5s;*/
     overflow-y: hidden;
 }
 

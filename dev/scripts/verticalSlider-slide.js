@@ -1,6 +1,6 @@
 "use strict";
 
-var CONSTANTS = require('./vertical-slider-constants');
+var CONSTANTS = require('./verticalSlider-constants');
 var Helper = require('./helper');
 
 function Slide(options) {
