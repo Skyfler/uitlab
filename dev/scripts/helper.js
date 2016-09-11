@@ -100,4 +100,9 @@ Helper.prototype._closeErrorNotification = function(e) {
     this._removeListener(document.body, 'click', this._closeErrorNotification);
 };
 
+Helper.prototype._sendCustomEvent = function(elem, eventName, options) {
+    var widgetEvent = new CustomEvent(eventName, options);
+    elem.dispatchEvent(widgetEvent);
+};
+
 module.exports = Helper;

@@ -25,9 +25,11 @@ function FormSwitcher(options) {
     this._onGotResponse = this._onGotResponse.bind(this);
     this._onCustomSelect = this._onCustomSelect.bind(this);
     this._onClick = this._onClick.bind(this);
+    this._onCustomSelectOpenCloseEvent = this._onCustomSelectOpenCloseEvent.bind(this);
 
     this._addListener(this._elem, 'customselect', this._onCustomSelect);
     this._addListener(this._elem, 'sentrequest', this._onSentRequest);
+    this._addListener(this._elem, 'customselectopenclose', this._onCustomSelectOpenCloseEvent);
     this._addListener(this._elem, 'click', this._onClick);
 }
 
@@ -146,6 +148,19 @@ FormSwitcher.prototype._manageDependencies = function() {
         }
     }
 
+};
+
+FormSwitcher.prototype._onCustomSelectOpenCloseEvent = function(e) {
+    var customSelect = e.target;
+    var inputGroup = customSelect.closest('.input_group');
+
+    if (!inputGroup) return;
+
+    if (e.detail.open) {
+        inputGroup.style.zIndex = '1000';
+    } else if (!e.detail.open) {
+        inputGroup.style.zIndex = '';
+    }
 };
 
 module.exports = FormSwitcher;

@@ -1,3 +1,44 @@
+@keyframes hide_by_dependency {
+
+    0% {
+        display: block;
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    99% {
+        display: block;
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    100% {
+        /*display: none;*/
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+}
+
+@keyframes reveal_by_dependency {
+
+    0% {
+        /*display: none;*/
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    1% {
+        /*display: block;*/
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
 .form-switcher .row {
     padding: 40px 0 0;
     position: relative;
@@ -31,6 +72,7 @@
     padding: 0 10px;
     margin-bottom: 30px;
     width: 100%;
+    position: relative;
 }
 
 .form-switcher .input_group:last-child {
@@ -164,6 +206,14 @@
 .form-switcher .submit:hover:after {
     left: -35px;
     opacity: 1;
+}
+
+.form-switcher .hide_by_dependency {
+    /*animation: hide_by_dependency 0.5s ease-in-out both;*/
+    display: none;
+}
+.form-switcher .reveal_by_dependency {
+    animation: reveal_by_dependency 0.5s ease-in-out both;
 }
 
 @media screen and (min-width: 768px) {

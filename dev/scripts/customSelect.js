@@ -46,7 +46,7 @@ CustomSelect.prototype._setValue = function(title, value) {
     this._titleElem.innerHTML = title;
     this._elem.dataset.value = title;
 
-    var widgetEvent = new CustomEvent('customselect', {
+    /*var widgetEvent = new CustomEvent('customselect', {
         bubbles: true,
         detail: {
             title: title,
@@ -54,8 +54,14 @@ CustomSelect.prototype._setValue = function(title, value) {
         }
     });
 
-    this._elem.dispatchEvent(widgetEvent);
-
+    this._elem.dispatchEvent(widgetEvent);*/
+    this._sendCustomEvent(this._elem, 'customselect', {
+        bubbles: true,
+        detail: {
+            title: title,
+            value: value
+        }
+    });
 };
 
 CustomSelect.prototype._toggle = function() {
@@ -67,12 +73,24 @@ CustomSelect.prototype._open = function() {
     this._elem.classList.add('open');
     this._addListener(document, 'click', this._onDocumentClick);
     this._isOpen = true;
+    this._sendCustomEvent(this._elem, 'customselectopenclose', {
+        bubbles: true,
+        detail: {
+            open: true
+        }
+    });
 };
 
 CustomSelect.prototype._close = function() {
     this._elem.classList.remove('open');
     this._removeListener(document, 'click', this._onDocumentClick);
     this._isOpen = false;
+    this._sendCustomEvent(this._elem, 'customselectopenclose', {
+        bubbles: true,
+        detail: {
+            open: false
+        }
+    });
 };
 
 CustomSelect.prototype._getOptionElems = function() {
@@ -107,14 +125,18 @@ CustomSelect.prototype.returnElem = function() {
 };
 
 CustomSelect.prototype.hideByDependency = function() {
-    this._elem.style.display = 'none';
+    // this._elem.style.display = 'none';
     this._elem.classList.remove('required');
     this._elem.classList.remove('error');
+    this._elem.classList.remove('reveal_by_dependency');
+    this._elem.classList.add('hide_by_dependency');
     this.resetToDefault();
 };
 
 CustomSelect.prototype.revealByDependency = function() {
-    this._elem.style.display = '';
+    // this._elem.style.display = '';
+    this._elem.classList.remove('hide_by_dependency');
+    this._elem.classList.add('reveal_by_dependency');
     if (this._required) {
         this._elem.classList.add('required');
     }
