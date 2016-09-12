@@ -103,7 +103,8 @@
     position: relative;
     /*transition: box-shadow ease 0.5s;*/
     background-image: url('../img/sprites/socials_uit.svg');
-    background-size: auto 200%;
+    /*background-size: auto 200%;*/
+    background-size: 600% 200%;
     background-repeat: no-repeat;
 }
 
@@ -119,7 +120,8 @@
     left: 0;
     transition: opacity ease 0.5s;
     background-image: url('../img/sprites/socials_uit.svg');
-    background-size: auto 200%;
+    /*background-size: auto 200%;*/
+    background-size: 600% 200%;
     background-repeat: no-repeat;
 }
 .info .soc_menu li a:hover:after {

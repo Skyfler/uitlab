@@ -11,6 +11,7 @@ function ready2() {
 
 (function ready() {
 
+    var Polyfils = require('./polyfils');
     var Menu = require('./dropdown-menu.js');
     var GMapController = require('./gmapController');
     var AjaxPaginator = require('./ajaxPaginator');
@@ -22,6 +23,8 @@ function ready2() {
     var FormSwitcher = require('./formswitcher');
     var MasonryTabs = require('./masonry-tabs');
     var AnimatedCircle = require('./animated-circle');*/
+
+    Polyfils.runAll();
 
     var mainMenu = new Menu({
         elem: document.querySelector('#main_menu'),

@@ -28,12 +28,14 @@
     color: white;
     padding-top: 90px;
     padding-bottom: 70px;
+    min-height: 376px;
 }
 
 .who_we_are .row+.row {
     background: #0e0e0e;
     padding-top: 88px;
     padding-bottom: 50px;
+    min-height: 0;
 }
 
 .who_we_are .row+.row+.row {

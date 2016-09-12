@@ -84,7 +84,7 @@ function InnerPage(innerPageElem, mapInstance) {
         for (var i = 0; i < animatedCircleElemArr.length; i++) {
             this._animatedCircleArr[i] = new AnimatedCircle({
                 elem: animatedCircleElemArr[i],
-                delayBeforeStop: 1000                   //ms
+                delayBeforeStop: 3000                   //ms
             });
         }
 
