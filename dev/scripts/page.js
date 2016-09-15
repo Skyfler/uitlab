@@ -15,6 +15,7 @@ function ready2() {
     var Menu = require('./dropdown-menu.js');
     var GMapController = require('./gmapController');
     var AjaxPaginator = require('./ajaxPaginator');
+    var HeaderFixed = require('./headerFixed');
     /*var Dropdown = require('./dropdown.js');
     var Slider = require('./slider.js');
     var VerticalSlider = require('./vertical-slider.js');
@@ -25,6 +26,11 @@ function ready2() {
     var AnimatedCircle = require('./animated-circle');*/
 
     Polyfils.runAll();
+
+    window.header = new HeaderFixed({
+        elem: document.querySelector('header'),
+        fixedClass: 'fixed'
+    });
 
     var mainMenu = new Menu({
         elem: document.querySelector('#main_menu'),
