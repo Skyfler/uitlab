@@ -13,7 +13,7 @@ function TabController(options) {
     // this.addTransitionToAll = this.addTransitionToAll.bind(this);
     // this.removeTransitionFromAll = this.removeTransitionFromAll.bind(this);
 
-    this._refreshSlidesInfo.bind(this)();
+    this._refreshSlidesInfo();
 }
 
 TabController.prototype = Object.create(Helper.prototype);
@@ -26,12 +26,15 @@ TabController.prototype.resetTabsPosition = function() {
 
         if (this._checkTopOpens()) {
             this._setTabPositionsBottomTopTop();
+            // console.log('top opens & all previously closed');
 
         } else if(this._checkMiddleOpens()) {
             this._setTabPositionsBottomTopTop();
+            // console.log('middle opens & all previously closed');
 
         } else if(this._checkBottomOpens()) {
             this._setTabPositionsBottomBottomTop();
+            // console.log('bottom opens & all previously closed');
 
         }
 
@@ -55,9 +58,27 @@ TabController.prototype.resetTabsPosition = function() {
 
         } else if (this._checkTopOpens() && this._checkBottomCollapses()) {
             this._setTabPositionsBottomTopTop();
+            // console.log('top opens & bottom collapses');
 
         } else  if (this._checkBottomOpens() && this._checkTopCollapses()) {
             this._setTabPositionsBottomBottomTop();
+            // console.log('bottom opens & top collapses');
+
+        } else  if (this._checkTopOpens() && this._checkHiddenCollapses()) {
+            this._setTabPositionsBottomTopTop();
+            // console.log('top opens & hidden collapses');
+
+        } else  if (this._checkTopOpens() && this._checkHiddenCloses()) {
+            this._setTabPositionsBottomTopTop();
+            // console.log('top opens & hidden closes');
+
+        } else  if (this._checkBottomOpens() && this._checkHiddenCollapses()) {
+            this._setTabPositionsBottomBottomTop();
+            // console.log('bottom opens & hidden collapses');
+
+        } else  if (this._checkBottomOpens() && this._checkHiddenCloses()) {
+            this._setTabPositionsBottomBottomTop();
+            // console.log('bottom opens & hidden closes');
 
         }
 
@@ -75,7 +96,8 @@ TabController.prototype._refreshSlidesInfo = function() {
         this._slides[position].stateInfo = this._slidesArr[i].getStateInfo(this._slides[position].state);
         this._slides[position].previousState = this._slidesArr[i].getPreviousState();
         if (!this._slidesArr[i]._tabPosition) {
-            if (i === 2) {
+            if (this._slidesArr[i]._position === CONSTANTS.slidePositionVals.bottom ||
+                (this._slidesArr[i]._position === CONSTANTS.slidePositionVals.hidden && i === 3)) {
                 this._setTabPositionTop(this._slides[position].slide);
             } else {
                 this._setTabPositionBottom(this._slides[position].slide);
@@ -164,6 +186,16 @@ TabController.prototype._checkBottomCollapses = function() {
         this._slides[CONSTANTS.slidePositionVals.bottom].stateInfo.type !== CONSTANTS.slideStateVals.completed;
 };
 
+TabController.prototype._checkHiddenCollapses = function() {
+    return this._slides[CONSTANTS.slidePositionVals.hidden] && this._slides[CONSTANTS.slidePositionVals.hidden].stateInfo.finalState === CONSTANTS.slideStateVals.collapsed &&
+        this._slides[CONSTANTS.slidePositionVals.hidden].stateInfo.type !== CONSTANTS.slideStateVals.completed;
+};
+
+TabController.prototype._checkHiddenCloses = function() {
+    return this._slides[CONSTANTS.slidePositionVals.hidden] && this._slides[CONSTANTS.slidePositionVals.hidden].stateInfo.finalState === CONSTANTS.slideStateVals.closed &&
+        this._slides[CONSTANTS.slidePositionVals.hidden].stateInfo.type !== CONSTANTS.slideStateVals.completed;
+};
+
 TabController.prototype._checkTransitionBeforeBP = function() {
     return this._slides[CONSTANTS.slidePositionVals.top].stateInfo.type === CONSTANTS.slideStateVals.transitionalBeforeBP ||
         this._slides[CONSTANTS.slidePositionVals.middle].stateInfo.type === CONSTANTS.slideStateVals.transitionalBeforeBP ||
@@ -180,7 +212,7 @@ TabController.prototype._addTransitionBoxShadowBackground = function(tab) {
 TabController.prototype._addTransitionBoxShadowTopBackground = function(tab) {
     tab.style.transitionTimingFunction = CONSTANTS.transitionVals.linear;
     tab.style.transitionProperty = [CONSTANTS.transitionVals.boxShadow, CONSTANTS.transitionVals.backgroundColor].join(', ');
-    tab.style.transitionDuration = [this._transitionDuration + 'ms', this._transitionDuration + 'ms', (this._transitionDuration * 2) + 'ms'].join(', ');
+    tab.style.transitionDuration = [this._transitionDuration + 'ms', this._transitionDuration + 'ms'].join(', ');
     tab.style.transitionDelay = 0 + 'ms';
 };
 

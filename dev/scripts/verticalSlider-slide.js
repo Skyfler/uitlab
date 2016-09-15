@@ -10,6 +10,9 @@ function Slide(options) {
     this._transitionDuration = options.transitionDuration;
     this._currentZIndex = options.initialZIndex;
     this._position = options.position;
+    if (this._position === CONSTANTS.slidePositionVals.middle) {
+        this._elem.classList.add('center');
+    }
     this._bgElem = this._elem.querySelector('.bg_layer');
     this._topTab = this._elem.querySelector('.top-tab');
 
@@ -31,18 +34,13 @@ function Slide(options) {
 Slide.prototype = Object.create(Helper.prototype);
 Slide.prototype.constructor = Slide;
 
-Slide.prototype._addTransition = function() {
-    // this._elem.addEventListener('transitionend', this._onTransitionEnd);
-    this._addListener(this._elem, 'transitionend', this._onTransitionEnd);
+Slide.prototype.remove = function() {
+    this._removeBackgroundFromSlide();
 
-    this._elem.style.transitionTimingFunction = CONSTANTS.transitionVals.linear;
-    this._elem.style.transitionProperty = [CONSTANTS.transitionVals.height, CONSTANTS.transitionVals.boxShadow, CONSTANTS.transitionVals.backgroundColor].join(', ');
-    this._elem.style.transitionDuration = [this._transitionDuration + 'ms', this._transitionDuration + 'ms', (this._transitionDuration * 2) + 'ms'].join(', ');
-    this._elem.style.transitionDelay = 0 + 'ms';
+    Helper.prototype.remove.apply(this, arguments);
 };
 
 Slide.prototype._setBackgroundOnOpeningSlide = function() {
-
     this._getOpenSlideBackground();
 
     if (this._openSlideBackground) {
@@ -62,6 +60,16 @@ Slide.prototype._removeBackgroundFromSlide = function() {
             this._topTab.style.background = '';
         }
     }
+};
+
+Slide.prototype._addTransition = function() {
+    // this._elem.addEventListener('transitionend', this._onTransitionEnd);
+    this._addListener(this._elem, 'transitionend', this._onTransitionEnd);
+
+    this._elem.style.transitionTimingFunction = CONSTANTS.transitionVals.linear;
+    this._elem.style.transitionProperty = [CONSTANTS.transitionVals.height, CONSTANTS.transitionVals.boxShadow, CONSTANTS.transitionVals.backgroundColor].join(', ');
+    this._elem.style.transitionDuration = [this._transitionDuration + 'ms', this._transitionDuration + 'ms', (this._transitionDuration * 2) + 'ms'].join(', ');
+    this._elem.style.transitionDelay = 0 + 'ms';
 };
 
 Slide.prototype._removeTransition = function() {
@@ -104,7 +112,7 @@ Slide.prototype._onTransitionEnd = function(e) {
 
         this._currentHeight = this._finalHeight;
         delete this._finalHeight;
-        delete this._previousState;
+        // delete this._previousState;
 
         widgetEvent = new CustomEvent("slidechangedstate", {
             bubbles: true,
@@ -114,7 +122,6 @@ Slide.prototype._onTransitionEnd = function(e) {
         });
 
         this._removeTransition();
-
     }
 
     this._elem.dispatchEvent(widgetEvent);
@@ -161,6 +168,9 @@ Slide.prototype.changeStateWithoutTransition = function(newState, finalSlideHeig
     }
 
     this._currentHeight = finalSlideHeight;
+    if (!this._previousState) {
+        this._previousState = newState;
+    }
     this._state = newState;
     this._changeStateClass.bind(this)();
 
@@ -198,6 +208,42 @@ Slide.prototype._getOpenSlideBackground = function() {
     }
 
     // console.log(this._openSlideBackground);
+};
+
+Slide.prototype.changePositionUp = function() {
+    if (this._position === CONSTANTS.slidePositionVals.top) {
+        this._position = CONSTANTS.slidePositionVals.hidden;
+
+    } else if (this._position === CONSTANTS.slidePositionVals.middle) {
+        this._position = CONSTANTS.slidePositionVals.top;
+        this._elem.classList.remove('center');
+
+    } else if (this._position === CONSTANTS.slidePositionVals.bottom) {
+        this._position = CONSTANTS.slidePositionVals.middle;
+        this._elem.classList.add('center');
+
+    } else if (this._position === CONSTANTS.slidePositionVals.hidden) {
+        this._position = CONSTANTS.slidePositionVals.bottom;
+
+    }
+};
+
+Slide.prototype.changePositionDown = function() {
+    if (this._position === CONSTANTS.slidePositionVals.hidden) {
+        this._position = CONSTANTS.slidePositionVals.top;
+
+    } else if (this._position === CONSTANTS.slidePositionVals.top) {
+        this._position = CONSTANTS.slidePositionVals.middle;
+        this._elem.classList.add('center');
+
+    } else if (this._position === CONSTANTS.slidePositionVals.middle) {
+        this._position = CONSTANTS.slidePositionVals.bottom;
+        this._elem.classList.remove('center');
+
+    } else if (this._position === CONSTANTS.slidePositionVals.bottom) {
+        this._position = CONSTANTS.slidePositionVals.hidden;
+
+    }
 };
 
 Slide.prototype._changeStateClass = function() {

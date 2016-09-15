@@ -22,7 +22,7 @@ function InnerPage(innerPageElem, mapInstance) {
     if (verticalSliderElem) {
         this._verticalSlider = new VerticalSlider({
             elem: verticalSliderElem,
-            minDesktopHeight: 420,                                 //px
+            minDesktopHeight: 520,                                 //px
             minMobileHeight: 395,                                  //px
             collapsedSlideHeightDesktop: 92,                        //px
             collapsedSlideHeightMobile: 54.5,                         //px

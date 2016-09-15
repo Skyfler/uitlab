@@ -36,6 +36,18 @@ function FormSwitcher(options) {
 FormSwitcher.prototype = Object.create(Helper.prototype);
 FormSwitcher.prototype.constructor = FormSwitcher;
 
+FormSwitcher.prototype.remove = function() {
+    this._destroyFormValidator();
+
+    Helper.prototype.remove.apply(this, arguments);
+};
+
+FormSwitcher.prototype._destroyFormValidator = function() {
+    if (this._formValidator && this._formValidator.remove) {
+        this._formValidator.remove();
+    }
+};
+
 FormSwitcher.prototype._onClick = function(e) {
     var target = e.target;
 

@@ -5,6 +5,9 @@ var CONSTANTS = require('./verticalSlider-constants');
 var ZIndexController = require('./verticalSlider-zindexController');
 var VideoController = require('./verticalSlider-videoController');
 var TabController = require('./verticalSlider-tabController');
+var SideMenu = require('./verticalSlider-sideMenu');
+var OverflowController = require('./verticalSlider-overflowController');
+var BackgroundController = require('./verticalSlider-backgroundController');
 var Slide = require('./verticalSlider-slide');
 var Helper = require('./helper');
 
@@ -26,6 +29,7 @@ function VerticalSlider(options) {
     this._onMouseOut = this._onMouseOut.bind(this);
     this._onMouseOver = this._onMouseOver.bind(this);
     this._onVideoIsLoaded = this._onVideoIsLoaded.bind(this);
+    this._onSignalToOpenSlide = this._onSignalToOpenSlide.bind(this);
 
     /*this._elem.addEventListener('slidechangingstate', this._onSlideChangingState);
     this._elem.addEventListener('slidechangedstate', this._onSlideChangedState);*/
@@ -45,6 +49,9 @@ VerticalSlider.prototype.remove = function() {
     this._destroyTabController();
     this._destroyZIndexController();
     this._destroyVideoController();
+    this._destroyOverflowController();
+    this._destroySideMenu();
+    this._destroyBackgroundController();
     this._destroySlides();
 
     Helper.prototype.remove.apply(this, arguments);
@@ -76,9 +83,27 @@ VerticalSlider.prototype._destroyTabController = function() {
     }
 };
 
+VerticalSlider.prototype._destroyOverflowController = function() {
+    if (this._overflowController && this._overflowController.remove) {
+        this._overflowController.remove();
+    }
+};
+
+VerticalSlider.prototype._destroySideMenu = function() {
+    if (this._sideMenu && this._sideMenu.remove) {
+        this._sideMenu.remove();
+    }
+};
+
+VerticalSlider.prototype._destroyBackgroundController = function() {
+    if (this._backgroundController && this._backgroundController.remove) {
+        this._backgroundController.remove();
+    }
+};
+
 VerticalSlider.prototype._waitUntilAllVideosAreLoaded = function() {
     if (this._allVideosAreLoadedCheck()) {
-        this._sliderStartReactingOnMouse();
+        this._sliderStartRespondOnUserActions();
     } else {
         // this._elem.addEventListener('videoisloaded', this._onVideoIsLoaded);
         this._addListener(this._elem, 'videoisloaded', this._onVideoIsLoaded);
@@ -101,14 +126,23 @@ VerticalSlider.prototype._onVideoIsLoaded = function(e) {
     // this._elem.removeEventListener('videoisloaded', this._onVideoIsLoaded);
     this._removeListener(this._elem, 'videoisloaded', this._onVideoIsLoaded);
 
-    this._sliderStartReactingOnMouse();
+    this._sliderStartRespondOnUserActions();
 };
 
-VerticalSlider.prototype._sliderStartReactingOnMouse = function() {
+VerticalSlider.prototype._sliderStartRespondOnUserActions = function() {
     // this._elem.addEventListener('mouseout', this._onMouseOut.bind(this));
     // this._elem.addEventListener('mouseover', this._onMouseOver.bind(this));
     this._addListener(this._elem, 'mouseout', this._onMouseOut);
     this._addListener(this._elem, 'mouseover', this._onMouseOver);
+    this._addListener(this._elem, 'signaltoopenslide', this._onSignalToOpenSlide);
+};
+
+VerticalSlider.prototype._sliderStopRespondOnUserActions = function() {
+    // this._elem.addEventListener('mouseout', this._onMouseOut.bind(this));
+    // this._elem.addEventListener('mouseover', this._onMouseOver.bind(this));
+    this._removeListener(this._elem, 'mouseout', this._onMouseOut);
+    this._removeListener(this._elem, 'mouseover', this._onMouseOver);
+    this._removeListener(this._elem, 'signaltoopenslide', this._onSignalToOpenSlide);
 };
 
 VerticalSlider.prototype._init = function() {
@@ -118,10 +152,14 @@ VerticalSlider.prototype._init = function() {
     setTimeout(this._getOpenSlideBackground.bind(this), 0);*/
     this._removeListener(this._elem, 'sliderready', this._onSliderReady);
     this._removeListener(this._elem, 'mousemove', this._onMouseMove);
+    this._sliderStopRespondOnUserActions();
 
     this._destroyTabController();
     this._destroyVideoController();
     this._destroyZIndexController();
+    this._destroyOverflowController();
+    this._destroySideMenu();
+    this._destroyBackgroundController();
     this._destroySlides();
 
     if (window.innerWidth < 800) {
@@ -144,6 +182,14 @@ VerticalSlider.prototype._init = function() {
         slidesArr: this._slidesArr,
         transitionDuration: this._transitionDuration
     });
+    this._overflowController = new OverflowController({
+        elem: this._elem.querySelector('.overflow_block'),
+        initialisation: this._initialisation,
+        closedSlideHeight: this._closedSlideHeight
+    });
+    this._sideMenu = new SideMenu({
+        elem: this._elem
+    });
     // this._iconController = '';
 
     if (this._initialisation === CONSTANTS.sliderInitalisation.desktop) {
@@ -157,8 +203,12 @@ VerticalSlider.prototype._init = function() {
     } else {
         this._videoController = {};
         this._setSlidesToInitialMobileState();
-        this._sliderStartReactingOnMouse();
+        this._sliderStartRespondOnUserActions();
     }
+
+    this._backgroundController = new BackgroundController({
+        slidesArr: this._slidesArr
+    });
 
     this._state = CONSTANTS.sliderStateVals.ready;
 };
@@ -191,12 +241,14 @@ VerticalSlider.prototype._calculateValues = function() {
         this._desktopHeight = this._minDesktopHeight;
     }
 
+    var slidesCount = this._elem.querySelectorAll('.slide').length;
+
     this._height = this._initialisation === CONSTANTS.sliderInitalisation.mobile ? this._mobileHeight : this._desktopHeight;
     this._elem.style.height = this._height + 'px';
     // this._openSlideHeight = this._initialisation === CONSTANTS.sliderInitalisation.mobile ? this._openSlideHeightMobile : this._openSlideHeightDesktop;
-    this._closedSlideHeight = this._height / 3;
+    this._closedSlideHeight = this._initialisation === CONSTANTS.sliderInitalisation.mobile ? this._height / slidesCount : this._height / 3;
     // this._collapsedSlideHeight = (this._height - this._openSlideHeight) / 2;
-    this._openSlideHeight = this._initialisation === CONSTANTS.sliderInitalisation.mobile ? this._height - (this._collapsedSlideHeightMobile * 2) : this._height - (this._collapsedSlideHeightDesktop * 2);
+    this._openSlideHeight = this._initialisation === CONSTANTS.sliderInitalisation.mobile ? this._height - (this._collapsedSlideHeightMobile * (slidesCount - 1)) : this._height - (this._collapsedSlideHeightDesktop * 2);
 
     this._collapsedSlideHeight = this._initialisation === CONSTANTS.sliderInitalisation.mobile ? this._collapsedSlideHeightMobile : this._collapsedSlideHeightDesktop ;
 };
@@ -212,7 +264,7 @@ VerticalSlider.prototype._createSlides = function() {
             elem: slideElemsArr[i],
             transitionDuration: this._transitionDuration,
             initialZIndex: CONSTANTS.slideZIndexVals.low,
-            position: i === 0 ? CONSTANTS.slidePositionVals.top : i === 1 ? CONSTANTS.slidePositionVals.middle : CONSTANTS.slidePositionVals.bottom
+            position: i === 0 ? CONSTANTS.slidePositionVals.top : i === 1 ? CONSTANTS.slidePositionVals.middle : i === 2 ? CONSTANTS.slidePositionVals.bottom : CONSTANTS.slidePositionVals.hidden
         });
 
         this._slidesArr.push(newSlide);
@@ -230,6 +282,7 @@ VerticalSlider.prototype._setSlidesToInitialMobileState = function() {
     this._slidesArr[0].changeStateWithoutTransition(CONSTANTS.slideStateVals.collapsed, this._collapsedSlideHeight);
     this._slidesArr[1].changeStateWithoutTransition(CONSTANTS.slideStateVals.open, this._openSlideHeight);
     this._slidesArr[2].changeStateWithoutTransition(CONSTANTS.slideStateVals.collapsed, this._collapsedSlideHeight);
+    this._slidesArr[3] ? this._slidesArr[3].changeStateWithoutTransition(CONSTANTS.slideStateVals.collapsed, this._collapsedSlideHeight) : false;
     this._zIndexController.resetIndexes();
 };
 
@@ -247,6 +300,7 @@ VerticalSlider.prototype._onMouseOver = function(e) {
     if (this._state === CONSTANTS.sliderStateVals.moving) {
         this._waitTillSliderReady(e.clientX, e.clientY);
     } else {
+        this._showSlideIfHidden(this._getSlideIndexByElem(currentSlideElem));
         this._openCurrentSlideCloseOthers(currentSlide);
     }
 };
@@ -281,13 +335,32 @@ VerticalSlider.prototype._getSlideByElem = function(slideElem) {
     return null;
 };
 
-VerticalSlider.prototype._openCurrentSlideCloseOthers = function(currentSlide) {
-
+VerticalSlider.prototype._getSlideIndexByElem = function(slideElem) {
     for (var i = 0; i < this._slidesArr.length; i++) {
+        if (this._slidesArr[i]._elem === slideElem) {
+            return i;
+        }
+    }
+
+    return -1;
+};
+
+VerticalSlider.prototype._openCurrentSlideCloseOthers = function(currentSlide) {
+    for (var i = 0; i < this._slidesArr.length; i++) {
+        if (this._initialisation === CONSTANTS.sliderInitalisation.desktop &&
+            this._slidesArr[i]._position === CONSTANTS.slidePositionVals.hidden) {
+
+            if (this._slidesArr[i].getCurrentState() !== CONSTANTS.slideStateVals.closed) {
+                this._closeSlide(this._slidesArr[i]);
+            }
+            continue;
+        }
+
         if (this._slidesArr[i] === currentSlide) {
             if (this._slidesArr[i].getCurrentState() !== CONSTANTS.slideStateVals.open) {
                 this._openSlide(this._slidesArr[i]);
             }
+
         } else {
             if (this._slidesArr[i].getCurrentState() !== CONSTANTS.slideStateVals.collapsed) {
                 this._collapseSlide(this._slidesArr[i]);
@@ -297,9 +370,8 @@ VerticalSlider.prototype._openCurrentSlideCloseOthers = function(currentSlide) {
 };
 
 VerticalSlider.prototype._closeAllSlides = function() {
-
     for (var i = 0; i < this._slidesArr.length; i++) {
-        if (this._slidesArr[i].getCurrentState() !== CONSTANTS.sliderStateVals.closed) {
+        if (this._slidesArr[i].getCurrentState() !== CONSTANTS.slideStateVals.closed) {
             this._closeSlide(this._slidesArr[i]);
         }
     }
@@ -325,6 +397,7 @@ VerticalSlider.prototype._onSlideChangingState = function(e) {
     this._state = CONSTANTS.sliderStateVals.moving;
     this._zIndexController.resetIndexes();
     this._tabController.resetTabsPosition();
+    this._backgroundController.refreshBackgroundClasses();
 
     if (this._initialisation === CONSTANTS.sliderInitalisation.desktop) {
 
@@ -383,23 +456,31 @@ VerticalSlider.prototype._onSliderReady = function(e) {
     this._removeListener(document.documentElement, 'mousemove', this._onMouseMove);
     this._removeListener(this._elem, 'sliderready', this._onSliderReady);
 
-    var target = document.elementFromPoint(this._clientX, this._clientY);
-
-    var currentSlideElem = target ? target.closest('.slide') : null;
-    var currentSlide = this._getSlideByElem(currentSlideElem);
-
-    if (currentSlide) {
-        var currentSlideState = currentSlide.getCurrentState();
-
-        if (currentSlideState !== CONSTANTS.slideStateVals.open) {
-            this._openCurrentSlideCloseOthers(currentSlide);
-        }
+    if (this._slideIndexToOpen) {
+        this._showSlideIfHidden(this._slideIndexToOpen);
+        this._openCurrentSlideCloseOthers(this._slidesArr[this._slideIndexToOpen]);
+        delete this._slideIndexToOpen;
 
     } else {
-        var firstSlideState = this._slidesArr[0].getCurrentState();
+        var target = document.elementFromPoint(this._clientX, this._clientY);
 
-        if (firstSlideState !== CONSTANTS.slideStateVals.closed) {
-            this._initialisation === CONSTANTS.sliderInitalisation.desktop ? this._closeAllSlides() : false;
+        var currentSlideElem = target ? target.closest('.slide') : null;
+        var currentSlide = this._getSlideByElem(currentSlideElem);
+
+        if (currentSlide) {
+            var currentSlideState = currentSlide.getCurrentState();
+
+            if (currentSlideState !== CONSTANTS.slideStateVals.open) {
+                this._showSlideIfHidden(this._getSlideIndexByElem(currentSlideElem));
+                this._openCurrentSlideCloseOthers(currentSlide);
+            }
+
+        } else {
+            var firstSlideState = this._slidesArr[1].getCurrentState();
+
+            if (firstSlideState !== CONSTANTS.slideStateVals.closed) {
+                this._initialisation === CONSTANTS.sliderInitalisation.desktop ? this._closeAllSlides() : false;
+            }
         }
     }
 
@@ -414,7 +495,53 @@ VerticalSlider.prototype._waitTillSliderReady = function(clientX, clientY) {
     // this._elem.addEventListener('sliderready', this._onSliderReady);
     this._addListener(document.documentElement, 'mousemove', this._onMouseMove);
     this._addListener(this._elem, 'sliderready', this._onSliderReady);
+};
 
+VerticalSlider.prototype._moveSliderUp = function() {
+    if (this._initialisation === CONSTANTS.sliderInitalisation.desktop) {
+        this._overflowController.moveOverflowUp();
+    }
+
+    for (var i = 0; i < this._slidesArr.length; i++) {
+        this._slidesArr[i].changePositionUp();
+    }
+};
+
+VerticalSlider.prototype._moveSliderDown = function() {
+    if (this._initialisation === CONSTANTS.sliderInitalisation.desktop) {
+        this._overflowController.moveOverflowDown();
+    }
+
+    for (var i = 0; i < this._slidesArr.length; i++) {
+        this._slidesArr[i].changePositionDown();
+    }
+};
+
+VerticalSlider.prototype._onSignalToOpenSlide = function(e) {
+    var slideNum = e.detail.slideNum;
+
+    if (!this._slidesArr[slideNum - 1]) return;
+
+    if (this._state === CONSTANTS.sliderStateVals.moving) {
+        this._slideIndexToOpen = slideNum - 1;
+        this._waitTillSliderReady(0, 0);
+    } else {
+        this._showSlideIfHidden(slideNum - 1);
+        this._openCurrentSlideCloseOthers(this._slidesArr[slideNum - 1]);
+    }
+};
+
+VerticalSlider.prototype._showSlideIfHidden = function(slideIndex) {
+    if (this._slidesArr[slideIndex]._position === CONSTANTS.slidePositionVals.hidden) {
+
+        if (slideIndex === 3) {
+            this._moveSliderUp();
+
+        } else if (slideIndex === 0) {
+            this._moveSliderDown();
+
+        }
+    }
 };
 
 module.exports = VerticalSlider;

@@ -50,6 +50,9 @@ ZIndexController.prototype._setHighMediumLowIndex = function() {
     this._slides[CONSTANTS.slidePositionVals.top].slide.zIndex(CONSTANTS.slideZIndexVals.high);
     this._slides[CONSTANTS.slidePositionVals.middle].slide.zIndex(CONSTANTS.slideZIndexVals.medium);
     this._slides[CONSTANTS.slidePositionVals.bottom].slide.zIndex(CONSTANTS.slideZIndexVals.low);
+
+    // this._slides[CONSTANTS.slidePositionVals.hidden].slide.zIndex(CONSTANTS.slideZIndexVals.highHidden);
+    this._slides[CONSTANTS.slidePositionVals.hidden] ? this._slides[CONSTANTS.slidePositionVals.hidden].slide.zIndex(CONSTANTS.slideZIndexVals.highHidden) : false;
 };
 
 ZIndexController.prototype._setHighLowHighIndex = function() {
@@ -58,6 +61,9 @@ ZIndexController.prototype._setHighLowHighIndex = function() {
     this._slides[CONSTANTS.slidePositionVals.top].slide.zIndex(CONSTANTS.slideZIndexVals.high);
     this._slides[CONSTANTS.slidePositionVals.middle].slide.zIndex(CONSTANTS.slideZIndexVals.low);
     this._slides[CONSTANTS.slidePositionVals.bottom].slide.zIndex(CONSTANTS.slideZIndexVals.high);
+
+    // this._slides[CONSTANTS.slidePositionVals.hidden].slide.zIndex(CONSTANTS.slideZIndexVals.highHidden);
+    this._slides[CONSTANTS.slidePositionVals.hidden] ? this._slides[CONSTANTS.slidePositionVals.hidden].slide.zIndex(CONSTANTS.slideZIndexVals.highHidden) : false;
 };
 
 ZIndexController.prototype._setLowMediumHighIndex = function() {
@@ -66,6 +72,9 @@ ZIndexController.prototype._setLowMediumHighIndex = function() {
     this._slides[CONSTANTS.slidePositionVals.top].slide.zIndex(CONSTANTS.slideZIndexVals.low);
     this._slides[CONSTANTS.slidePositionVals.middle].slide.zIndex(CONSTANTS.slideZIndexVals.medium);
     this._slides[CONSTANTS.slidePositionVals.bottom].slide.zIndex(CONSTANTS.slideZIndexVals.high);
+
+    // this._slides[CONSTANTS.slidePositionVals.hidden].slide.zIndex(CONSTANTS.slideZIndexVals.highHidden);
+    this._slides[CONSTANTS.slidePositionVals.hidden] ? this._slides[CONSTANTS.slidePositionVals.hidden].slide.zIndex(CONSTANTS.slideZIndexVals.highHidden) : false;
 };
 
 

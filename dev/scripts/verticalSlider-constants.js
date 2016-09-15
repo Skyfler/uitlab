@@ -18,6 +18,7 @@ module.exports = {
     },
 
     slideZIndexVals: {
+        highHidden: 4,
         high: 3,
         medium: 2,
         low: 1
@@ -26,7 +27,8 @@ module.exports = {
     slidePositionVals: {
         top: 'top',
         middle: 'middle',
-        bottom: 'bottom'
+        bottom: 'bottom',
+        hidden: 'hidden'
     },
 
     transitionVals: {

@@ -22,7 +22,12 @@ FormValidator.prototype.constructor = FormValidator;
 FormValidator.prototype._onSubmit = function(e) {
     e.preventDefault();
 
-    if(this._waitingForResponse) return;
+    // console.log('this._waitingForResponse is set to ' + this._waitingForResponse);
+
+    if(this._waitingForResponse) {
+        // console.log('Already sent form!');
+        return;
+    }
 
     var form = e.target;
 
@@ -155,6 +160,8 @@ FormValidator.prototype._postFormData = function(formData, callback) {
     };*/
 
     this._waitingForResponse = true;
+    // console.log('Setting this._waitingForResponse to ' + this._waitingForResponse);
+
     this._cusomEvent.bind(this)('sentrequest');
 
     xhr.send(formData);
@@ -164,6 +171,7 @@ FormValidator.prototype._onReqEnd = function(xhr) {
     if (!this._sumitingForm) return;
 
     this._waitingForResponse = false;
+    // console.log('Setting this._waitingForResponse to ' + this._waitingForResponse);
 
     try {
         var res = JSON.parse(xhr.responseText);
