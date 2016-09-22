@@ -1,0 +1,58 @@
+.terms {
+    padding: 50px 0 95px;
+    border-top: 2px solid black;
+}
+
+.terms .block_main_title {
+    font-size: 3em;
+}
+
+.terms .divider {
+    margin-bottom: 75px;
+}
+
+.terms .divider:after {
+    width: 25px;
+    border-bottom: 4px solid #2687e0;
+    top: 13px;
+    right: -10px;
+}
+
+.terms .text_block {
+    text-align: left;
+}
+
+.terms .text_block p,
+.terms .text_block ul {
+    font-size: 1.8em;
+    color: #a6a6a6;
+}
+
+.terms .text_block p.title {
+    font-weight: 600;
+    color: #000;
+}
+
+.terms .text_block ul li {
+    padding-left: 35px;
+    position: relative;
+}
+
+.terms .text_block ul li:after {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 8px;
+    width: 8px;
+    background: #ffda00;
+    /*top: 50%;*/
+    top: 7px;
+    /*transform: translateY(-50%);*/
+    left: 15px;
+}
+
+.terms .text_block p+p,
+.terms .text_block p+ul,
+.terms .text_block ul+p {
+    margin-top: 20px;
+}

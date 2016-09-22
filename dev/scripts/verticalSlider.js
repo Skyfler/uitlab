@@ -427,6 +427,12 @@ VerticalSlider.prototype._onSlideChangedState = function(e) {
 
         if (e.detail.state === CONSTANTS.slideStateVals.open) {
             this._videoController.startVideo(slide);
+            /*this._sendCustomEvent(slide._elem, 'startVideo', {
+                bubbles: true,
+                detail: {
+                    slide: slide
+                }
+            });*/
         }
     }
 

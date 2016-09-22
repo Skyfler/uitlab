@@ -1,17 +1,8 @@
 "use strict";
 
-/*console.log("Before addEventListener 'DOMContentLoaded'");
-document.addEventListener("DOMContentLoaded", ready);
-document.addEventListener("DOMContentLoaded", ready2);
-console.log("After addEventListener 'DOMContentLoaded'");*/
-/*
-function ready2() {
-    console.log("DOMContentLoaded");
-}*/
-
 (function ready() {
 
-    var Polyfils = require('./polyfils');
+    var Polyfills = require('./polyfills');
     var Menu = require('./dropdown-menu.js');
     var GMapController = require('./gmapController');
     var AjaxPaginator = require('./ajaxPaginator');
@@ -25,7 +16,7 @@ function ready2() {
     var MasonryTabs = require('./masonry-tabs');
     var AnimatedCircle = require('./animated-circle');*/
 
-    Polyfils.runAll();
+    Polyfills.runAll();
 
     window.header = new HeaderFixed({
         elem: document.querySelector('header'),

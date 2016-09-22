@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /wp-content/
+Disallow: /portfolio.html
+Sitemap: http://uitlab.com/sitemap.xml
+Host: uitlab.com

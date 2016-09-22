@@ -25,7 +25,7 @@ var config = {
 
 var path = {
     public: { //Тут мы укажем куда складывать готовые после сборки файлы
-        html: './public/',
+        public: './public/',
         js: './public/scripts/',
         css: './public/css/',
         img: './public/img/',
@@ -39,6 +39,7 @@ var path = {
         css: './dev/css/*.css',
         video: './dev/video/*',
         php: './dev/php/**/*.*',
+        utility: ['./dev/utility_files/*', './dev/utility_files/.htaccess'],
         img: './dev/img/**/*.*' //Синтаксис img/**/*.* означает - взять все файлы всех расширений из папки и из вложенных каталогов
     },
     clean: './public',
@@ -119,7 +120,7 @@ gulp.task('html', function() {
             processConditionalComments: true,
             removeComments: true
         }))
-        .pipe(gulp.dest(path.public.html));
+        .pipe(gulp.dest(path.public.public));
 });
 
 gulp.task('html-nomin', function() {
@@ -128,7 +129,12 @@ gulp.task('html-nomin', function() {
             prefix: '@@',
             basepath: '@file'
         }))
-        .pipe(gulp.dest(path.public.html));
+        .pipe(gulp.dest(path.public.public));
+});
+
+gulp.task('utility', function() {
+    gulp.src(path.dev.utility)
+        .pipe(gulp.dest(path.public.public));
 });
 
 gulp.task('webserver', function () {
@@ -141,7 +147,7 @@ gulp.task('clean', function (cb) {
 
 gulp.task('l', ['html', 'css']);
 
-gulp.task('default', ['html', 'css', 'js', 'image', 'video', 'php']);
+gulp.task('default', ['html', 'css', 'js', 'image', 'video', 'php', 'utility']);
 
 /*----------*/
 gulp.task('cleanHost', function (cb) {

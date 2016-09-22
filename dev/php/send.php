@@ -1,12 +1,22 @@
 <?php
 require($_SERVER['DOCUMENT_ROOT'].'/php/lib/PHPMailer/PHPMailerAutoload.php');
 
-// $email = "skyflerr@gmail.com";
+//$email = "skyflerr@gmail.com";
 $email = "support@uitlab.com";
 $mailer = new PHPMailer;
 
 $mailer->setLanguage('ru', $_SERVER['DOCUMENT_ROOT'].'/php/lib/PHPMailer/language/');
 $mailer->CharSet = 'UTF-8';
+
+$mailer->IsSMTP(); // telling the class to use SMTP
+$mailer->SMTPAuth   = true;                  // enable SMTP authentication
+$mailer->Host       = "uitlabcom.ipage.com"; // SMTP server
+$mailer->SMTPDebug  = 0;                     // enables SMTP debug information (for testing)
+                                            // 1 = errors and messages
+                                            // 2 = messages only
+$mailer->Port       = 587;                    // set the SMTP port for the GMAIL server
+$mailer->Username   = "support@uitlab.com"; // SMTP account username
+$mailer->Password   = "WeRl98gA!";        // SMTP account password
 
 $mailer->setFrom($_POST["senderAddress"], '');
 
@@ -56,8 +66,6 @@ function reArrayFiles($file)
     }
     return $file_ary;
 }
-
-
 
 
 if (!$mailer->send()) {
