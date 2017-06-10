@@ -10,7 +10,7 @@ function VideoController(options) {
 
     this._onVideoLoaded = this._onVideoLoaded.bind(this);
     this._onVideoEnd = this._onVideoEnd.bind(this);
-    this._startVideo = this._startVideo.bind(this);
+//    this._startVideo = this._startVideo.bind(this);
 
     this._init();
 }
@@ -29,7 +29,7 @@ VideoController.prototype._init = function() {
         }
         // this._slidesArr[i]._videoElem.addEventListener('ended', this._onVideoEnd);
         this._addListener(this._slidesArr[i]._videoElem, 'ended', this._onVideoEnd);
-        this._addListener(this._slidesArr[i]._elem, 'startVideo', this._startVideo);
+//        this._addListener(this._slidesArr[i]._elem, 'startVideo', this._startVideo);
 
         this._slidesArr[i]._videoState = CONSTANTS.videoStateVals.stoped;
     }
@@ -64,11 +64,11 @@ VideoController.prototype._getSlideByVideoElem = function(videoElem) {
     return false;
 };
 
-VideoController.prototype._startVideo = function(e) {
+/*VideoController.prototype._startVideo = function(e) {
     var slide = e.detail.slide;
     slide._videoElem.play();
     slide._videoState = CONSTANTS.videoStateVals.playing;
-};
+};*/
 
 VideoController.prototype.startVideo = function(slide) {
     slide._videoElem.play();

@@ -38,12 +38,6 @@
     min-height: 0;
 }
 
-.who_we_are .row+.row+.row {
-    background: none;
-    color: #0e0e0e;
-    padding-top: 50px;
-}
-
 .who_we_are .text_block {
     font-size: 1.8em;
     max-width: 895px;

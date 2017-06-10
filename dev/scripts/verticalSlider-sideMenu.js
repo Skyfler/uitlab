@@ -17,6 +17,8 @@ SideMenu.prototype = Object.create(Helper.prototype);
 SideMenu.prototype.constructor = SideMenu;
 
 SideMenu.prototype._onClick = function(e) {
+//    console.log('SideMenu _onClick');
+//    console.log(e.type);
     var target = e.target;
     if (!target) return;
     var control = target.closest('[data-slide-index]');

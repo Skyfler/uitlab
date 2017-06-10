@@ -47,7 +47,6 @@ FormValidator.prototype._processForm = function(form) {
     this._postFormData(formData, this._onReqEnd.bind(this));
 };
 
-
 FormValidator.prototype._getDataObjArr = function(inputsArr) {
     var dataObjArr = [];
 

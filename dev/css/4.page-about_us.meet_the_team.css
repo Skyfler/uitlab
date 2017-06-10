@@ -2,6 +2,15 @@
 
 }
 
+.meet_the_team .text_block {
+    font-size: 1.8em;
+    max-width: 895px;
+    margin: 0 auto;
+    color: #0e0e0e;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
 .meet_the_team .block_main_title {
     font-size: 3em;
 }
@@ -43,9 +52,13 @@
     will-change: transform;
     transition: transform ease 0.5s;
 }
-
 .meet_the_team .team_blocks_container .block .block_content:hover .img_container {
-    transform: scale(1.1);
+    transform: scale(1.2, 1.2);
+}
+
+.meet_the_team .team_blocks_container .block .block_content .img_container img {
+    backface-visibility: hidden;
+    transform: translateZ(0);
 }
 
 .meet_the_team .team_blocks_container .block .img_container .description {
